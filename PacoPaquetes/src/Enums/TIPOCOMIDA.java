@@ -1,0 +1,5 @@
+package Enums;
+
+public enum TIPOCOMIDA{
+    NORMAL, CONGELADA, REFRIGERADA, LIQUIDA
+}
