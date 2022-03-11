@@ -1,0 +1,4 @@
+package Enums;
+public enum TIPOCAMION{
+    REGULAR, DIM_ESPECIALES, REFRIGERADO
+}
