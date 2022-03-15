@@ -17,4 +17,14 @@ public class Alimentario extends Producto{
     public TIPOCOMIDA getTipo(){
         return this.tipo;
     }
+
+    @Override public double getPrecio() {
+        
+        double p=0.5*getPesoTotal();
+        if(getPesoTotal()/getNumUnidades()<1) p+=0.4;
+        else if(getPesoTotal()/getNumUnidades()<5) p+=0.6;
+        else if(getPesoTotal()/getNumUnidades()<30) p+=1;
+
+        return p*getNumUnidades();
+    }
 }

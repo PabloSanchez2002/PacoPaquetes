@@ -8,7 +8,7 @@ public class Operario extends UsuarioRegistrado{
     
     public Repartidor altaRepartidor(String usuario, String contraseña ,String telefono){
         Repartidor r = new Repartidor(usuario, contraseña, telefono);
-        
+        return r;
 
         
     }

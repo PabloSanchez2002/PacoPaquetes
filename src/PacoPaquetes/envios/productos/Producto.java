@@ -88,12 +88,5 @@ public abstract class Producto{
     }
 
     //==================================//
-    public double getPrecio(){
-        double p=0;
-        if(pesoTotal/numUnidades<1) p=0.4;
-        else if(pesoTotal/numUnidades<5) p=0.6;
-        else if(pesoTotal/numUnidades<30) p=1;
-
-        return p*numUnidades;
-    }
+    public abstract double getPrecio();
 }
