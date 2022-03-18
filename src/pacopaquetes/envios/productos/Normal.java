@@ -1,5 +1,5 @@
-package PacoPaquetes.envios.productos;
-import Enums.ESTADO;
+package pacopaquetes.envios.productos;
+import enums.ESTADO;
 
 public class Normal extends Producto{
 

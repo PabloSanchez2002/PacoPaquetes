@@ -1,4 +1,4 @@
-package PacoPaquetes.usuarios;
+package pacopaquetes.usuarios;
 
 public class Cliente extends UsuarioRegistrado{
 
@@ -8,8 +8,8 @@ public class Cliente extends UsuarioRegistrado{
     private String correoElectronico;
     private String targetaBancaria;
 
-    public Cliente(String usuario, String contraseña, String CIF, String nombreEmpresa, String direcconFacturacion, String correoElectronico, String targetaBancaria){
-        super(usuario,contraseña);
+    public Cliente(String usuario, String contrasena, String CIF, String nombreEmpresa, String direcconFacturacion, String correoElectronico, String targetaBancaria){
+        super(usuario,contrasena);
         this.CIF=CIF;
         this.nombreEmpresa=nombreEmpresa;
         this.direcconFacturacion=direcconFacturacion;
@@ -54,21 +54,4 @@ public class Cliente extends UsuarioRegistrado{
     public String getTargetaBancaria(){
         return this.targetaBancaria;
     }
-    
-    //========================================
-    public void editarDatos(String nombre, String direccion, String correo, String tarjeta){
-        if(nombre!=null && nombre.isEmpty()==false){
-            setNombreEmpresa(nombre);
-        }
-        if(direccion!=null && direccion.isEmpty()==false){
-            setDirecconFacturacion(direccion);
-        }
-        if(correo!=null && correo.isEmpty()==false){
-            setCorreoElectronico(correo);
-        }
-        if(tarjeta!=null && tarjeta.isEmpty()==false){
-            setTargetaBancaria(tarjeta);
-        }
-    }
-    
 }

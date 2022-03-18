@@ -1,14 +1,14 @@
-package PacoPaquetes.usuarios;
+package pacopaquetes.usuarios;
 
-import PacoPaquetes.envios.PlanDeReparto;
+import pacopaquetes.envios.PlanDeReparto;
 
 public class Repartidor extends UsuarioRegistrado{
     
     private String telefono;
     private PlanDeReparto planReparto;   
 
-    public Repartidor(String usuario, String contraseña, String telefono){
-        super(usuario, contraseña);
+    public Repartidor(String usuario, String contrasena, String telefono){
+        super(usuario, contrasena);
         this.telefono = telefono;
     }
 

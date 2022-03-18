@@ -1,7 +1,7 @@
-package PacoPaquetes.envios;
+package pacopaquetes.envios;
 
 import java.util.ArrayList;
-import PacoPaquetes.envios.productos.*;
+import pacopaquetes.envios.productos.*;
 
 public class Lote{
 

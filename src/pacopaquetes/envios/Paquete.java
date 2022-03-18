@@ -1,6 +1,6 @@
-package PacoPaquetes.envios;
+package pacopaquetes.envios;
 
-import Enums.PRIORIDAD;
+import enums.PRIORIDAD;
 
 public class Paquete{
     private PRIORIDAD tipo;

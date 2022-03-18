@@ -1,20 +1,19 @@
-package PacoPaquetes.usuarios;
+package pacopaquetes.usuarios;
 public abstract class  UsuarioRegistrado extends UsuarioSinRegistrar{
     private String usuario;
-    private String contraseña;  
+    private String contrasena;  
 
-    public UsuarioRegistrado(String usuario, String contraseña){
+    public UsuarioRegistrado(String usuario, String contrasena){
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
-
     //================SETS===============//
     public void setUsuario(String usuario){
         this.usuario = usuario;
     }
 
-    public void setContraseña(String contraseña){
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena){
+        this.contrasena = contrasena;
     }
 
     //================GETS===============//
@@ -22,8 +21,8 @@ public abstract class  UsuarioRegistrado extends UsuarioSinRegistrar{
         return this.usuario; 
     }
 
-    public String getContraseña(){
-        return this.contraseña; 
+    public String getContrasena(){
+        return this.contrasena; 
     }
 
     

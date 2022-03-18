@@ -1,6 +1,6 @@
-package PacoPaquetes.envios.productos;
-import Enums.TIPOCOMIDA;
-import Enums.ESTADO;
+package pacopaquetes.envios.productos;
+import enums.ESTADO;
+import enums.TIPOCOMIDA;
 
 public class Alimentario extends Producto{
     private TIPOCOMIDA tipo;

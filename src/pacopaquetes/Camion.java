@@ -1,6 +1,6 @@
-package PacoPaquetes;
+package pacopaquetes;
 
-import Enums.TIPOCAMION;
+import enums.TIPOCAMION;
 
 public class Camion{
     private String matricula;

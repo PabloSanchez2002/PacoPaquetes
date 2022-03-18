@@ -1,8 +1,8 @@
-package PacoPaquetes.envios;
+package pacopaquetes.envios;
 
 import java.util.ArrayList;
 
-import PacoPaquetes.Camion;
+import pacopaquetes.Camion;
 
 public class PlanDeReparto{
     private int id;

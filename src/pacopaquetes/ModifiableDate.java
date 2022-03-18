@@ -1,4 +1,4 @@
-package PacoPaquetes;
+package pacopaquetes;
 
 import java.time.LocalDate;
 

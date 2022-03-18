@@ -1,8 +1,8 @@
-package PacoPaquetes.envios;
+package pacopaquetes.envios;
 
 import java.util.Date;
 
-import PacoPaquetes.envios.productos.Producto;
+import pacopaquetes.envios.productos.Producto;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class Pedido {
         return this.nintentos;
     }
 
-    public void añadirProducto(Producto p){
+    public void anadirProducto(Producto p){
         productos.add(p);
     }
 
