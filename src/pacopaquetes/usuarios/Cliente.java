@@ -1,5 +1,6 @@
 package pacopaquetes.usuarios;
-
+import java.util.ArrayList;
+import pacopaquetes.envios.*;
 public class Cliente extends UsuarioRegistrado{
 
     private String CIF;
@@ -7,6 +8,7 @@ public class Cliente extends UsuarioRegistrado{
     private String direcconFacturacion;
     private String correoElectronico;
     private String targetaBancaria;
+    private ArrayList<Pedido> pedidos;
 
     public Cliente(String usuario, String contrasena, String CIF, String nombreEmpresa, String direcconFacturacion, String correoElectronico, String targetaBancaria){
         super(usuario,contrasena);

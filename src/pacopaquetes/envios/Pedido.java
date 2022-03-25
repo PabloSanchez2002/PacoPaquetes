@@ -3,17 +3,20 @@ package pacopaquetes.envios;
 import java.util.Date;
 
 import pacopaquetes.envios.productos.Producto;
+import enums.*;
 
 import java.util.ArrayList;
 
 public class Pedido {
 
     private int id;
+    private PRIORIDAD prioridad;
     private Date fecha;
     private int nintentos;
     private ArrayList<Producto> productos;
 
-    public Pedido(int id, Date date, int nint){
+    public Pedido(int id, Date date, int nint, PRIORIDAD pr){
+        this.prioridad=pr;
         this.id = id;
         this.fecha = date;
         this.nintentos = nint;
@@ -33,6 +36,10 @@ public class Pedido {
     public void setNIntentos(int n){
         this.nintentos = n;
     }
+
+    public void setPrioridad(PRIORIDAD p){
+        this.prioridad = p;
+    }
     
     //===============GETS===============//
 
@@ -48,11 +55,27 @@ public class Pedido {
         return this.nintentos;
     }
 
+    public PRIORIDAD getPrioridad(){
+         return this.prioridad;
+    }
+
     public void anadirProducto(Producto p){
         productos.add(p);
     }
 
     public void eliminarProducto(Producto p){
         productos.remove(p);
+    }
+
+    public double getPrecio(){
+        double pr=0;
+        int n=0;
+        for(Producto p: this.productos){
+            pr+=p.getPrecio();
+            n+=p.getNumUnidades();
+        }
+        if(this.getPrioridad()==PRIORIDAD.URGENTE) pr+=5;
+        if(n>=100) pr-=(pr*0.1);
+        return pr;
     }
 }

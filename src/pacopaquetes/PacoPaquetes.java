@@ -39,6 +39,18 @@ public class PacoPaquetes {
         return this.config;
     }
 
+    public ArrayList<Camion> getCamiones(){
+        return this.camiones;
+    }
+
+    public ArrayList<Producto> getProductos(){
+        return this.productos;
+    }
+
+    public ArrayList<Pedido> getPedidos(){
+        return this.pedidos;
+    }
+
     //=========================ADDS Y REMOVES==========================\\
     public void addRepartidor(Repartidor rep){
         if(this.findRepByName(rep.getUsuario())!= null) return;
@@ -68,6 +80,15 @@ public class PacoPaquetes {
     public void rmCamion(Camion cam){
         this.camiones.remove(cam);
     }
+
+    public void addProducto(Producto pro){
+        if(this.findProductoById(pro.getId())!=null) return;
+        this.productos.add(pro);
+    }
+    public void rmPedido(Producto pro){
+        this.productos.remove(pro);
+    }
+
 
     //=========================FINDS==========================\\
     public Repartidor findRepByName(String name){

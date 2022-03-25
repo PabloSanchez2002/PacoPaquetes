@@ -1,10 +1,10 @@
 package pacopaquetes.envios.productos;
-import enums.ESTADO;
+import enums.*;
 
 public class Normal extends Producto{
 
-    public Normal(int num,float pesoTot, float largo, float ancho, float profundo ,ESTADO estado ,int id, String nombre){
-        super(num,pesoTot,largo,ancho,profundo,estado,id,nombre);
+    public Normal(int num,float pesoTot, float largo, float ancho, float profundo ,ESTADO estado ,int id, String nombre,PRIORIDAD PR){
+        super(num,pesoTot,largo,ancho,profundo,estado,id,nombre,PR);
     }
 
     @Override public double getPrecio() {

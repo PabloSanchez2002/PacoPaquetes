@@ -5,7 +5,7 @@ import pacopaquetes.envios.PlanDeReparto;
 public class Repartidor extends UsuarioRegistrado{
     
     private String telefono;
-    private PlanDeReparto planReparto;   
+    private PlanDeReparto planReparto;
 
     public Repartidor(String usuario, String contrasena, String telefono){
         super(usuario, contrasena);
@@ -30,7 +30,9 @@ public class Repartidor extends UsuarioRegistrado{
         return this.planReparto;
     }
 
-    
+    public void setCamionAveriado(){
+        this.planReparto.getCamion().setAveriado(true);
+    }
 
 
 }

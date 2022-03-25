@@ -1,18 +1,24 @@
 package pacopaquetes.envios;
 
-import enums.PRIORIDAD;
+import enums.*;
+import pacopaquetes.envios.productos.*;
+import java.util.ArrayList;
 
 public class Paquete{
     private PRIORIDAD tipo;
     private int pesoTotal;
     private int id;
     private int nintentos;
+    private ESTADO entregado;
+    private ArrayList<Producto> productos;
 
     public Paquete(PRIORIDAD tipo, int pesoT, int id, int nint){
         this.nintentos = nint;
         this.pesoTotal = pesoT;
         this.tipo = tipo;
         this.id = id;
+        this.entregado=ESTADO.EN_ALMACEN;
+        this.productos= new ArrayList<Producto>();
     }
 
     //===============SETS===============//
@@ -33,6 +39,12 @@ public class Paquete{
         this.nintentos = n;
     }
 
+    public void setEntregado(ESTADO e){
+        for(Producto p: this.productos)
+            p.setEstado(e);
+        this.entregado = e;
+    }
+
     //===============GETS===============//
 
     public PRIORIDAD getTipo(){
@@ -51,5 +63,21 @@ public class Paquete{
         return this.nintentos;
     }
 
+    public ArrayList<Producto> getProductos(){
+        return this.productos;
+    }
 
+    public ESTADO getEntregado(){
+        return this.entregado;
+    }
+
+    //===============ADDS===============//
+
+    public void addProduct(Producto p){
+        this.productos.add(p);
+    }
+
+    public void removeProduct(Producto p){
+        this.productos.remove(p);
+    }
 }

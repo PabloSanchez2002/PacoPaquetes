@@ -6,11 +6,13 @@ public class Camion{
     private String matricula;
     private int pesoMax;
     private TIPOCAMION tipo;
+    private boolean averiado;
 
     public Camion(String mat,int pesoM,TIPOCAMION tipo){
         this.matricula = mat;
         this.pesoMax = pesoM;
         this.tipo = tipo;
+        this.averiado=false;
     }
 
     //===============SETS===============//
@@ -27,6 +29,10 @@ public class Camion{
         this.tipo = t;
     }
 
+    public void setAveriado(boolean av){
+        this.averiado = av;
+    }
+
     //===============GETS===============//
 
     public String getMatricula(){
@@ -41,5 +47,7 @@ public class Camion{
         return this.tipo;
     }
 
-
+     public boolean getAveriado(){
+        return this.averiado;
+    }
 }

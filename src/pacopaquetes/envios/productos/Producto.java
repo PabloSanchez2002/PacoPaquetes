@@ -1,7 +1,9 @@
 package pacopaquetes.envios.productos;
 import enums.ESTADO;
+import enums.PRIORIDAD;
 
 public abstract class Producto{
+    private PRIORIDAD pr;
     private int numUnidades;
     private float pesoTotal;
     private float[] dimensiones;
@@ -9,7 +11,7 @@ public abstract class Producto{
     private int id;
     private String nombre;
 
-    public Producto(int num,float pesoTot, float largo, float alto, float profundo ,ESTADO estado ,int id, String nombre){
+    public Producto(int num,float pesoTot, float largo, float alto, float profundo ,ESTADO estado ,int id, String nombre, PRIORIDAD PR){
         this.dimensiones = new float[3];
         this.dimensiones[0] = largo;
         this.dimensiones[1] = alto;
@@ -19,6 +21,7 @@ public abstract class Producto{
         this.estado = estado;
         this.id = id;
         this.nombre = nombre;
+        this.pr = PR;
     }
 
     //===============SETS===============//

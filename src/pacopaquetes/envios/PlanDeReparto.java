@@ -36,5 +36,4 @@ public class PlanDeReparto{
     public ArrayList<Paquete> getPaquetes(){
         return this.paquetes;
     }
-
 }

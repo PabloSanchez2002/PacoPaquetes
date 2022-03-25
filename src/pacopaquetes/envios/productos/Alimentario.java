@@ -1,13 +1,14 @@
 package pacopaquetes.envios.productos;
-import enums.ESTADO;
-import enums.TIPOCOMIDA;
+import enums.*;
 
 public class Alimentario extends Producto{
+    private Boolean liquido; //faltan metodos
     private TIPOCOMIDA tipo;
 
-    public Alimentario(int num,float pesoTot, float largo, float ancho, float profundo ,ESTADO estado ,int id, String nombre,TIPOCOMIDA tipo){
-        super(num, pesoTot, largo, ancho, profundo, estado, id, nombre);
+    public Alimentario(int num,float pesoTot, float largo, float ancho, float profundo ,ESTADO estado ,int id, String nombre,PRIORIDAD PR, Boolean liquido,TIPOCOMIDA tipo){
+        super(num, pesoTot, largo, ancho, profundo, estado, id, nombre,PR);
         this.tipo = tipo;
+        this.liquido = liquido;
     }
 
     public void setTipo(TIPOCOMIDA t){
