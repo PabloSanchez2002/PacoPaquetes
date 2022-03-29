@@ -1,4 +1,5 @@
 package tests;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -13,11 +14,10 @@ public class leer {
     public void test() throws IOException {
         Operario op = new Operario("oper1", "oper123");
         PacoPaquetes pp = new PacoPaquetes(op);
-        op.altaCamionesDesdeArchivo("/home/alumnos/e439691/ADSOF/PacoPaquetes/src/camiones.txt");
+        op.altaCamionesDesdeArchivo("/src/camiones.txt");
 
         ArrayList<Camion> cam = pp.getCamiones();
         assertEquals(7, cam.size());
     }
 
 }
-
