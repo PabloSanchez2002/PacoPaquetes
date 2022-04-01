@@ -2,12 +2,8 @@ package pacopaquetes.usuarios;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-
 import enums.TIPOCAMION;
 import java.util.*;
 import enums.*;
@@ -49,21 +45,36 @@ public class Operario extends UsuarioRegistrado {
         return cam;
     }
 
-    public Boolean altaCamionesDesdeArchivo(String archivo) throws IOException {
+    public void altaCamionesDesdeArchivo(String filename) throws IOException {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
 
-        FileReader stream = new FileReader(archivo);
-        BufferedReader br = new BufferedReader(stream);
+        try {
+            archivo = new File(filename);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-        int matricula;
-        String strCamion = br.readLine();
-        while (strCamion != null) {
-            String[] camion = strCamion.split(":");
-            matricula = Integer.parseInt(camion[1]);
-
-            this.altaCamion(camion[0], matricula, TIPOCAMION.ESTANDAR.getTipo(camion[2]));
+            int matricula;
+            String strCamion = br.readLine();
+            while (strCamion != null) {
+                String[] camion = strCamion.split(":");
+                matricula = Integer.parseInt(camion[1]);
+    
+                this.altaCamion(camion[0], matricula, TIPOCAMION.ESTANDAR.getTipo(camion[2]));
+                strCamion = br.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
-        br.close();
-        return true;
     }
 
     public void cargarCP(String filename) {
@@ -78,8 +89,7 @@ public class Operario extends UsuarioRegistrado {
 
             String linea;
             while ((linea = br.readLine()) != null) {
-                Integer cp = Integer.parseInt(linea);
-                this.Empresa.addCP(cp);
+                this.Empresa.addCP(linea);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,30 +117,55 @@ public class Operario extends UsuarioRegistrado {
     }
 
     public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float largo, float alto, float profundo,
-            int id, String nombre, PRIORIDAD PR, TIPOCOMIDA tipo, Boolean liquido) {
-        Producto p = new Alimentario(num, pesoTot, largo, alto, profundo, id, nombre, PR, liquido, tipo);
+            int id, String nombre, String cp, int nInt, TIPOCOMIDA tipo, Boolean liquido) {
+        Producto p = new Alimentario(num, pesoTot, largo, alto, profundo, id, nombre, cp, ped.getPrioridad(), nInt, liquido, tipo, ped.getFecha());
         ped.anadirProducto(p);
         Empresa.addProducto(p);
     }
 
     public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float largo, float alto, float profundo,
-            int id, String nombre, PRIORIDAD PR) {
-        Producto p = new Normal(num, pesoTot, largo, alto, profundo, id, nombre, PR);
+            int id, String nombre, String cp, PRIORIDAD PR, int nInt) {
+        Producto p = new Normal(num, pesoTot, largo, alto, profundo, id, nombre, cp, ped.getPrioridad(), nInt, ped.getFecha());
         ped.anadirProducto(p);
         Empresa.addProducto(p);
     }
 
     public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float largo, float alto, float profundo,
-            int id, String nombre, PRIORIDAD PR, Boolean asegurado) {
-        Producto p = new Fragil(num, pesoTot, largo, alto, profundo, id, nombre, PR, asegurado);
+            int id, String nombre, String cp, int nInt, Boolean asegurado) {
+        Producto p = new Fragil(num, pesoTot, largo, alto, profundo, id, nombre, cp, ped.getPrioridad(), nInt, asegurado, ped.getFecha());
         ped.anadirProducto(p);
         Empresa.addProducto(p);
     }
 
-    public Pedido CrearPedido(int id, Date date, int nint, PRIORIDAD pr) {
-        Pedido ped = new Pedido(id, date, nint, pr);
+    public Pedido CrearPedido(Cliente cliente, int id, Date date, String codPos, PRIORIDAD pr) {
+        Pedido ped = new Pedido(id, date, codPos, pr);
         this.Empresa.addPedido(ped);
+        cliente.addPedido(ped);
         return ped;
     }
 
+
+    public Boolean crearpaquetes(ArrayList<Producto> productos){
+        /*
+        crea un paquete
+
+
+
+
+
+        */
+        return true;
+    }
+
+
+    public Boolean empaquetar(){
+            /*
+        for loop de cada CP en empresa{
+            llama a una funcion secundaria para empaquetar los productos con ese destino
+            hay que crear un array con esos objetos
+            crearpaquetes(array productos)
+        }
+    */
+        return true;
+    }
 }

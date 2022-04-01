@@ -5,9 +5,8 @@ import enums.*;
 public class Fragil extends Producto {
     Boolean asegurado; // faltan metodos
 
-    public Fragil(int num, float pesoTot, float largo, float ancho, float profundo, int id, String nombre, PRIORIDAD PR,
-            Boolean asegurado) {
-        super(num, pesoTot, largo, ancho, profundo, id, nombre, PR);
+    public Fragil(int num, float pesoTot, float largo, float ancho, float profundo, int id, String nombre, String cp, PRIORIDAD PR, int ni, Boolean asegurado,java.util.Date fecha) {
+        super(num, pesoTot, largo, ancho, profundo, id, nombre, cp, PR, ni,fecha);
         this.asegurado = asegurado;
     }
 

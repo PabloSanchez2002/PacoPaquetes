@@ -3,12 +3,11 @@ package pacopaquetes.envios.productos;
 import enums.*;
 
 public class Alimentario extends Producto {
-    private Boolean liquido; // faltan metodos
+    private Boolean liquido;
     private TIPOCOMIDA tipo;
 
-    public Alimentario(int num, float pesoTot, float largo, float ancho, float profundo, int id, String nombre,
-            PRIORIDAD PR, Boolean liquido, TIPOCOMIDA tipo) {
-        super(num, pesoTot, largo, ancho, profundo, id, nombre, PR);
+    public Alimentario(int num, float pesoTot, float largo, float ancho, float profundo, int id, String nombre, String cp, PRIORIDAD PR, int ni, Boolean liquido, TIPOCOMIDA tipo, java.util.Date date) {
+        super(num, pesoTot, largo, ancho, profundo, id, nombre, cp, PR, ni, date);
         this.tipo = tipo;
         this.liquido = liquido;
     }
@@ -19,6 +18,14 @@ public class Alimentario extends Producto {
 
     public TIPOCOMIDA getTipo() {
         return this.tipo;
+    }
+
+    public void setLiquido(Boolean l) {
+        this.liquido = l;
+    }
+
+    public boolean getLiquido() {
+        return this.liquido;
     }
 
     @Override

@@ -12,14 +12,14 @@ public class Pedido {
     private int id;
     private PRIORIDAD prioridad;
     private Date fecha;
-    private int nintentos;
+    private String codPostal;
     private ArrayList<Producto> productos;
 
-    public Pedido(int id, Date date, int nint, PRIORIDAD pr) {
+    public Pedido(int id, Date date, String codPost, PRIORIDAD pr) {
         this.prioridad = pr;
         this.id = id;
         this.fecha = date;
-        this.nintentos = nint;
+        this.codPostal=codPost;
         this.productos = new ArrayList<Producto>();
     }
 
@@ -33,12 +33,12 @@ public class Pedido {
         this.fecha = d;
     }
 
-    public void setNIntentos(int n) {
-        this.nintentos = n;
-    }
-
     public void setPrioridad(PRIORIDAD p) {
         this.prioridad = p;
+    }
+
+    public void setCodPost(String cp) {
+        this.codPostal = cp;
     }
 
     // ===============GETS===============//
@@ -51,12 +51,12 @@ public class Pedido {
         return this.fecha;
     }
 
-    public int getNIntentos() {
-        return this.nintentos;
-    }
-
     public PRIORIDAD getPrioridad() {
         return this.prioridad;
+    }
+
+    public String getCodPost() {
+        return this.codPostal;
     }
 
     public void anadirProducto(Producto p) {
@@ -74,10 +74,8 @@ public class Pedido {
             pr += p.getPrecio();
             n += p.getNumUnidades();
         }
-        if (this.getPrioridad() == PRIORIDAD.URGENTE)
-            pr += 5;
-        if (n >= 100)
-            pr -= (pr * 0.1);
+        if (this.getPrioridad() == PRIORIDAD.URGENTE)  pr += 5;
+        if (n >= 100) pr -= (pr * 0.1);
         return pr;
     }
 }

@@ -17,6 +17,7 @@ public class Cliente extends UsuarioRegistrado{
         this.direcconFacturacion=direcconFacturacion;
         this.correoElectronico=correoElectronico;
         this.targetaBancaria=targetaBancaria;
+        this.pedidos = new ArrayList<Pedido>();
     }
 
     //================SETS===============//
@@ -55,5 +56,13 @@ public class Cliente extends UsuarioRegistrado{
 
     public String getTargetaBancaria(){
         return this.targetaBancaria;
+    }
+
+    public ArrayList<Pedido> getPedidos(){
+        return this.pedidos;
+    }
+
+    public void addPedido(Pedido ped){
+        this.pedidos.add(ped);
     }
 }

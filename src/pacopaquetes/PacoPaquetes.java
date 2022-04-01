@@ -1,7 +1,7 @@
 package pacopaquetes;
 
 import pacopaquetes.usuarios.*;
-import pacopaquetes.envios.Pedido;
+import pacopaquetes.envios.*;
 import pacopaquetes.envios.productos.*;
 
 import java.util.ArrayList;
@@ -12,8 +12,9 @@ public class PacoPaquetes {
     private ArrayList<Cliente> clientes;
     private ArrayList<Camion> camiones;
     private ArrayList<Producto> productos;
+    private ArrayList<Paquete> paquetes;
     private ArrayList<Pedido> pedidos;
-    private ArrayList<Integer> CP;
+    private ArrayList<String> CP;
     private Configuracion config;
 
     public PacoPaquetes(Operario oper) {
@@ -23,7 +24,8 @@ public class PacoPaquetes {
         this.camiones = new ArrayList<Camion>();
         this.productos = new ArrayList<Producto>();
         this.pedidos = new ArrayList<Pedido>();
-        this.CP = new ArrayList<Integer>();
+        this.paquetes = new ArrayList<Paquete>();
+        this.CP = new ArrayList<String>();
         this.config = new Configuracion();
         asignarOper();
     }
@@ -49,12 +51,16 @@ public class PacoPaquetes {
         return this.productos;
     }
 
-    public ArrayList<Integer> getCPs() {
+    public ArrayList<String> getCPs() {
         return this.CP;
     }
 
     public ArrayList<Pedido> getPedidos() {
         return this.pedidos;
+    }
+
+    public ArrayList<Paquete> getPaquetes() {
+        return this.paquetes;
     }
 
     // =========================ADDS Y REMOVES==========================\\
@@ -100,7 +106,13 @@ public class PacoPaquetes {
         }
     }
 
-    public void addCP(Integer cp) {
+    public void addPaquete(Paquete pac) {
+        if (this.findPaqueteById(pac.getId()) == null) {
+            this.paquetes.add(pac);
+        }
+    }
+
+    public void addCP(String cp) {
         if (this.CP.contains(cp) != true) {
             this.CP.add(cp);
         }
@@ -136,6 +148,13 @@ public class PacoPaquetes {
         for (Producto pro : this.productos)
             if (pro.getId() == id)
                 return pro;
+        return null;
+    }
+
+    public Paquete findPaqueteById(int id) {
+        for (Paquete pac : this.paquetes)
+            if (pac.getId() == id)
+                return pac;
         return null;
     }
 

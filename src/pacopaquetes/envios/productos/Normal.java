@@ -1,12 +1,13 @@
 package pacopaquetes.envios.productos;
 
+import java.sql.Date;
+
 import enums.*;
 
 public class Normal extends Producto {
 
-    public Normal(int num, float pesoTot, float largo, float ancho, float profundo, int id, String nombre,
-            PRIORIDAD PR) {
-        super(num, pesoTot, largo, ancho, profundo, id, nombre, PR);
+    public Normal(int num, float pesoTot, float largo, float ancho, float profundo, int id, String nombre, String cp, PRIORIDAD PR, int ni, java.util.Date date) {
+        super(num, pesoTot, largo, ancho, profundo, id, nombre, cp, PR, ni,date);
     }
 
     @Override

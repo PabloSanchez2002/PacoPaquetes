@@ -1,5 +1,7 @@
 package pacopaquetes.envios.productos;
 
+import java.sql.Date;
+
 import enums.ESTADO;
 import enums.PRIORIDAD;
 
@@ -11,9 +13,13 @@ public abstract class Producto {
     private ESTADO estado = ESTADO.EN_ALMACEN;
     private int id;
     private String nombre;
+    private String codPostal;
+    private int nintentos;
+    private boolean empaquetado;
+    private Date fecha;
+    
 
-    public Producto(int num, float pesoTot, float largo, float alto, float profundo, int id, String nombre,
-            PRIORIDAD PR) {
+    public Producto(int num, float pesoTot, float largo, float alto, float profundo, int id, String nombre, String cp, PRIORIDAD PR, int ni,java.util.Date fecha2) {
         this.dimensiones = new float[3];
         this.dimensiones[0] = largo;
         this.dimensiones[1] = alto;
@@ -23,6 +29,10 @@ public abstract class Producto {
         this.id = id;
         this.nombre = nombre;
         this.pr = PR;
+        this.codPostal=cp;
+        this.nintentos=ni;
+        this.empaquetado = false;
+        this.fecha = (Date) fecha2; 
     }
 
     // ===============SETS===============//
@@ -58,6 +68,26 @@ public abstract class Producto {
         this.nombre = n;
     }
 
+    public void setPrioridad(PRIORIDAD p) {
+        this.pr = p;
+    }
+
+    public void setCodPost(String cp) {
+        this.codPostal = cp;
+    }
+
+    public void setNintentos(int n) {
+        this.nintentos = n;
+    }
+
+    public void setEmpaquetado(Boolean e){
+        this.empaquetado = e;
+    }
+
+    public void setFecha(Date d){
+        this.fecha = d;
+    }
+
     // ===============GETS===============//
     public float getAlto() {
         return this.dimensiones[0];
@@ -91,6 +121,25 @@ public abstract class Producto {
         return this.nombre;
     }
 
+    public PRIORIDAD setPrioridad() {
+        return this.pr;
+    }
+
+    public String getCodPost() {
+        return this.codPostal;
+    }
+
+    public int getNIntentos() {
+        return this.nintentos;
+    }
+
+    public boolean getEmpaquetado() {
+        return this.empaquetado;
+    }
+    
+    public Date getFecha(){
+        return this.fecha;
+    }
     // ==================================//
     public abstract double getPrecio();
 }

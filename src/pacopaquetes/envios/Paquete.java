@@ -5,25 +5,32 @@ import pacopaquetes.envios.productos.*;
 import java.util.ArrayList;
 
 public class Paquete{
-    private PRIORIDAD tipo;
+    private PRIORIDAD prioridad;
+    private TIPOPAQUETE tipo;
+    private TIPOCOMIDA comida;
     private int pesoTotal;
     private int id;
     private int nintentos;
     private ESTADO entregado;
     private ArrayList<Producto> productos;
 
-    public Paquete(PRIORIDAD tipo, int pesoT, int id, int nint){
+    public Paquete(PRIORIDAD prio,TIPOPAQUETE tipo, TIPOCOMIDA comida, int pesoT, int id, int nint){
+        this.prioridad = prio;
         this.nintentos = nint;
         this.pesoTotal = pesoT;
         this.tipo = tipo;
+        this.comida = comida;
         this.id = id;
         this.entregado=ESTADO.EN_ALMACEN;
         this.productos= new ArrayList<Producto>();
     }
 
     //===============SETS===============//
+    public void setPrior(PRIORIDAD p){
+        this.prioridad = p;
+    }
 
-    public void setTipo(PRIORIDAD t){
+    public void setTipo(TIPOPAQUETE t){
         this.tipo = t;
     }
 
@@ -46,9 +53,16 @@ public class Paquete{
     }
 
     //===============GETS===============//
-
-    public PRIORIDAD getTipo(){
+    public PRIORIDAD getpPrioridad(){
+        return this.prioridad;
+    }
+    
+    public TIPOPAQUETE getTipo(){
         return this.tipo;
+    }
+
+    public TIPOCOMIDA getTipocomida(){
+        return this.comida;
     }
 
     public int getPesoTotal(){
