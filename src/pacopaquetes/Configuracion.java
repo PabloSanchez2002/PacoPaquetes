@@ -2,10 +2,12 @@ package pacopaquetes;
 
 public class Configuracion {
     private int reintentos = 3;
-    private int maxVolume = 200;
+    private int maxVolume = 12000;
     private int maxNumPaquetes = 20;
     private int descuento = 10;
     private int maxCodPostales = 10;
+    private int maxPesoPaqNormal = 30;
+    private int maxPesoPaqFragil = 20;
 
     public Configuracion() {
     }
@@ -31,6 +33,14 @@ public class Configuracion {
         this.maxCodPostales = i;
     }
 
+    public void setmaxPesoPaqNormal(int i) {
+        this.maxPesoPaqNormal = i;
+    }
+
+    public void setmaxPesoPaqFragil(int i) {
+        this.maxPesoPaqFragil = i;
+    }
+
     // ================SETS===============//
     public int getReintentos() {
         return this.reintentos;
@@ -52,4 +62,11 @@ public class Configuracion {
         return this.maxCodPostales;
     }
 
+    public int getmaxPesoPaqNormal() {
+        return this.maxPesoPaqNormal;
+    }
+
+    public int getmaxPesoPaqFragil() {
+        return this.maxPesoPaqFragil;
+    }
 }

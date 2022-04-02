@@ -1,11 +1,14 @@
 package pacopaquetes.envios.productos;
 
-import java.sql.Date;
+import java.util.Date;
 
 import enums.ESTADO;
 import enums.PRIORIDAD;
+import pacopaquetes.Configuracion;
+import pacopaquetes.envios.Paquete;
 
-public abstract class Producto {
+public abstract class Producto implements Comparable<Producto> {
+    private static int count = 0;
     private PRIORIDAD pr;
     private int numUnidades;
     private float pesoTotal;
@@ -17,22 +20,23 @@ public abstract class Producto {
     private int nintentos;
     private boolean empaquetado;
     private Date fecha;
-    
 
-    public Producto(int num, float pesoTot, float largo, float alto, float profundo, int id, String nombre, String cp, PRIORIDAD PR, int ni,java.util.Date fecha2) {
+    public Producto(int num, float pesoTot, float largo, float alto, float profundo, String nombre, String cp,
+            PRIORIDAD PR, int ni, java.util.Date fecha2) {
+        count++;
+        this.id = count;
         this.dimensiones = new float[3];
         this.dimensiones[0] = largo;
         this.dimensiones[1] = alto;
         this.dimensiones[2] = profundo;
         this.numUnidades = num;
         this.pesoTotal = pesoTot;
-        this.id = id;
         this.nombre = nombre;
         this.pr = PR;
-        this.codPostal=cp;
-        this.nintentos=ni;
+        this.codPostal = cp;
+        this.nintentos = ni;
         this.empaquetado = false;
-        this.fecha = (Date) fecha2; 
+        this.fecha = (Date) fecha2;
     }
 
     // ===============SETS===============//
@@ -80,11 +84,11 @@ public abstract class Producto {
         this.nintentos = n;
     }
 
-    public void setEmpaquetado(Boolean e){
+    public void setEmpaquetado(Boolean e) {
         this.empaquetado = e;
     }
 
-    public void setFecha(Date d){
+    public void setFecha(Date d) {
         this.fecha = d;
     }
 
@@ -121,7 +125,7 @@ public abstract class Producto {
         return this.nombre;
     }
 
-    public PRIORIDAD setPrioridad() {
+    public PRIORIDAD getPrioridad() {
         return this.pr;
     }
 
@@ -136,10 +140,32 @@ public abstract class Producto {
     public boolean getEmpaquetado() {
         return this.empaquetado;
     }
-    
-    public Date getFecha(){
+
+    public Date getFecha() {
         return this.fecha;
     }
-    // ==================================//
+
+    // =================METODOS=================//
     public abstract double getPrecio();
+
+    public abstract Paquete nuevoPaquete(Configuracion conf);
+
+    public int compareTo(Producto p) {
+        if (this.getPrioridad().equals(PRIORIDAD.URGENTE) && p.getPrioridad().equals(PRIORIDAD.NORMAL)) {
+            return 1;
+        } else if (this.getPrioridad().equals(p.getPrioridad())) {
+            return p.getId() - this.getId();
+        } else
+            return -1;
+    }
+
+    public int Comparator(Producto p) {
+        if (this.getPrioridad().equals(PRIORIDAD.URGENTE) && p.getPrioridad().equals(PRIORIDAD.NORMAL)) {
+            return 1;
+        } else if (this.getPrioridad().equals(p.getPrioridad())) {
+            return p.getId() - this.getId();
+        } else
+            return -1;
+    }
+
 }

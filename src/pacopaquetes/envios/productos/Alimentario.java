@@ -1,14 +1,17 @@
 package pacopaquetes.envios.productos;
 
 import enums.*;
+import pacopaquetes.Configuracion;
+import pacopaquetes.envios.Paquete;
 
 public class Alimentario extends Producto {
     private Boolean liquido;
     private TIPOCOMIDA tipo;
 
-    public Alimentario(int num, float pesoTot, float largo, float ancho, float profundo, int id, String nombre, String cp, PRIORIDAD PR, int ni, Boolean liquido, TIPOCOMIDA tipo, java.util.Date date) {
-        super(num, pesoTot, largo, ancho, profundo, id, nombre, cp, PR, ni, date);
-        this.tipo = tipo;
+    public Alimentario(int num, float pesoTot, float largo, float ancho, float profundo, String nombre,
+            String cp, PRIORIDAD PR, int ni, Boolean liquido, TIPOCOMIDA tipo2, java.util.Date date) {
+        super(num, pesoTot, largo, ancho, profundo, nombre, cp, PR, ni, date);
+        this.tipo = tipo2;
         this.liquido = liquido;
     }
 
@@ -40,5 +43,10 @@ public class Alimentario extends Producto {
             p += 1;
 
         return p * getNumUnidades();
+    }
+
+    public Paquete nuevoPaquete(Configuracion conf) {
+        return new Paquete(this.getPrioridad(), TIPOPAQUETE.COMIDA, this.getTipo(), conf.getmaxPesoPaqNormal(),
+                conf.getReintentos());
     }
 }
