@@ -1,53 +1,56 @@
 package pacopaquetes;
 
+import java.io.Serializable;
+
 import enums.TIPOCAMION;
 
-public class Camion{
+public class Camion implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String matricula;
     private int pesoMax;
     private TIPOCAMION tipo;
     private boolean averiado;
 
-    public Camion(String mat,int pesoM,TIPOCAMION tipo){
+    public Camion(String mat, int pesoM, TIPOCAMION tipo) {
         this.matricula = mat;
         this.pesoMax = pesoM;
         this.tipo = tipo;
-        this.averiado=false;
+        this.averiado = false;
     }
 
-    //===============SETS===============//
+    // ===============SETS===============//
 
-    public void setmatricula(String s){
+    public void setmatricula(String s) {
         this.matricula = s;
     }
 
-    public void setPesoMax(int i){
+    public void setPesoMax(int i) {
         this.pesoMax = i;
     }
 
-    public void setTipo(TIPOCAMION t){
+    public void setTipo(TIPOCAMION t) {
         this.tipo = t;
     }
 
-    public void setAveriado(boolean av){
+    public void setAveriado(boolean av) {
         this.averiado = av;
     }
 
-    //===============GETS===============//
+    // ===============GETS===============//
 
-    public String getMatricula(){
+    public String getMatricula() {
         return this.matricula;
     }
 
-    public int getPesoMax(){
+    public int getPesoMax() {
         return this.pesoMax;
     }
 
-    public TIPOCAMION getTipo(){
+    public TIPOCAMION getTipo() {
         return this.tipo;
     }
 
-     public boolean getAveriado(){
+    public boolean getAveriado() {
         return this.averiado;
     }
 }

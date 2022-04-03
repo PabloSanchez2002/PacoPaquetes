@@ -1,5 +1,6 @@
 package pacopaquetes.envios.productos;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import enums.ESTADO;
@@ -7,7 +8,8 @@ import enums.PRIORIDAD;
 import pacopaquetes.Configuracion;
 import pacopaquetes.envios.Paquete;
 
-public abstract class Producto implements Comparable<Producto> {
+public abstract class Producto implements Comparable<Producto>, Serializable {
+    private static final long serialVersionUID = 1L;
     private static int count = 0;
     private PRIORIDAD pr;
     private int numUnidades;

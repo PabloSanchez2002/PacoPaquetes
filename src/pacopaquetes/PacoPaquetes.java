@@ -3,10 +3,12 @@ package pacopaquetes;
 import pacopaquetes.usuarios.*;
 import pacopaquetes.envios.*;
 import pacopaquetes.envios.productos.*;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 
-public class PacoPaquetes {
+public class PacoPaquetes implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Operario oper;
     private ArrayList<Repartidor> repartidores;
     private ArrayList<Cliente> clientes;

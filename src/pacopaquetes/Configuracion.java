@@ -1,6 +1,9 @@
 package pacopaquetes;
 
-public class Configuracion {
+import java.io.Serializable;
+
+public class Configuracion implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int reintentos = 3;
     private int maxVolume = 12000;
     private int maxNumPaquetes = 20;

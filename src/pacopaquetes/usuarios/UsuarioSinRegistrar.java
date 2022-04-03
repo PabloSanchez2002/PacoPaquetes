@@ -1,4 +1,5 @@
 package pacopaquetes.usuarios;
-public abstract class UsuarioSinRegistrar{
-    
+
+public abstract class UsuarioSinRegistrar {
+
 }

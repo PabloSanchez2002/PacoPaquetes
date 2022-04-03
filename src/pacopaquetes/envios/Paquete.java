@@ -2,9 +2,12 @@ package pacopaquetes.envios;
 
 import enums.*;
 import pacopaquetes.envios.productos.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Paquete {
+public class Paquete implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static int count = 0;
     private PRIORIDAD prioridad;
     private TIPOPAQUETE tipo;

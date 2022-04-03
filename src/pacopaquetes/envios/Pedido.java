@@ -5,9 +5,11 @@ import java.util.Date;
 import pacopaquetes.envios.productos.Producto;
 import enums.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Pedido {
+public class Pedido implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private int id;
     private PRIORIDAD prioridad;
@@ -19,7 +21,7 @@ public class Pedido {
         this.prioridad = pr;
         this.id = id;
         this.fecha = date;
-        this.codPostal=codPost;
+        this.codPostal = codPost;
         this.productos = new ArrayList<Producto>();
     }
 
@@ -74,8 +76,10 @@ public class Pedido {
             pr += p.getPrecio();
             n += p.getNumUnidades();
         }
-        if (this.getPrioridad() == PRIORIDAD.URGENTE)  pr += 5;
-        if (n >= 100) pr -= (pr * 0.1);
+        if (this.getPrioridad() == PRIORIDAD.URGENTE)
+            pr += 5;
+        if (n >= 100)
+            pr -= (pr * 0.1);
         return pr;
     }
 }
