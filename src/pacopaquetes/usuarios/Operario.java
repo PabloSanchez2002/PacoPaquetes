@@ -245,7 +245,7 @@ public class Operario extends UsuarioRegistrado {
         while (paquetes.isEmpty() == false) {
             paquetes = this.PaquetesSinRepartir(paquetes);
             Paquete primero = this.primerPaq(paquetes);
-            PlanDeReparto rep = primero.nuevoPlanDeReparto(//camiones sin cargar);
+            PlanDeReparto rep = primero.nuevoPlanDeReparto(//camiones sin cargar//);
             if (rep != null) {
                 paquetes.remove(primero);
                 this.getEmpresa().addPlanDeReparto(rep);
