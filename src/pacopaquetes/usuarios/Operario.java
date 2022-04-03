@@ -240,7 +240,7 @@ public class Operario extends UsuarioRegistrado {
         return null;
     }
 
-    private ArrayList<Camion> camionesSinCargar(ArrayList<Camion> camiones) {
+    public ArrayList<Camion> camionesSinCargar(ArrayList<Camion> camiones) {
         ArrayList<Camion> descargados = new ArrayList<Camion>();
 
         for (Camion c : camiones) {
@@ -252,7 +252,7 @@ public class Operario extends UsuarioRegistrado {
         return descargados;
     }
 
-    private void generarPlanesReparto(ArrayList<Paquete> paquetes) {
+    public void generarPlanesReparto(ArrayList<Paquete> paquetes) {
         Collections.sort(paquetes);
         while (paquetes.isEmpty() == false) {
             paquetes = this.PaquetesSinRepartir(paquetes);
