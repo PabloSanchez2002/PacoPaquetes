@@ -6,9 +6,9 @@ import pacopaquetes.envios.Paquete;
 
 public class Normal extends Producto {
 
-    public Normal(int num, float pesoTot, float largo, float ancho, float profundo, String nombre, String cp,
+    public Normal(int num, float pesoTot, float alto, float ancho, float profundo, String nombre, String cp,
             PRIORIDAD PR, int ni, java.util.Date date) {
-        super(num, pesoTot, largo, ancho, profundo, nombre, cp, PR, ni, date);
+        super(num, pesoTot, alto, ancho, profundo, nombre, cp, PR, ni, date);
     }
 
     @Override
@@ -25,8 +25,18 @@ public class Normal extends Producto {
     }
 
     public Paquete nuevoPaquete(Configuracion conf) {
-        return new Paquete(this.getPrioridad(), TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, conf.getmaxPesoPaqNormal(),
-                conf.getReintentos());
+        Paquete p = new Paquete(this.getPrioridad(), TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, conf.getmaxPesoPaqNormal(),
+                conf.getReintentos(), this.getFecha());
+        p.addProduct(this);
+        return p;
+    }
+
+    public Boolean empaquetar(Paquete paq) {
+        if (paq.getTipo().equals(TIPOPAQUETE.NORMAL)) {
+            paq.addProduct(this);
+            return true;
+        }
+        return false;
     }
 
 }

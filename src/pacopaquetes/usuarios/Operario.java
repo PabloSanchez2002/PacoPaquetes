@@ -115,28 +115,41 @@ public class Operario extends UsuarioRegistrado {
         return cli;
     }
 
-    public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float largo, float alto, float profundo,
+    public boolean MaxVolum(Producto prod) {
+        if (prod.getAlto() * prod.getAncho() * prod.getProfundo() > this.Empresa.getConfig().getMaxVolume())
+            return true;
+        else
+            return false;
+    }
+
+    public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float alto, float ancho, float profundo,
             String nombre, int nInt) {
-        Producto p = new Normal(num, pesoTot, largo, alto, profundo, nombre, ped.getCodPost(), ped.getPrioridad(),
+        Producto p = new Normal(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(), ped.getPrioridad(),
                 nInt, ped.getFecha());
-        ped.anadirProducto(p);
-        Empresa.addProducto(p);
+        if (this.MaxVolum(p) == false) {
+            ped.anadirProducto(p);
+            Empresa.addProducto(p);
+        }
     }
 
-    public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float largo, float ancho, float profundo,
+    public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float alto, float ancho, float profundo,
             String nombre, int nInt, Boolean liquido, TIPOCOMIDA tipo) {
-        Producto p = new Alimentario(num, pesoTot, largo, ancho, profundo, nombre, ped.getCodPost(),
+        Producto p = new Alimentario(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(),
                 ped.getPrioridad(), nInt, liquido, tipo, ped.getFecha());
-        ped.anadirProducto(p);
-        Empresa.addProducto(p);
+        if (this.MaxVolum(p) == false) {
+            ped.anadirProducto(p);
+            Empresa.addProducto(p);
+        }
     }
 
-    public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float largo, float alto, float profundo,
+    public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float alto, float ancho, float profundo,
             String nombre, int nInt, Boolean asegurado) {
-        Producto p = new Fragil(num, pesoTot, largo, alto, profundo, nombre, ped.getCodPost(), ped.getPrioridad(),
+        Producto p = new Fragil(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(), ped.getPrioridad(),
                 nInt, asegurado, ped.getFecha());
-        ped.anadirProducto(p);
-        Empresa.addProducto(p);
+        if (this.MaxVolum(p) == false) {
+            ped.anadirProducto(p);
+            Empresa.addProducto(p);
+        }
     }
 
     public Pedido CrearPedido(Cliente cliente, int id, Date date, String codPos, PRIORIDAD pr) {
@@ -150,29 +163,45 @@ public class Operario extends UsuarioRegistrado {
 
     }
 
+    public ArrayList<Producto> listaSinEmpaquetar(ArrayList<Producto> prods) {
+        ArrayList<Producto> unpacked = new ArrayList<Producto>();
+        for (Producto p : prods) {
+            if (p.getEmpaquetado() == false) {
+                unpacked.add(p);
+            }
+        }
+        return unpacked;
+    }
+
+    public Producto primerProd(ArrayList<Producto> prods) {
+        for (Producto p : prods) {
+            if (p.getEmpaquetado() == false) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     public void generarPaquetes(ArrayList<Producto> productos) {
-        if (productos.size() == 0) {
-            return;
-        } else {
-            Collections.sort(productos);
-            Producto primero = productos.get(0);
+        Collections.sort(productos);
+
+        while (productos.isEmpty() == false) {
+            Producto primero = this.primerProd(productos);
             Paquete paq = primero.nuevoPaquete(this.getEmpresa().getConfig());
+            this.getEmpresa().addPaquete(paq);
+            paq.empaquetadoMasivo(productos);
         }
     }
 
     public void empaquetar() {
-        ArrayList<Producto> prods = this.getEmpresa().getProductos();
-        Integer i;
+        ArrayList<Producto> prods = this.listaSinEmpaquetar(this.getEmpresa().getProductos());
 
         for (String cp : this.getEmpresa().getCPs()) {
             ArrayList<Producto> mismoCP = new ArrayList<Producto>();
-            i = prods.size() - 1;
-            while (i >= 0) {
-                // Producto con mismo cp y que no esté ya empaquetado
-                if (prods.get(i).getCodPost().equals(cp) && prods.get(i - 1).getEmpaquetado() == false) {
-                    mismoCP.add(prods.get(i - 1));
+            for (Producto p : prods) {
+                if (p.getCodPost().equals(cp)) {
+                    mismoCP.add(p);
                 }
-                i--;
             }
             generarPaquetes(mismoCP);
         }

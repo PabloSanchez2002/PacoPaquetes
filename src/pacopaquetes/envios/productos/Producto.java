@@ -23,13 +23,13 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
     private boolean empaquetado;
     private Date fecha;
 
-    public Producto(int num, float pesoTot, float largo, float alto, float profundo, String nombre, String cp,
+    public Producto(int num, float pesoTot, float alto, float ancho, float profundo, String nombre, String cp,
             PRIORIDAD PR, int ni, java.util.Date fecha2) {
         count++;
         this.id = count;
         this.dimensiones = new float[3];
-        this.dimensiones[0] = largo;
-        this.dimensiones[1] = alto;
+        this.dimensiones[0] = alto;
+        this.dimensiones[1] = ancho;
         this.dimensiones[2] = profundo;
         this.numUnidades = num;
         this.pesoTotal = pesoTot;
@@ -50,7 +50,7 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
         this.dimensiones[1] = f;
     }
 
-    public void setLargo(float f) {
+    public void setProfundo(float f) {
         this.dimensiones[2] = f;
     }
 
@@ -103,7 +103,7 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
         return this.dimensiones[1];
     }
 
-    public float getLargo() {
+    public float getProfundo() {
         return this.dimensiones[2];
     }
 
@@ -152,20 +152,14 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
 
     public abstract Paquete nuevoPaquete(Configuracion conf);
 
+    public abstract Boolean empaquetar(Paquete paq);
+
+    @Override
     public int compareTo(Producto p) {
         if (this.getPrioridad().equals(PRIORIDAD.URGENTE) && p.getPrioridad().equals(PRIORIDAD.NORMAL)) {
             return 1;
         } else if (this.getPrioridad().equals(p.getPrioridad())) {
-            return p.getId() - this.getId();
-        } else
-            return -1;
-    }
-
-    public int Comparator(Producto p) {
-        if (this.getPrioridad().equals(PRIORIDAD.URGENTE) && p.getPrioridad().equals(PRIORIDAD.NORMAL)) {
-            return 1;
-        } else if (this.getPrioridad().equals(p.getPrioridad())) {
-            return p.getId() - this.getId();
+            return p.getFecha().compareTo(this.getFecha());
         } else
             return -1;
     }

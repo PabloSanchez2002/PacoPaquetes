@@ -5,8 +5,9 @@ import pacopaquetes.envios.productos.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Paquete implements Serializable {
+public class Paquete implements Comparable<Paquete>, Serializable {
     private static final long serialVersionUID = 1L;
     private static int count = 0;
     private PRIORIDAD prioridad;
@@ -15,16 +16,19 @@ public class Paquete implements Serializable {
     private int maxPeso;
     private int pesoTotal;
     private int id;
+    private Date fecha;
     private int nintentos;
     private ESTADO entregado;
     private ArrayList<Producto> productos;
 
-    public Paquete(PRIORIDAD prio, TIPOPAQUETE tipo, TIPOCOMIDA comida, int maxPeso, int nint) {
+    public Paquete(PRIORIDAD prio, TIPOPAQUETE tipo, TIPOCOMIDA comida, int maxPeso, int nint,
+            Date fecha) {
         count++;
         this.id = count;
         this.prioridad = prio;
         this.nintentos = nint;
         this.pesoTotal = 0;
+        this.fecha = fecha;
         this.maxPeso = maxPeso;
         this.tipo = tipo;
         this.comida = comida;
@@ -60,7 +64,7 @@ public class Paquete implements Serializable {
     }
 
     // ===============GETS===============//
-    public PRIORIDAD getpPrioridad() {
+    public PRIORIDAD getPrioridad() {
         return this.prioridad;
     }
 
@@ -84,6 +88,10 @@ public class Paquete implements Serializable {
         return this.id;
     }
 
+    public Date getFecha() {
+        return this.fecha;
+    }
+
     public int getNIntentos() {
         return this.nintentos;
     }
@@ -104,12 +112,40 @@ public class Paquete implements Serializable {
         } else {
             this.pesoTotal += p.getPesoTotal();
             this.productos.add(p);
+
+            p.setEmpaquetado(true);
             return true;
         }
-
     }
 
     public void removeProduct(Producto p) {
         this.productos.remove(p);
     }
+
+    @Override
+    public int compareTo(Paquete p) {
+        if (this.getPrioridad().equals(PRIORIDAD.URGENTE) && p.getPrioridad().equals(PRIORIDAD.NORMAL)) {
+            return 1;
+        } else if (this.getPrioridad().equals(p.getPrioridad())) {
+            return p.getFecha().compareTo(this.getFecha());
+        } else if (this.getNIntentos() < p.getNIntentos()) {
+            return 1;
+        } else if (this.getTipocomida().equals(TIPOCOMIDA.REFRIGERADA) && (p.getTipocomida()
+                .equals(TIPOCOMIDA.REFRIGERADA) != true)) {
+            return 1;
+        } else if (this.getTipocomida().equals(TIPOCOMIDA.REFRIGERADA) && (p.getTipocomida()
+                .equals(TIPOCOMIDA.REFRIGERADA) != true)) {
+            return 1;
+        } else
+            return -1;
+    }
+
+    public void empaquetadoMasivo(ArrayList<Producto> prods) {
+        for (Producto p : prods) {
+            if (p.empaquetar(this) == true) {
+                prods.remove(p);
+            }
+        }
+    }
+
 }

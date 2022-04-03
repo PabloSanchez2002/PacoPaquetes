@@ -8,9 +8,9 @@ public class Alimentario extends Producto {
     private Boolean liquido;
     private TIPOCOMIDA tipo;
 
-    public Alimentario(int num, float pesoTot, float largo, float ancho, float profundo, String nombre,
+    public Alimentario(int num, float pesoTot, float alto, float ancho, float profundo, String nombre,
             String cp, PRIORIDAD PR, int ni, Boolean liquido, TIPOCOMIDA tipo2, java.util.Date date) {
-        super(num, pesoTot, largo, ancho, profundo, nombre, cp, PR, ni, date);
+        super(num, pesoTot, alto, ancho, profundo, nombre, cp, PR, ni, date);
         this.tipo = tipo2;
         this.liquido = liquido;
     }
@@ -46,7 +46,22 @@ public class Alimentario extends Producto {
     }
 
     public Paquete nuevoPaquete(Configuracion conf) {
-        return new Paquete(this.getPrioridad(), TIPOPAQUETE.COMIDA, this.getTipo(), conf.getmaxPesoPaqNormal(),
-                conf.getReintentos());
+        Paquete p = new Paquete(this.getPrioridad(), TIPOPAQUETE.COMIDA, this.getTipo(), conf.getmaxPesoPaqNormal(),
+                conf.getReintentos(), this.getFecha());
+        p.addProduct(this);
+        return p;
+    }
+
+    public Boolean empaquetar(Paquete paq) {
+        if (paq.getTipo().equals(TIPOPAQUETE.COMIDA)) {
+            if (paq.getTipocomida().equals(TIPOCOMIDA.CONGELADA)
+                    && (this.getTipo().equals(TIPOCOMIDA.CONGELADA) != true)) {
+                return false;
+            } else {
+                paq.addProduct(this);
+                return true;
+            }
+        }
+        return false;
     }
 }
