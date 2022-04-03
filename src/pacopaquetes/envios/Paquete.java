@@ -157,6 +157,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setRepartidor(c);
                         rep.addPaquete(this);
+                        break;
                     }
                 }
             case FRAGIL:
@@ -165,6 +166,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setRepartidor(c);
                         rep.addPaquete(this);
+                        break;
                     }
                 }
             case COMIDA:
@@ -174,6 +176,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                             PlanDeReparto rep = new PlanDeReparto();
                             rep.setRepartidor(c);
                             rep.addPaquete(this);
+                            break;
                         }
 
                     }
@@ -181,6 +184,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setRepartidor(c);
                         rep.addPaquete(this);
+                        break;
                     }
                 }
             default:

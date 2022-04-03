@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import org.junit.Test;
@@ -12,7 +13,7 @@ import org.junit.Test;
 import enums.PRIORIDAD;
 import enums.TIPOCOMIDA;
 import pacopaquetes.*;
-import pacopaquetes.envios.Pedido;
+import pacopaquetes.envios.*;
 import pacopaquetes.usuarios.*;
 
 public class OperarioTest {
@@ -61,8 +62,16 @@ public class OperarioTest {
                 op.anadirProductoPedido(ped, 5, 20, 23, 10, 20, "Atun congelado",
                                 pp.getConfig().getReintentos(), false, TIPOCOMIDA.CONGELADA);
 
-                assertEquals(1396.8, ped.getPrecio(), 0);
-                assertEquals(5674, pepe.getPedidos().get(0).getId());
+                assertEquals(58, ped.getPrecio(), 0);
+                assertEquals(1, pepe.getPedidos().get(0).getId());
+
+                op.empaquetar();
+                ArrayList<Paquete> paq = pp.getPaquetes();
+
+                op.generarPlanesReparto(paq);
+                ArrayList<PlanDeReparto> plan = new ArrayList<PlanDeReparto>();
+
+                assertEquals(plan, op.getEmpresa().getPlanDeRepartos());
         }
 
 }

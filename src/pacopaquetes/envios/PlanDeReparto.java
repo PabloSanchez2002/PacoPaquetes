@@ -2,6 +2,7 @@ package pacopaquetes.envios;
 
 import java.util.ArrayList;
 
+import enums.TIPOCOMIDA;
 import enums.TIPOPAQUETE;
 import pacopaquetes.Camion;
 
@@ -47,7 +48,7 @@ public class PlanDeReparto {
                         && paq.getTipocomida().equals(this.getPaquetes().get(0).getTipocomida())) {
                     this.addPaquete(paq);
                     paquetes.remove(paq);
-                } else {
+                } else if (paq.getTipocomida() == TIPOCOMIDA.NULL) {
                     this.addPaquete(paq);
                     paquetes.remove(paq);
                 }
