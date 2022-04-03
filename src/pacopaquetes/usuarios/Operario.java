@@ -240,18 +240,31 @@ public class Operario extends UsuarioRegistrado {
         return null;
     }
 
+    private ArrayList<Camion> camionesSinCargar(ArrayList<Camion> camiones) {
+        ArrayList<Camion> descargados = new ArrayList<Camion>();
+
+        for (Camion c : camiones) {
+            if (c.getCargado() == false) {
+                descargados.add(c);
+            }
+        }
+
+        return descargados;
+    }
+
     private void generarPlanesReparto(ArrayList<Paquete> paquetes) {
         Collections.sort(paquetes);
         while (paquetes.isEmpty() == false) {
             paquetes = this.PaquetesSinRepartir(paquetes);
+            ArrayList<Camion> camiones = camionesSinCargar(this.Empresa.getCamiones());
             Paquete primero = this.primerPaq(paquetes);
-            PlanDeReparto rep = primero.nuevoPlanDeReparto(//camiones sin cargar//);
+            PlanDeReparto rep = primero.nuevoPlanDeReparto(camiones);
             if (rep != null) {
                 paquetes.remove(primero);
                 this.getEmpresa().addPlanDeReparto(rep);
                 rep.repartoMasivo(paquetes);
             }
-            
+
         }
     }
 

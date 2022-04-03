@@ -1,8 +1,7 @@
 package pacopaquetes.envios;
 
 import enums.*;
-import pacopaquetes.Camion;
-import pacopaquetes.PacoPaquetes;
+import pacopaquetes.*;
 import pacopaquetes.envios.productos.*;
 
 import java.io.Serializable;
@@ -153,23 +152,37 @@ public class Paquete implements Comparable<Paquete>, Serializable {
     public PlanDeReparto nuevoPlanDeReparto(ArrayList<Camion> camionesSinCargar) {
         switch (this.tipo) {
             case NORMAL:
-                // checkea que hay camion con el mismo tipo
-                // si lo hay, crea plan reparto y lo asigna
-                // retorna plan reparto
-                // y se añade a este
-
+                for (Camion c : camionesSinCargar) {
+                    if (c.getTipo() == TIPOCAMION.ESTANDAR || c.getTipo() == TIPOCAMION.ESPECIALES) {
+                        PlanDeReparto rep = new PlanDeReparto();
+                        rep.setRepartidor(c);
+                        rep.addPaquete(this);
+                    }
+                }
             case FRAGIL:
-                // checkea que hay camion con el mismo tipo
-                // si lo hay, crea plan reparto y lo asigna
-                // retorna plan reparto
-                // y se añade a este
-
+                for (Camion c : camionesSinCargar) {
+                    if (c.getTipo() == TIPOCAMION.ESTANDAR || c.getTipo() == TIPOCAMION.ESPECIALES) {
+                        PlanDeReparto rep = new PlanDeReparto();
+                        rep.setRepartidor(c);
+                        rep.addPaquete(this);
+                    }
+                }
             case COMIDA:
-                // checkea que hay camion con el mismo tipo
-                // si lo hay, crea plan reparto y lo asigna
-                // retorna plan reparto
-                // y se añade a este
+                for (Camion c : camionesSinCargar) {
+                    if (this.getTipocomida() == TIPOCOMIDA.REFRIGERADA) {
+                        if (c.getTipo() == TIPOCAMION.REFRIGERADO) {
+                            PlanDeReparto rep = new PlanDeReparto();
+                            rep.setRepartidor(c);
+                            rep.addPaquete(this);
+                        }
 
+                    }
+                    if (c.getTipo() == TIPOCAMION.ESTANDAR || c.getTipo() == TIPOCAMION.ESPECIALES) {
+                        PlanDeReparto rep = new PlanDeReparto();
+                        rep.setRepartidor(c);
+                        rep.addPaquete(this);
+                    }
+                }
             default:
                 break;
         }
