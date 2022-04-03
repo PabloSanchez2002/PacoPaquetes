@@ -1,4 +1,4 @@
-package tests;
+package tests.TestPeroSonMain;
 
 import static org.junit.Assert.*;
 
