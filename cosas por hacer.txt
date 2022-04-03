@@ -1,5 +1,12 @@
-1 - Distribución de paquetes en camiones
-2 - Asignar repartidores (plan reparto)
-3 - Aplicar telepago Telecharge
-4 - Registro tema facturas
-5 - Imprimir facturas invoiceSystem
+MIKEL:
+actualizar el estado del paquetes a en reparto 
+cabiar nombre de funcines
+probar caso mas de un paquete en camuion (comprobar peso maximo)
+
+MAÑANA 
+ PABLO: paquetes especiles
+
+1 - Aplicar telepago Telecharge
+2 - Imprimir facturas invoiceSystem
+3 - Registro tema facturas
+DOCUMENTAR Y TEST

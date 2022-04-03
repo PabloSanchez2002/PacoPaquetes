@@ -43,6 +43,10 @@ public class PacoPaquetes implements Serializable {
         return this.oper;
     }
 
+    public ArrayList<Repartidor> getRepartidores() {
+        return this.repartidores;
+    }
+
     public Configuracion getConfig() {
         return this.config;
     }

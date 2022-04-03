@@ -153,22 +153,24 @@ public class Paquete implements Comparable<Paquete>, Serializable {
         switch (this.tipo) {
             case NORMAL:
                 for (Camion c : camionesSinCargar) {
-                    if (c.getTipo() == TIPOCAMION.ESTANDAR || c.getTipo() == TIPOCAMION.ESPECIALES) {
+                    if (c.getTipo() == TIPOCAMION.ESTANDAR) {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setRepartidor(c);
                         rep.addPaquete(this);
-                        break;
+                        return rep;
                     }
                 }
+                break;
             case FRAGIL:
                 for (Camion c : camionesSinCargar) {
-                    if (c.getTipo() == TIPOCAMION.ESTANDAR || c.getTipo() == TIPOCAMION.ESPECIALES) {
+                    if (c.getTipo() == TIPOCAMION.ESTANDAR) {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setRepartidor(c);
                         rep.addPaquete(this);
-                        break;
+                        return rep;
                     }
                 }
+                break;
             case COMIDA:
                 for (Camion c : camionesSinCargar) {
                     if (this.getTipocomida() == TIPOCOMIDA.REFRIGERADA) {
@@ -176,17 +178,19 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                             PlanDeReparto rep = new PlanDeReparto();
                             rep.setRepartidor(c);
                             rep.addPaquete(this);
-                            break;
+                            return rep;
                         }
 
                     }
-                    if (c.getTipo() == TIPOCAMION.ESTANDAR || c.getTipo() == TIPOCAMION.ESPECIALES) {
+
+                    else if (c.getTipo() == TIPOCAMION.ESTANDAR) {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setRepartidor(c);
                         rep.addPaquete(this);
-                        break;
+                        return rep;
                     }
                 }
+                break;
             default:
                 break;
         }

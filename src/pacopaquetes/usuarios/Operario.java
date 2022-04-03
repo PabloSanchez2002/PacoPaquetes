@@ -264,7 +264,8 @@ public class Operario extends UsuarioRegistrado {
                 this.getEmpresa().addPlanDeReparto(rep);
                 rep.repartoMasivo(paquetes);
                 rep.getCamion().setCargado(true);
-                this.asignarRepartidor(rep);
+            } else {
+                paquetes.remove(primero);
             }
         }
     }

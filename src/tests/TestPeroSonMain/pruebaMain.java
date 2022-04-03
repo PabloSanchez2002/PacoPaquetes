@@ -71,5 +71,10 @@ public class pruebaMain {
 
                 op.empaquetar();
                 ArrayList<Paquete> paq = pp.getPaquetes();
+
+                op.generarPlanesReparto(paq);
+                ArrayList<PlanDeReparto> plan = new ArrayList<PlanDeReparto>();
+
+                System.out.println("Ha terminado\n");
         }
 }
