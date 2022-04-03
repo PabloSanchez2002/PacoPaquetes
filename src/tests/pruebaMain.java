@@ -35,11 +35,11 @@ public class pruebaMain {
                 Date date = calendar.getTime();
 
                 // Pedido no valido, cp no registrado en la empresa
-                Pedido ped0 = op.CrearPedido(pepe, 5674, date, "10101", PRIORIDAD.URGENTE);
+                Pedido ped0 = op.CrearPedido(pepe, date, "10101", PRIORIDAD.URGENTE);
                 assertEquals(null, ped0);
 
                 // Pedido con CP valido
-                Pedido ped = op.CrearPedido(pepe, 5674, date, "12345", PRIORIDAD.URGENTE);
+                Pedido ped = op.CrearPedido(pepe, date, "12345", PRIORIDAD.URGENTE);
 
                 // producto normal
                 op.anadirProductoPedido(ped, 2, 9, 3, 50, 30, "Altavoz",
@@ -64,12 +64,10 @@ public class pruebaMain {
                 op.anadirProductoPedido(ped, 3, 2, 1, 8, 23, "Pulpo congelado", pp.getConfig().getReintentos(),
                                 false, TIPOCOMIDA.CONGELADA);
 
-                /*
-                 * WriterReader wr = new WriterReader();
-                 * wr.guardarPP("pp.txt", pp);
-                 * 
-                 * PacoPaquetes pp2 = wr.cargarPP("pp.txt");
-                 */
+                WriterReader wr = new WriterReader();
+                wr.guardarPP("pp.txt", pp);
+
+                PacoPaquetes pp2 = wr.cargarPP("pp.txt");
 
                 op.empaquetar();
                 ArrayList<Paquete> paq = pp.getPaquetes();

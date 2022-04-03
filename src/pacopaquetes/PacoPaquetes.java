@@ -16,6 +16,7 @@ public class PacoPaquetes implements Serializable {
     private ArrayList<Producto> productos;
     private ArrayList<Paquete> paquetes;
     private ArrayList<Pedido> pedidos;
+    private ArrayList<PlanDeReparto> repartos;
     private ArrayList<String> CP;
     private Configuracion config;
 
@@ -28,6 +29,7 @@ public class PacoPaquetes implements Serializable {
         this.pedidos = new ArrayList<Pedido>();
         this.paquetes = new ArrayList<Paquete>();
         this.CP = new ArrayList<String>();
+        this.repartos = new ArrayList<PlanDeReparto>();
         this.config = new Configuracion();
         asignarOper();
     }
@@ -63,6 +65,10 @@ public class PacoPaquetes implements Serializable {
 
     public ArrayList<Paquete> getPaquetes() {
         return this.paquetes;
+    }
+
+    public ArrayList<PlanDeReparto> getPlanDeRepartos() {
+        return this.repartos;
     }
 
     // =========================ADDS Y REMOVES==========================\\
@@ -122,6 +128,10 @@ public class PacoPaquetes implements Serializable {
 
     public void rmPedido(Producto pro) {
         this.productos.remove(pro);
+    }
+
+    public void addPlanDeReparto(PlanDeReparto plan) {
+        this.repartos.add(plan);
     }
 
     // =========================FINDS==========================\\

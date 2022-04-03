@@ -10,7 +10,7 @@ public class PlanDeReparto {
     private Camion camion;
     private ArrayList<Paquete> paquetes;
 
-    public PlanDeReparto(int id) {
+    public PlanDeReparto() {
         count++;
         this.id = count;
         this.paquetes = new ArrayList<Paquete>();

@@ -152,12 +152,23 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
-    public Pedido CrearPedido(Cliente cliente, int id, Date date, String codPos, PRIORIDAD pr) {
+    public Pedido CrearPedido(Cliente cliente, Date date, String codPos, PRIORIDAD pr) {
         if (this.getEmpresa().getCPs().contains(codPos) == true) {
-            Pedido ped = new Pedido(id, date, codPos, pr);
+            Pedido ped = new Pedido(date, codPos, pr);
             this.Empresa.addPedido(ped);
             cliente.addPedido(ped);
             return ped;
+        }
+        return null;
+    }
+
+    public Lote CrearLote(Cliente cliente, Date date, String codPos, PRIORIDAD pr, TIPOPAQUETE tp, TIPOCOMIDA tc) {
+        if (this.getEmpresa().getCPs().contains(codPos) == true) {
+            Lote lot = new Lote(pr, tp, tc, this.getEmpresa().getConfig().getmaxPesoPaqNormal(),
+                    this.getEmpresa().getConfig().getReintentos(), date);
+            this.Empresa.addPaquete(lot);
+            cliente.addLote(lot);
+            return lot;
         }
         return null;
 
@@ -186,17 +197,20 @@ public class Operario extends UsuarioRegistrado {
         Collections.sort(productos);
 
         while (productos.isEmpty() == false) {
+            productos = this.listaSinEmpaquetar(productos);
             Producto primero = this.primerProd(productos);
             Paquete paq = primero.nuevoPaquete(this.getEmpresa().getConfig());
+            productos.remove(primero);
             this.getEmpresa().addPaquete(paq);
             paq.empaquetadoMasivo(productos);
         }
     }
 
     public void empaquetar() {
-        ArrayList<Producto> prods = this.listaSinEmpaquetar(this.getEmpresa().getProductos());
+        ArrayList<Producto> prods;
 
         for (String cp : this.getEmpresa().getCPs()) {
+            prods = this.listaSinEmpaquetar(this.getEmpresa().getProductos());
             ArrayList<Producto> mismoCP = new ArrayList<Producto>();
             for (Producto p : prods) {
                 if (p.getCodPost().equals(cp)) {
@@ -206,4 +220,39 @@ public class Operario extends UsuarioRegistrado {
             generarPaquetes(mismoCP);
         }
     }
+
+    public ArrayList<Paquete> PaquetesSinRepartir(ArrayList<Paquete> paquetes) {
+        ArrayList<Paquete> storage = new ArrayList<Paquete>();
+        for (Paquete p : paquetes) {
+            if (p.getEntregado() == ESTADO.EN_ALMACEN) {
+                storage.add(p);
+            }
+        }
+        return storage;
+    }
+
+    public Paquete primerPaq(ArrayList<Paquete> paq) {
+        for (Paquete p : paq) {
+            if (p.getEntregado() == ESTADO.EN_ALMACEN) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    private void generarPlanesReparto(ArrayList<Paquete> paquetes) {
+        Collections.sort(paquetes);
+        while (paquetes.isEmpty() == false) {
+            paquetes = this.PaquetesSinRepartir(paquetes);
+            Paquete primero = this.primerPaq(paquetes);
+            PlanDeReparto rep = primero.nuevoPlanDeReparto(//camiones sin cargar);
+            if (rep != null) {
+                paquetes.remove(primero);
+                this.getEmpresa().addPlanDeReparto(rep);
+                rep.repartoMasivo(paquetes);
+            }
+            
+        }
+    }
+
 }

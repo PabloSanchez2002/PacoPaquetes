@@ -11,6 +11,7 @@ public class Cliente extends UsuarioRegistrado {
     private String correoElectronico;
     private String targetaBancaria;
     private ArrayList<Pedido> pedidos;
+    private ArrayList<Lote> lotes;
 
     public Cliente(String usuario, String contrasena, String CIF, String nombreEmpresa, String direcconFacturacion,
             String correoElectronico, String targetaBancaria) {
@@ -21,6 +22,7 @@ public class Cliente extends UsuarioRegistrado {
         this.correoElectronico = correoElectronico;
         this.targetaBancaria = targetaBancaria;
         this.pedidos = new ArrayList<Pedido>();
+        this.lotes = new ArrayList<Lote>();
     }
 
     // ================SETS===============//
@@ -65,7 +67,15 @@ public class Cliente extends UsuarioRegistrado {
         return this.pedidos;
     }
 
+    public ArrayList<Lote> getLotes() {
+        return this.lotes;
+    }
+
     public void addPedido(Pedido ped) {
         this.pedidos.add(ped);
+    }
+
+    public void addLote(Lote lote) {
+        this.lotes.add(lote);
     }
 }

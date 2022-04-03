@@ -1,6 +1,8 @@
 package pacopaquetes.envios;
 
 import enums.*;
+import pacopaquetes.Camion;
+import pacopaquetes.PacoPaquetes;
 import pacopaquetes.envios.productos.*;
 
 import java.io.Serializable;
@@ -146,6 +148,32 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                 prods.remove(p);
             }
         }
+    }
+
+    public PlanDeReparto nuevoPlanDeReparto(ArrayList<Camion> camionesSinCargar) {
+        switch (this.tipo) {
+            case NORMAL:
+                // checkea que hay camion con el mismo tipo
+                // si lo hay, crea plan reparto y lo asigna
+                // retorna plan reparto
+                // y se añade a este
+
+            case FRAGIL:
+                // checkea que hay camion con el mismo tipo
+                // si lo hay, crea plan reparto y lo asigna
+                // retorna plan reparto
+                // y se añade a este
+
+            case COMIDA:
+                // checkea que hay camion con el mismo tipo
+                // si lo hay, crea plan reparto y lo asigna
+                // retorna plan reparto
+                // y se añade a este
+
+            default:
+                break;
+        }
+        return null;
     }
 
 }

@@ -9,6 +9,7 @@ public class Camion implements Serializable {
     private String matricula;
     private int pesoMax;
     private TIPOCAMION tipo;
+    private Boolean cargado;
     private boolean averiado;
 
     public Camion(String mat, int pesoM, TIPOCAMION tipo) {
@@ -16,6 +17,7 @@ public class Camion implements Serializable {
         this.pesoMax = pesoM;
         this.tipo = tipo;
         this.averiado = false;
+        this.cargado = false;
     }
 
     // ===============SETS===============//
@@ -36,6 +38,10 @@ public class Camion implements Serializable {
         this.averiado = av;
     }
 
+    public void setCargado(boolean car) {
+        this.cargado = car;
+    }
+
     // ===============GETS===============//
 
     public String getMatricula() {
@@ -52,5 +58,9 @@ public class Camion implements Serializable {
 
     public boolean getAveriado() {
         return this.averiado;
+    }
+
+    public boolean getCargado() {
+        return this.cargado;
     }
 }

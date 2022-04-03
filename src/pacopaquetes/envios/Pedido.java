@@ -10,16 +10,17 @@ import java.util.ArrayList;
 
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    private static int count = 0;
     private int id;
     private PRIORIDAD prioridad;
     private Date fecha;
     private String codPostal;
     private ArrayList<Producto> productos;
 
-    public Pedido(int id, Date date, String codPost, PRIORIDAD pr) {
+    public Pedido(Date date, String codPost, PRIORIDAD pr) {
+        count++;
+        this.id = count;
         this.prioridad = pr;
-        this.id = id;
         this.fecha = date;
         this.codPostal = codPost;
         this.productos = new ArrayList<Producto>();
