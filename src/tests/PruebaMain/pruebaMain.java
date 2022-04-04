@@ -5,8 +5,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import enums.PRIORIDAD;
-import enums.TIPOCOMIDA;
+import enums.*;
 import pacopaquetes.*;
 import pacopaquetes.envios.*;
 import pacopaquetes.usuarios.*;
@@ -22,7 +21,7 @@ public class pruebaMain {
                 op.cargarCP("files/codigos.txt");
                 op.altaCamionesDesdeArchivo("files/camiones.txt");
 
-                /* Aquí debe ir el test de LeerTest pero por alguna razon no funciona */
+                /* Aqui debe ir el test de LeerTest pero por alguna razon no funciona */
 
                 // Crea cliente e inicia pedido
                 Cliente pepe = op.nuevoCliente("jose", "123pepe", "231238", "MANZANAS SA", "Calle joakin 14",
@@ -59,6 +58,8 @@ public class pruebaMain {
                 // producto alimenticio congelado
                 op.anadirProductoPedido(ped, 3, 2, 1, 8, 23, "Pulpo congelado", pp.getConfig().getReintentos(),
                                 false, TIPOCOMIDA.CONGELADA);
+                // Producto dim especiales
+                op.anadirProductoPedido(ped, 3, 2, 100, 800, 23, "Mesa billar", pp.getConfig().getReintentos());
 
                 WriterReader wr = new WriterReader();
                 wr.guardarPP("pp.txt", pp);
@@ -71,6 +72,12 @@ public class pruebaMain {
                 op.generarPlanesReparto(paq);
                 ArrayList<PlanDeReparto> plan = new ArrayList<PlanDeReparto>();
 
-                System.out.println("Ha terminado\n");
+                Cliente client = op.nuevoCliente("pepe", "123pepe", "211223883D", "Fontanerias Pepe", "Av. Arriba 13",
+                                "pepefont@gmail.com", "6727738277");
+                Pedido pedid = op.CrearPedido(client, date, "12345", PRIORIDAD.URGENTE);
+                // Dentro se prueba client.addLote(lot)
+                Lote lot = op.CrearLote(client, date, "12345", PRIORIDAD.URGENTE, TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
+                System.out.println(pedid + "\n");
+                System.out.println(client.getPedidos().size());
         }
 }

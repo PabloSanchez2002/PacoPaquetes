@@ -1,9 +1,15 @@
-MAÑANA 
- PABLO: paquetes especiles
-
+0 - Comprobar CPs de los cmiones (maximo 10)
 1 - Aplicar telepago Telecharge
 2 - Imprimir facturas invoiceSystem
 3 - Registro tema facturas
 DOCUMENTAR Y TEST
 
-Falta camiones con fragiles y normales a la vez!
+
+
+
+
+
+FUNCION SIMULAR REPARTO(BOOLEAN){
+    COJE LOS PLANES DE REPARTO Y SI ES TRUE LOS MARCA COMO ENTREGADOS, SI ES FALSE
+    RESTA A CADA UNO UN INTENTO DE REPARTO Y LOS MARCA COMO EN ALMACEN 
+}

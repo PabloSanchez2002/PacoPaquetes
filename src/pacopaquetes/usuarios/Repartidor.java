@@ -32,6 +32,9 @@ public class Repartidor extends UsuarioRegistrado {
     }
 
     public void setCamionAveriado() {
+        if (this.planReparto.getCamion() == null) {
+            return;
+        }
         this.planReparto.getCamion().setAveriado(true);
     }
 

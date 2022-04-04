@@ -19,7 +19,8 @@ public class LeerTest {
 
         ArrayList<Camion> cam = pp.getCamiones();
         ArrayList<String> cp = pp.getCPs();
-        // =====================
+        // =====================//
+        /* Por alguna razón no funcionan estos asert, comprobado en el main */
         assertEquals(25, cp.size());
         assertEquals(7, cam.size());
     }

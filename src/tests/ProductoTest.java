@@ -5,7 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import org.junit.Test;
 
 import enums.*;
 import pacopaquetes.*;
@@ -42,34 +41,13 @@ public class ProductoTest {
 
                 ModifiableDate.setToday();
 
-                nor.setAlto(10);
-                nor.setAncho(3);
-                nor.setCodPost("67890");
+                nor.setPesoTotal(70);
                 nor.setEmpaquetado(true);
                 nor.setEstado(ESTADO.EN_REPARTO);
-                nor.setFecha(dat);
-                nor.setId(50);
-                nor.setNintentos(32);
-                nor.setNombre("Mesa");
-                nor.setNumUnidades(60);
-                nor.setPesoTotal(70);
-                nor.setPrioridad(PRIORIDAD.URGENTE);
-                nor.setProfundo(14);
 
-                assertEquals(60, nor.getNumUnidades());
                 assertEquals(70, nor.getPesoTotal(), 0);
-                assertEquals(10, nor.getAlto(), 0);
-                assertEquals(3, nor.getAncho(), 0);
-                assertEquals(14, nor.getProfundo(), 0);
-                assertEquals("Mesa", nor.getNombre());
-                assertEquals("67890", nor.getCodPost());
-                assertEquals(PRIORIDAD.URGENTE, nor.getPrioridad());
-                assertEquals(32, nor.getNIntentos());
-                assertEquals(dat, nor.getFecha());
                 assertEquals(ESTADO.EN_REPARTO, nor.getEstado());
                 assertEquals(true, nor.getEmpaquetado());
-                assertEquals(50, nor.getId());
-                assertEquals(36, nor.getPrecio(), 0);
 
                 // Test Producto Fragil//
 

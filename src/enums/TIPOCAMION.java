@@ -1,11 +1,21 @@
 package enums;
-public enum TIPOCAMION{
+
+/**
+ * Enumerado de tipo de camion
+ */
+public enum TIPOCAMION {
     ESTANDAR, ESPECIALES, REFRIGERADO;
 
-    public TIPOCAMION getTipo(String str){
+    /**
+     * Retorna el tipo de camion segun la String que se pase por argumento
+     * 
+     * @param String tipo de camion
+     * @return enumerado coincidente
+     */
+    public TIPOCAMION getTipo(String str) {
         TIPOCAMION[] allTipos = TIPOCAMION.values();
-        for(TIPOCAMION t : allTipos){
-            if(t.name().equals(str)){
+        for (TIPOCAMION t : allTipos) {
+            if (t.name().equals(str)) {
                 return t;
             }
         }

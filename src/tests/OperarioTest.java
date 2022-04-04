@@ -57,7 +57,7 @@ public class OperarioTest {
                 op.anadirProductoPedido(ped, 5, 20, 23, 10, 20, "Atun congelado",
                                 pp.getConfig().getReintentos(), false, TIPOCOMIDA.CONGELADA);
 
-                assertEquals(58, ped.getPrecio(), 0);
+                assertEquals(1397.88, ped.getPrecio(pp.getConfig().getDescuento()), 0);
                 assertEquals(1, pepe.getPedidos().get(0).getId());
 
                 op.empaquetar();

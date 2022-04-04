@@ -1,5 +1,8 @@
 package enums;
 
-public enum PRIORIDAD{
+/**
+ * Enumerado de prioridad de entrega
+ */
+public enum PRIORIDAD {
     NORMAL, URGENTE
 }

@@ -126,30 +126,27 @@ public class Operario extends UsuarioRegistrado {
             String nombre, int nInt) {
         Producto p = new Normal(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(), ped.getPrioridad(),
                 nInt, ped.getFecha());
-        if (this.MaxVolum(p) == false) {
-            ped.anadirProducto(p);
-            Empresa.addProducto(p);
-        }
+        p.setDimEspecial(this.MaxVolum(p));
+        ped.anadirProducto(p);
+        Empresa.addProducto(p);
     }
 
     public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float alto, float ancho, float profundo,
             String nombre, int nInt, Boolean liquido, TIPOCOMIDA tipo) {
         Producto p = new Alimentario(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(),
                 ped.getPrioridad(), nInt, liquido, tipo, ped.getFecha());
-        if (this.MaxVolum(p) == false) {
-            ped.anadirProducto(p);
-            Empresa.addProducto(p);
-        }
+        p.setDimEspecial(this.MaxVolum(p));
+        ped.anadirProducto(p);
+        Empresa.addProducto(p);
     }
 
     public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float alto, float ancho, float profundo,
             String nombre, int nInt, Boolean asegurado) {
         Producto p = new Fragil(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(), ped.getPrioridad(),
                 nInt, asegurado, ped.getFecha());
-        if (this.MaxVolum(p) == false) {
-            ped.anadirProducto(p);
-            Empresa.addProducto(p);
-        }
+        p.setDimEspecial(this.MaxVolum(p));
+        ped.anadirProducto(p);
+        Empresa.addProducto(p);
     }
 
     public Pedido CrearPedido(Cliente cliente, ModifiableDate date, String codPos, PRIORIDAD pr) {
@@ -245,7 +242,7 @@ public class Operario extends UsuarioRegistrado {
         ArrayList<Camion> descargados = new ArrayList<Camion>();
 
         for (Camion c : camiones) {
-            if (c.getCargado() == false) {
+            if (c.getCargado() == false || c.getAveriado() == false) {
                 descargados.add(c);
             }
         }
@@ -271,11 +268,28 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
-    public void asignarRepartidor(PlanDeReparto rep) {
-        for (Repartidor r : this.Empresa.getRepartidores()) {
-            if (r.consultarPlanReparto() == null) {
-                r.setPlanReparto(rep);
-                break;
+    public void asignarRepartidor(PlanDeReparto rep, Repartidor repartidor) {
+        if (repartidor.consultarPlanReparto() == null) {
+            repartidor.setPlanReparto(rep);
+        }
+    }
+
+    public void simularReparto(Boolean reparto) {
+        for (PlanDeReparto plan : this.Empresa.getPlanDeRepartos()) {
+            for (Paquete paquetes : plan.getPaquetes()) {
+                if (reparto == true) {
+                    paquetes.setEntregado(ESTADO.ENTREGADO);
+                    for (Producto prods : paquetes.getProductos()) {
+                        prods.setEstado(ESTADO.ENTREGADO);
+                    }
+                } else if (reparto == false) {
+                    paquetes.setNintentos(paquetes.getNIntentos() - 1);
+                    paquetes.setEntregado(ESTADO.EN_ALMACEN);
+                    for (Producto prods : paquetes.getProductos()) {
+                        prods.setNintentos(prods.getNIntentos() - 1);
+                        prods.setEstado(ESTADO.EN_ALMACEN);
+                    }
+                }
             }
         }
     }

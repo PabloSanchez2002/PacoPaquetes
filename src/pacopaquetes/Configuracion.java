@@ -7,7 +7,7 @@ public class Configuracion implements Serializable {
     private int reintentos = 3;
     private int maxVolume = 12000;
     private int maxNumPaquetes = 20;
-    private int descuento = 10;
+    private double descuento = 0.1;
     private int maxCodPostales = 10;
     private int maxPesoPaqNormal = 30;
     private int maxPesoPaqFragil = 20;
@@ -57,7 +57,7 @@ public class Configuracion implements Serializable {
         return this.maxNumPaquetes;
     }
 
-    public int getDescuento() {
+    public double getDescuento() {
         return this.descuento;
     }
 

@@ -1,19 +1,30 @@
+/**
+ * 
+ * Esta clase es de lotes
+ *
+ * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ *
+ */
 package pacopaquetes.envios;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.ArrayList;
 
 import enums.PRIORIDAD;
 import enums.TIPOCOMIDA;
 import enums.TIPOPAQUETE;
 import pacopaquetes.ModifiableDate;
-import pacopaquetes.envios.productos.*;
-import pacopaquetes.usuarios.Cliente;
 
 public class Lote extends Paquete {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Crea un nuevo lote
+     * 
+     * @param prio    prioridad
+     * @param tipo    tipo de lote
+     * @param comida  tipo de comida si lo es
+     * @param maxPeso peso maximo por lote
+     * @param nint    numero de intentos de reparto
+     * @param fecha   fecha de creación del lote
+     */
     public Lote(PRIORIDAD prio, TIPOPAQUETE tipo, TIPOCOMIDA comida, int maxPeso, int nint, ModifiableDate fecha) {
         super(prio, tipo, comida, maxPeso, nint, fecha);
     }

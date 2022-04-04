@@ -1,3 +1,10 @@
+/**
+ * 
+ * Esta clase es de los pedidos
+ *
+ * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ *
+ */
 package pacopaquetes.envios;
 
 import pacopaquetes.ModifiableDate;
@@ -9,13 +16,38 @@ import java.util.ArrayList;
 
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
+    /**
+     * Contador de indices
+     */
     private static int count = 0;
+    /**
+     * id del pedido
+     */
     private int id;
+    /**
+     * Prioridad del pedido
+     */
     private PRIORIDAD prioridad;
+    /**
+     * Fecha del pedido
+     */
     private ModifiableDate fecha;
+    /**
+     * Codigo postal
+     */
     private String codPostal;
+    /**
+     * Array de productos del pedido
+     */
     private ArrayList<Producto> productos;
 
+    /**
+     * Genera objeto pedido
+     * 
+     * @param date    fecha
+     * @param codPost codigo postal
+     * @param pr      prioridad
+     */
     public Pedido(ModifiableDate date, String codPost, PRIORIDAD pr) {
         count++;
         this.id = count;
@@ -25,51 +57,67 @@ public class Pedido implements Serializable {
         this.productos = new ArrayList<Producto>();
     }
 
-    // ===============SETS===============//
-
-    public void setId(int i) {
-        this.id = i;
-    }
-
-    public void setFecha(ModifiableDate d) {
-        this.fecha = d;
-    }
-
-    public void setPrioridad(PRIORIDAD p) {
-        this.prioridad = p;
-    }
-
-    public void setCodPost(String cp) {
-        this.codPostal = cp;
-    }
-
     // ===============GETS===============//
-
+    /**
+     * Devuelve la Id
+     * 
+     * @return int
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * Devuelve la fecha
+     * 
+     * @return ModifiableDate
+     */
     public ModifiableDate getFecha() {
         return this.fecha;
     }
 
+    /**
+     * Devuelve la prioridad
+     * 
+     * @return PRIORIDAD
+     */
     public PRIORIDAD getPrioridad() {
         return this.prioridad;
     }
 
+    /**
+     * Devuelve el codigo postal
+     * 
+     * @return String
+     */
     public String getCodPost() {
         return this.codPostal;
     }
 
+    /**
+     * Añade un producto a el pedido
+     * 
+     * @param p producto
+     */
     public void anadirProducto(Producto p) {
         productos.add(p);
     }
 
+    /**
+     * Elimina un producto del pedido
+     * 
+     * @param p
+     */
     public void eliminarProducto(Producto p) {
         productos.remove(p);
     }
 
-    public double getPrecio() {
+    /**
+     * Calcula el precio del pedido
+     * 
+     * @return double
+     */
+    public double getPrecio(double d) {
         double pr = 0;
         int n = 0;
         for (Producto p : this.productos) {
@@ -79,7 +127,7 @@ public class Pedido implements Serializable {
         if (this.getPrioridad() == PRIORIDAD.URGENTE)
             pr += 5;
         if (n >= 100)
-            pr -= (pr * 0.1);
+            pr -= (pr * d);
         return pr;
     }
 }
