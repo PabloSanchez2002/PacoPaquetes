@@ -1,3 +1,10 @@
+/**
+ * 
+ * Esta clase es del operario
+ *
+ * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ *
+ */
 package pacopaquetes.usuarios;
 
 import java.io.BufferedReader;
@@ -12,38 +19,84 @@ import pacopaquetes.envios.productos.*;
 
 public class Operario extends UsuarioRegistrado {
 
+    /**
+     * Empresa sobre la que tiene control
+     */
     private PacoPaquetes Empresa;
 
+    /**
+     * Contructor de Operario, devulve el objecto Operario
+     * 
+     * @param usuario    usurio del operario
+     * @param contrasena Contraseña del operario
+     */
     public Operario(String usuario, String contrasena) {
         super(usuario, contrasena);
     }
 
     // ===============SETS===============//
+    /**
+     * Añade la empresa del operario
+     * 
+     * @param PPaquetes empresa
+     */
     public void setEmpresa(PacoPaquetes PPaquetes) {
         this.Empresa = PPaquetes;
     }
 
     // ===============GETS===============//
+    /**
+     * Devuelve la empresa del operario
+     * 
+     * @return PacoPaquetes
+     */
     public PacoPaquetes getEmpresa() {
         return this.Empresa;
     }
 
+    /**
+     * Da de alta un rapartidor
+     * 
+     * @param usuario    nombre de usuario
+     * @param contrasena contraseña
+     * @param telefono   telefono de contacto
+     * @return Repartidor
+     */
     public Repartidor altaRepartidor(String usuario, String contrasena, String telefono) {
         Repartidor rep = new Repartidor(usuario, contrasena, telefono);
         this.Empresa.addRepartidor(rep);
         return rep;
     }
 
+    /**
+     * Da de baja un repartidor
+     * 
+     * @param rep Repartidor a dar de baja
+     */
     public void bajaRepartidor(Repartidor rep) {
         this.Empresa.rmRepartidor(rep);
     }
 
+    /**
+     * Da de alta un camion
+     * 
+     * @param matricula matricula
+     * @param pesoMax   peso maximo
+     * @param tipo      tipo de camion
+     * @return Camion
+     */
     public Camion altaCamion(String matricula, int pesoMax, TIPOCAMION tipo) {
         Camion cam = new Camion(matricula, pesoMax, tipo);
         this.Empresa.addCamion(cam);
         return cam;
     }
 
+    /**
+     * Añade camiones a la flota de camiones
+     * 
+     * @param filename nombre del archivo
+     * @throws IOException en caso de no encontrar el archivo
+     */
     public void altaCamionesDesdeArchivo(String filename) throws IOException {
         File archivo = null;
         FileReader fr = null;
@@ -76,6 +129,11 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
+    /**
+     * Carga las direcciones postales desde un archivo
+     * 
+     * @param filename nombre del archivo
+     */
     public void cargarCP(String filename) {
         File archivo = null;
         FileReader fr = null;
@@ -103,10 +161,27 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
+    /**
+     * Da de baja un camion
+     * 
+     * @param cam a dar de baja
+     */
     public void bajaCamion(Camion cam) {
         this.Empresa.rmCamion(cam);
     }
 
+    /**
+     * Crea un nuevo cliente en la empresa
+     * 
+     * @param usuario             nombre de usuario
+     * @param contrasena          cotraseña
+     * @param CIF                 CIF
+     * @param nombreEmpresa       nombre de la empresa
+     * @param direcconFacturacion direccion
+     * @param correoElectronico   correo
+     * @param targetaBancaria     tarjeta
+     * @return Cliente
+     */
     public Cliente nuevoCliente(String usuario, String contrasena, String CIF, String nombreEmpresa,
             String direcconFacturacion, String correoElectronico, String targetaBancaria) {
         Cliente cli = new Cliente(usuario, contrasena, CIF, nombreEmpresa, direcconFacturacion, correoElectronico,
@@ -115,6 +190,12 @@ public class Operario extends UsuarioRegistrado {
         return cli;
     }
 
+    /**
+     * Compara el volumen de el producto con el maximo permitido
+     * 
+     * @param prod
+     * @return boolean
+     */
     public boolean MaxVolum(Producto prod) {
         if (prod.getAlto() * prod.getAncho() * prod.getProfundo() > this.Empresa.getConfig().getMaxVolume())
             return true;
@@ -122,6 +203,18 @@ public class Operario extends UsuarioRegistrado {
             return false;
     }
 
+    /**
+     * Añade un producto normal a un pedido
+     * 
+     * @param ped      pedido
+     * @param num      numero de productos
+     * @param pesoTot  peso total
+     * @param alto     alto
+     * @param ancho    ancho
+     * @param profundo profundo
+     * @param nombre   nombre del producto
+     * @param nInt     numeor de intentos
+     */
     public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float alto, float ancho, float profundo,
             String nombre, int nInt) {
         Producto p = new Normal(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(), ped.getPrioridad(),
@@ -131,6 +224,20 @@ public class Operario extends UsuarioRegistrado {
         Empresa.addProducto(p);
     }
 
+    /**
+     * Añade un producto alimentario a un pedido
+     * 
+     * @param ped      pedido
+     * @param num      numero de productos
+     * @param pesoTot  peso total
+     * @param alto     alto
+     * @param ancho    ancho
+     * @param profundo profundo
+     * @param nombre   nombre del producto
+     * @param nInt     numeor de intentos
+     * @param liquido  si es liquido o no
+     * @param tipo     tipo de comida
+     */
     public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float alto, float ancho, float profundo,
             String nombre, int nInt, Boolean liquido, TIPOCOMIDA tipo) {
         Producto p = new Alimentario(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(),
@@ -140,6 +247,19 @@ public class Operario extends UsuarioRegistrado {
         Empresa.addProducto(p);
     }
 
+    /**
+     * Añade un producto fragil a un pedido
+     * 
+     * @param ped       pedido
+     * @param num       numero de productos
+     * @param pesoTot   peso total
+     * @param alto      alto
+     * @param ancho     ancho
+     * @param profundo  profundo
+     * @param nombre    nombre del producto
+     * @param nInt      numeor de intentos
+     * @param asegurado si esta asegurado
+     */
     public void anadirProductoPedido(Pedido ped, int num, float pesoTot, float alto, float ancho, float profundo,
             String nombre, int nInt, Boolean asegurado) {
         Producto p = new Fragil(num, pesoTot, alto, ancho, profundo, nombre, ped.getCodPost(), ped.getPrioridad(),
@@ -149,6 +269,15 @@ public class Operario extends UsuarioRegistrado {
         Empresa.addProducto(p);
     }
 
+    /**
+     * Crea un pedido para un cliente
+     * 
+     * @param cliente cliente que hce el pedido
+     * @param date    fecha
+     * @param codPos  direccion
+     * @param pr      prioridad
+     * @return
+     */
     public Pedido CrearPedido(Cliente cliente, ModifiableDate date, String codPos, PRIORIDAD pr) {
         if (this.getEmpresa().getCPs().contains(codPos) == true) {
             Pedido ped = new Pedido(date, codPos, pr);
@@ -159,6 +288,17 @@ public class Operario extends UsuarioRegistrado {
         return null;
     }
 
+    /**
+     * Crea un lote
+     * 
+     * @param cliente cliente
+     * @param date    fecha
+     * @param codPos  codigo postal
+     * @param pr      prioridad
+     * @param tp      tipo paquete
+     * @param tc      tipo comida
+     * @return Lote
+     */
     public Lote CrearLote(Cliente cliente, ModifiableDate date, String codPos, PRIORIDAD pr, TIPOPAQUETE tp,
             TIPOCOMIDA tc) {
         if (this.getEmpresa().getCPs().contains(codPos) == true) {
@@ -172,6 +312,12 @@ public class Operario extends UsuarioRegistrado {
 
     }
 
+    /**
+     * Devuelve un array de productos que no han sido empaquetados
+     * 
+     * @param prods productos a comprobar
+     * @return ArrayList<Producto> array de productos sin empaquetar
+     */
     public ArrayList<Producto> listaSinEmpaquetar(ArrayList<Producto> prods) {
         ArrayList<Producto> unpacked = new ArrayList<Producto>();
         for (Producto p : prods) {
@@ -182,6 +328,12 @@ public class Operario extends UsuarioRegistrado {
         return unpacked;
     }
 
+    /**
+     * Obtine el primer producto de un array
+     * 
+     * @param prods array de productos
+     * @return Producto primer producto
+     */
     public Producto primerProd(ArrayList<Producto> prods) {
         for (Producto p : prods) {
             if (p.getEmpaquetado() == false) {
@@ -191,6 +343,11 @@ public class Operario extends UsuarioRegistrado {
         return null;
     }
 
+    /**
+     * Genera paquetes en los que anade productos
+     * 
+     * @param productos productos a anadir
+     */
     public void generarPaquetes(ArrayList<Producto> productos) {
         Collections.sort(productos);
 
@@ -203,6 +360,10 @@ public class Operario extends UsuarioRegistrado {
             paq.empaquetadoMasivo(productos);
         }
     }
+
+    /**
+     * Funcion para empaquetar los productos de la empresa
+     */
 
     public void empaquetar() {
         ArrayList<Producto> prods;
@@ -219,6 +380,12 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
+    /**
+     * Encuentra los paquetes sin repartir de un arrray dado
+     *
+     * @param paquetes array de paquetes a comprobar
+     * @return ArrayList<Paquete> array de paquetes sin repartir
+     */
     public ArrayList<Paquete> PaquetesSinRepartir(ArrayList<Paquete> paquetes) {
         ArrayList<Paquete> storage = new ArrayList<Paquete>();
         for (Paquete p : paquetes) {
@@ -229,6 +396,12 @@ public class Operario extends UsuarioRegistrado {
         return storage;
     }
 
+    /**
+     * Retorna el primer paquete del array de paquetes
+     * 
+     * @param paq array de paquetes
+     * @return Paquete primer paquete
+     */
     public Paquete primerPaq(ArrayList<Paquete> paq) {
         for (Paquete p : paq) {
             if (p.getEntregado() == ESTADO.EN_ALMACEN) {
@@ -238,6 +411,12 @@ public class Operario extends UsuarioRegistrado {
         return null;
     }
 
+    /**
+     * Comprueba los camiones sin cargar que pueden ser usados para el reparto
+     * 
+     * @param camiones camiones a comprobar
+     * @return ArrayList<Camion> sin cargar y funcionales
+     */
     public ArrayList<Camion> camionesSinCargar(ArrayList<Camion> camiones) {
         ArrayList<Camion> descargados = new ArrayList<Camion>();
 
@@ -250,6 +429,11 @@ public class Operario extends UsuarioRegistrado {
         return descargados;
     }
 
+    /**
+     * Genera todos los planes de reparto a partir de los paquetes a repartir
+     * 
+     * @param paquetes paquetes a repartir
+     */
     public void generarPlanesReparto(ArrayList<Paquete> paquetes) {
         Collections.sort(paquetes);
         while (paquetes.isEmpty() == false) {
@@ -268,12 +452,23 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
+    /**
+     * Asigna un plan de reparto a un repartidor
+     * 
+     * @param rep        plan de reparto
+     * @param repartidor repartidor
+     */
     public void asignarRepartidor(PlanDeReparto rep, Repartidor repartidor) {
         if (repartidor.consultarPlanReparto() == null) {
             repartidor.setPlanReparto(rep);
         }
     }
 
+    /**
+     * Simula un reparto de todos los planes de la empresa
+     * 
+     * @param reparto indica si se han repartido o si no
+     */
     public void simularReparto(Boolean reparto) {
         for (PlanDeReparto plan : this.Empresa.getPlanDeRepartos()) {
             for (Paquete paquetes : plan.getPaquetes()) {

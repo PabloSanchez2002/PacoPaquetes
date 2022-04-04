@@ -1,3 +1,10 @@
+/**
+ * 
+ * Esta clase es del WriterReader
+ *
+ * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ *
+ */
 package pacopaquetes;
 
 import java.io.File;
@@ -12,6 +19,12 @@ public class WriterReader {
 	public WriterReader() {
 	}
 
+	/**
+	 * Guarda el objeto paco paquetes en el fichero que se le pase por parametro
+	 * 
+	 * @param file fichero donde lo guarda
+	 * @param pp   objeto que guarda en el ficherp
+	 */
 	public void guardarPP(String file, PacoPaquetes pp) {
 
 		try {
@@ -34,6 +47,12 @@ public class WriterReader {
 
 	}
 
+	/**
+	 * Carga el objeto paco paquetes desde el fichero que se le pase por parametro
+	 * 
+	 * @param file fichero desde donde lo carga
+	 * @return PacoPaquetes objeto leido
+	 */
 	public PacoPaquetes cargarPP(String file) {
 		PacoPaquetes pp = null;
 		try {

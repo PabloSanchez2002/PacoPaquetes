@@ -1,6 +1,6 @@
 /**
  * 
- * Esta clase es de los planes de reparto
+ * Esta clase es del cliente
  *
  * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
  *

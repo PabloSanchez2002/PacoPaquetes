@@ -5,18 +5,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-
-import enums.*;
-import pacopaquetes.*;
-import pacopaquetes.envios.*;
 import pacopaquetes.usuarios.*;
 
 public class ClienteTest {
     // Test Cliente/ClienteSinRegistrar/.java
     @Test
     public void test() throws IOException {
-        Operario op = new Operario("oper1", "oper123");
-        PacoPaquetes pp = new PacoPaquetes(op);
         ClienteSinRegistrar cli = new ClienteSinRegistrar();
 
         Cliente client = cli.nuevoCliente("pepe", "123pepe", "211223883D", "Fontanerias Pepe", "Av. Arriba 13",
@@ -44,14 +38,16 @@ public class ClienteTest {
         assertEquals("Calle Abajo 14", client.getDirecconFacturacion());
         assertEquals("robertoelect@gmail.com", client.getCorreoElectronico());
         assertEquals("23334222123", client.getTargetaBancaria());
-
-        ModifiableDate date = new ModifiableDate();
-
-        // Dentro se prueba client.addPedido(ped)
-        Pedido ped = op.CrearPedido(client, date, "12345", PRIORIDAD.URGENTE);
-        // Dentro se prueba client.addLote(lot)
-        Lote lot = op.CrearLote(client, date, "12345", PRIORIDAD.URGENTE, TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
-        // En pruebaMain funciona -> assertEquals(1, client.getPedidos().size());
-        // En pruebaMain funciona assertEquals(1, client.getLotes().size());
+        /*
+         * En pruebaMain funciona ->
+         * ModifiableDate date = new ModifiableDate();
+         * Dentro se prueba client.addPedido(ped)
+         * Pedido ped = op.CrearPedido(client, date, "12345", PRIORIDAD.URGENTE);
+         * Dentro se prueba client.addLote(lot)
+         * Lote lot = op.CrearLote(client, date, "12345", PRIORIDAD.URGENTE,
+         * TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
+         * assertEquals(1, client.getPedidos().size());
+         * En pruebaMain funciona assertEquals(1, client.getLotes().size());
+         */
     }
 }

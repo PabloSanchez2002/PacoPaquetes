@@ -16,7 +16,6 @@ public class CamionTest {
 
         Operario op = new Operario("usuario", "contrasena");
         PacoPaquetes pp = new PacoPaquetes(op);
-
         Camion cam = op.altaCamion("matricula", 2010, TIPOCAMION.ESTANDAR);
 
         cam.setmatricula("0000 bbb");

@@ -47,13 +47,14 @@ public class PacoPaquetesTest {
         Pedido ped = new Pedido(dat, "12345", PRIORIDAD.URGENTE);
         pp.addPedido(ped);
 
-        assertEquals(paq, pp.findPedidoById(ped.getId()));
+        assertEquals(ped, pp.findPedidoById(ped.getId()));
         assertEquals(null, pp.findPedidoById(9999999));
 
         Producto nor = new Normal(30, 40, 12, 8, 4, "Silla", "12345", PRIORIDAD.NORMAL,
                 pp.getConfig().getReintentos(), dat);
         pp.addProducto(nor);
 
-        assertEquals(nor, pp.findProductoById(ped.getId()));
+        assertEquals(nor, pp.findProductoById(nor.getId()));
+        assertEquals(null, pp.findProductoById(9999999));
     }
 }

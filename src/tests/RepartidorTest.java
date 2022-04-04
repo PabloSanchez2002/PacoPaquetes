@@ -18,7 +18,6 @@ public class RepartidorTest {
 
         Operario op = new Operario("usuario", "contrasena");
         PacoPaquetes pp = new PacoPaquetes(op);
-
         PlanDeReparto pr = new PlanDeReparto();
         Camion cam = op.altaCamion("matricula", 2010, TIPOCAMION.ESTANDAR);
         Repartidor rep = op.altaRepartidor("rep", "rep123", "123456789");
