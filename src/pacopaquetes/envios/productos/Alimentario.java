@@ -2,6 +2,7 @@ package pacopaquetes.envios.productos;
 
 import enums.*;
 import pacopaquetes.Configuracion;
+import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.Paquete;
 
 public class Alimentario extends Producto {
@@ -9,7 +10,7 @@ public class Alimentario extends Producto {
     private TIPOCOMIDA tipo;
 
     public Alimentario(int num, float pesoTot, float alto, float ancho, float profundo, String nombre,
-            String cp, PRIORIDAD PR, int ni, Boolean liquido, TIPOCOMIDA tipo2, java.util.Date date) {
+            String cp, PRIORIDAD PR, int ni, Boolean liquido, TIPOCOMIDA tipo2, ModifiableDate date) {
         super(num, pesoTot, alto, ancho, profundo, nombre, cp, PR, ni, date);
         this.tipo = tipo2;
         this.liquido = liquido;

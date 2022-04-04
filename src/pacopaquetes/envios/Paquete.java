@@ -6,7 +6,6 @@ import pacopaquetes.envios.productos.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Paquete implements Comparable<Paquete>, Serializable {
     private static final long serialVersionUID = 1L;
@@ -17,13 +16,13 @@ public class Paquete implements Comparable<Paquete>, Serializable {
     private int maxPeso;
     private int pesoTotal;
     private int id;
-    private Date fecha;
+    private ModifiableDate fecha;
     private int nintentos;
     private ESTADO entregado;
     private ArrayList<Producto> productos;
 
     public Paquete(PRIORIDAD prio, TIPOPAQUETE tipo, TIPOCOMIDA comida, int maxPeso, int nint,
-            Date fecha) {
+            ModifiableDate fecha) {
         count++;
         this.id = count;
         this.prioridad = prio;
@@ -89,7 +88,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
         return this.id;
     }
 
-    public Date getFecha() {
+    public ModifiableDate getFecha() {
         return this.fecha;
     }
 
@@ -155,7 +154,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                 for (Camion c : camionesSinCargar) {
                     if (c.getTipo() == TIPOCAMION.ESTANDAR) {
                         PlanDeReparto rep = new PlanDeReparto();
-                        rep.setRepartidor(c);
+                        rep.setCamion(c);
                         rep.addPaquete(this);
                         return rep;
                     }
@@ -165,7 +164,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                 for (Camion c : camionesSinCargar) {
                     if (c.getTipo() == TIPOCAMION.ESTANDAR) {
                         PlanDeReparto rep = new PlanDeReparto();
-                        rep.setRepartidor(c);
+                        rep.setCamion(c);
                         rep.addPaquete(this);
                         return rep;
                     }
@@ -173,10 +172,10 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                 break;
             case COMIDA:
                 for (Camion c : camionesSinCargar) {
-                    if (this.getTipocomida() == TIPOCOMIDA.REFRIGERADA) {
+                    if (this.getTipocomida() == TIPOCOMIDA.CONGELADA) {
                         if (c.getTipo() == TIPOCAMION.REFRIGERADO) {
                             PlanDeReparto rep = new PlanDeReparto();
-                            rep.setRepartidor(c);
+                            rep.setCamion(c);
                             rep.addPaquete(this);
                             return rep;
                         }
@@ -185,7 +184,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
 
                     else if (c.getTipo() == TIPOCAMION.ESTANDAR) {
                         PlanDeReparto rep = new PlanDeReparto();
-                        rep.setRepartidor(c);
+                        rep.setCamion(c);
                         rep.addPaquete(this);
                         return rep;
                     }

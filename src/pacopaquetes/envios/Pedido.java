@@ -1,7 +1,6 @@
 package pacopaquetes.envios;
 
-import java.util.Date;
-
+import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.productos.Producto;
 import enums.*;
 
@@ -13,11 +12,11 @@ public class Pedido implements Serializable {
     private static int count = 0;
     private int id;
     private PRIORIDAD prioridad;
-    private Date fecha;
+    private ModifiableDate fecha;
     private String codPostal;
     private ArrayList<Producto> productos;
 
-    public Pedido(Date date, String codPost, PRIORIDAD pr) {
+    public Pedido(ModifiableDate date, String codPost, PRIORIDAD pr) {
         count++;
         this.id = count;
         this.prioridad = pr;
@@ -32,7 +31,7 @@ public class Pedido implements Serializable {
         this.id = i;
     }
 
-    public void setFecha(Date d) {
+    public void setFecha(ModifiableDate d) {
         this.fecha = d;
     }
 
@@ -50,7 +49,7 @@ public class Pedido implements Serializable {
         return this.id;
     }
 
-    public Date getFecha() {
+    public ModifiableDate getFecha() {
         return this.fecha;
     }
 

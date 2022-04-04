@@ -2,12 +2,13 @@ package pacopaquetes.envios.productos;
 
 import enums.*;
 import pacopaquetes.Configuracion;
+import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.Paquete;
 
 public class Normal extends Producto {
 
     public Normal(int num, float pesoTot, float alto, float ancho, float profundo, String nombre, String cp,
-            PRIORIDAD PR, int ni, java.util.Date date) {
+            PRIORIDAD PR, int ni, ModifiableDate date) {
         super(num, pesoTot, alto, ancho, profundo, nombre, cp, PR, ni, date);
     }
 

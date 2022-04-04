@@ -2,13 +2,14 @@ package pacopaquetes.envios.productos;
 
 import enums.*;
 import pacopaquetes.Configuracion;
+import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.Paquete;
 
 public class Fragil extends Producto {
     Boolean asegurado; // faltan metodos
 
     public Fragil(int num, float pesoTot, float alto, float ancho, float profundo, String nombre, String cp,
-            PRIORIDAD PR, int ni, Boolean asegurado, java.util.Date fecha) {
+            PRIORIDAD PR, int ni, Boolean asegurado, ModifiableDate fecha) {
         super(num, pesoTot, alto, ancho, profundo, nombre, cp, PR, ni, fecha);
         this.asegurado = asegurado;
     }

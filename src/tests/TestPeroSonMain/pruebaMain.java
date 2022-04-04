@@ -2,10 +2,8 @@ package tests.TestPeroSonMain;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import enums.PRIORIDAD;
 import enums.TIPOCOMIDA;
@@ -30,10 +28,8 @@ public class pruebaMain {
                 Cliente pepe = op.nuevoCliente("jose", "123pepe", "231238", "MANZANAS SA", "Calle joakin 14",
                                 "josepepe@mail",
                                 "425685222556");
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(2020, 11, 20);
-                Date date = calendar.getTime();
 
+                ModifiableDate date = new ModifiableDate();
                 // Pedido no valido, cp no registrado en la empresa
                 Pedido ped0 = op.CrearPedido(pepe, date, "10101", PRIORIDAD.URGENTE);
                 assertEquals(null, ped0);

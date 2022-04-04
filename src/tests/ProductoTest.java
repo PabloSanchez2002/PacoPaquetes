@@ -2,13 +2,9 @@ package tests;
 
 import org.junit.Test;
 
-import java.util.Date;
-
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.Calendar;
-
 import org.junit.Test;
 
 import enums.*;
@@ -22,12 +18,7 @@ public class ProductoTest {
         public void test() throws IOException {
                 Operario op = new Operario("oper1", "oper123");
                 PacoPaquetes pp = new PacoPaquetes(op);
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(2021, 12, 13);
-                Date dat = calendar.getTime();
-                Calendar calendar2 = Calendar.getInstance();
-                calendar2.set(2021, 12, 13);
-                Date dat2 = calendar2.getTime();
+                ModifiableDate dat = new ModifiableDate();
 
                 // Test Producto Normal//
 
@@ -49,12 +40,14 @@ public class ProductoTest {
                 assertEquals(1, nor.getId());
                 assertEquals(18, nor.getPrecio(), 0);
 
+                ModifiableDate.setToday();
+
                 nor.setAlto(10);
                 nor.setAncho(3);
                 nor.setCodPost("67890");
                 nor.setEmpaquetado(true);
                 nor.setEstado(ESTADO.EN_REPARTO);
-                nor.setFecha(dat2);
+                nor.setFecha(dat);
                 nor.setId(50);
                 nor.setNintentos(32);
                 nor.setNombre("Mesa");
@@ -72,7 +65,7 @@ public class ProductoTest {
                 assertEquals("67890", nor.getCodPost());
                 assertEquals(PRIORIDAD.URGENTE, nor.getPrioridad());
                 assertEquals(32, nor.getNIntentos());
-                assertEquals(dat2, nor.getFecha());
+                assertEquals(dat, nor.getFecha());
                 assertEquals(ESTADO.EN_REPARTO, nor.getEstado());
                 assertEquals(true, nor.getEmpaquetado());
                 assertEquals(50, nor.getId());

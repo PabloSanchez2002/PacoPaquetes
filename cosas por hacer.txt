@@ -1,8 +1,3 @@
-MIKEL:
-actualizar el estado del paquetes a en reparto 
-cabiar nombre de funcines
-probar caso mas de un paquete en camuion (comprobar peso maximo)
-
 MAÑANA 
  PABLO: paquetes especiles
 
@@ -10,3 +5,5 @@ MAÑANA
 2 - Imprimir facturas invoiceSystem
 3 - Registro tema facturas
 DOCUMENTAR Y TEST
+
+Falta camiones con fragiles y normales a la vez!

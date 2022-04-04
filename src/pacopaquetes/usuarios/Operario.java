@@ -152,7 +152,7 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
-    public Pedido CrearPedido(Cliente cliente, Date date, String codPos, PRIORIDAD pr) {
+    public Pedido CrearPedido(Cliente cliente, ModifiableDate date, String codPos, PRIORIDAD pr) {
         if (this.getEmpresa().getCPs().contains(codPos) == true) {
             Pedido ped = new Pedido(date, codPos, pr);
             this.Empresa.addPedido(ped);
@@ -162,7 +162,8 @@ public class Operario extends UsuarioRegistrado {
         return null;
     }
 
-    public Lote CrearLote(Cliente cliente, Date date, String codPos, PRIORIDAD pr, TIPOPAQUETE tp, TIPOCOMIDA tc) {
+    public Lote CrearLote(Cliente cliente, ModifiableDate date, String codPos, PRIORIDAD pr, TIPOPAQUETE tp,
+            TIPOCOMIDA tc) {
         if (this.getEmpresa().getCPs().contains(codPos) == true) {
             Lote lot = new Lote(pr, tp, tc, this.getEmpresa().getConfig().getmaxPesoPaqNormal(),
                     this.getEmpresa().getConfig().getReintentos(), date);

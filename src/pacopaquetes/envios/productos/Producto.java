@@ -1,11 +1,11 @@
 package pacopaquetes.envios.productos;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import enums.ESTADO;
 import enums.PRIORIDAD;
 import pacopaquetes.Configuracion;
+import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.Paquete;
 
 public abstract class Producto implements Comparable<Producto>, Serializable {
@@ -21,10 +21,10 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
     private String codPostal;
     private int nintentos;
     private boolean empaquetado;
-    private Date fecha;
+    private ModifiableDate fecha;
 
     public Producto(int num, float pesoTot, float alto, float ancho, float profundo, String nombre, String cp,
-            PRIORIDAD PR, int ni, java.util.Date fecha2) {
+            PRIORIDAD PR, int ni, ModifiableDate fecha2) {
         count++;
         this.id = count;
         this.dimensiones = new float[3];
@@ -38,7 +38,7 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
         this.codPostal = cp;
         this.nintentos = ni;
         this.empaquetado = false;
-        this.fecha = (Date) fecha2;
+        this.fecha = fecha2;
     }
 
     // ===============SETS===============//
@@ -90,7 +90,7 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
         this.empaquetado = e;
     }
 
-    public void setFecha(Date d) {
+    public void setFecha(ModifiableDate d) {
         this.fecha = d;
     }
 
@@ -143,7 +143,7 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
         return this.empaquetado;
     }
 
-    public Date getFecha() {
+    public ModifiableDate getFecha() {
         return this.fecha;
     }
 
