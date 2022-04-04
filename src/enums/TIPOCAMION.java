@@ -9,7 +9,7 @@ public enum TIPOCAMION {
     /**
      * Retorna el tipo de camion segun la String que se pase por argumento
      * 
-     * @param String tipo de camion
+     * @param str tipo de camion
      * @return enumerado coincidente
      */
     public TIPOCAMION getTipo(String str) {

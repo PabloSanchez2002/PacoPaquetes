@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import enums.*;
 import pacopaquetes.*;
 import pacopaquetes.envios.*;
+import pacopaquetes.envios.productos.Fragil;
+import pacopaquetes.envios.productos.Producto;
 import pacopaquetes.usuarios.*;
 
 public class pruebaMain {
@@ -61,6 +63,10 @@ public class pruebaMain {
                 // Producto dim especiales
                 op.anadirProductoPedido(ped, 3, 2, 100, 800, 23, "Mesa billar", pp.getConfig().getReintentos());
 
+                // Anadimos un lote al cliente
+                Lote lot = op.CrearLote(pepe, date, "12345", PRIORIDAD.URGENTE, TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
+                // lot.addProduct(new Fragil(4, 6, 4, 5, 6, "Figura porcelana", "12345",
+                // PRIORIDAD.URGENTE, 4, true,date));
                 WriterReader wr = new WriterReader();
                 wr.guardarPP("pp.txt", pp);
 
@@ -72,12 +78,5 @@ public class pruebaMain {
                 op.generarPlanesReparto(paq);
                 ArrayList<PlanDeReparto> plan = new ArrayList<PlanDeReparto>();
 
-                Cliente client = op.nuevoCliente("pepe", "123pepe", "211223883D", "Fontanerias Pepe", "Av. Arriba 13",
-                                "pepefont@gmail.com", "6727738277");
-                Pedido pedid = op.CrearPedido(client, date, "12345", PRIORIDAD.URGENTE);
-                // Dentro se prueba client.addLote(lot)
-                Lote lot = op.CrearLote(client, date, "12345", PRIORIDAD.URGENTE, TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
-                System.out.println(pedid + "\n");
-                System.out.println(client.getPedidos().size());
         }
 }

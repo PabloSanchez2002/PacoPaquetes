@@ -42,7 +42,7 @@ public class Fragil extends Producto {
     /**
      * Establece si es asegurado o no
      *
-     * @param l si es asegurado o no
+     * @param a si es asegurado o no
      */
     public void setAsegurado(Boolean a) {
         this.asegurado = a;

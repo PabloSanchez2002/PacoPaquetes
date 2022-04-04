@@ -4,12 +4,9 @@
 3 - Registro tema facturas
 DOCUMENTAR Y TEST
 
-
-
-
-
-
 FUNCION SIMULAR REPARTO(BOOLEAN){
     COJE LOS PLANES DE REPARTO Y SI ES TRUE LOS MARCA COMO ENTREGADOS, SI ES FALSE
     RESTA A CADA UNO UN INTENTO DE REPARTO Y LOS MARCA COMO EN ALMACEN 
 }
+
+javadoc -d docs -sourcepath src -subpackages enums pacopaquetes pacopaquetes.envios pacopaquetes.envios.productos pacopaquetes.usuarios
