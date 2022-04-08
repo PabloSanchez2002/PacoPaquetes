@@ -111,10 +111,10 @@ public class Alimentario extends Producto {
         Paquete p;
         if (this.getDimEspecial() == true) {
             p = new Paquete(this.getPrioridad(), TIPOPAQUETE.ESPECIAL, TIPOCOMIDA.NULL,
-                    conf.getmaxPesoPaqNormal(), conf.getReintentos(), this.getFecha());
+                    conf.getmaxPesoPaqNormal(), conf.getReintentos(), this.getFecha(), this.getCodPost());
         } else {
             p = new Paquete(this.getPrioridad(), TIPOPAQUETE.COMIDA, this.getTipo(), conf.getmaxPesoPaqNormal(),
-                    conf.getReintentos(), this.getFecha());
+                    conf.getReintentos(), this.getFecha(),this.getCodPost());
         }
         p.addProduct(this);
         return p;

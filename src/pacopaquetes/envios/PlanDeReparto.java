@@ -32,6 +32,15 @@ public class PlanDeReparto {
      * Paquetes en ese plan de reparto
      */
     private ArrayList<Paquete> paquetes;
+    /**
+     * Numero maximo de codigos postales
+     */
+    private int maxCPs;
+
+    /**
+     * Lista de codigos postales
+     */
+    private ArrayList<String> CPs;
 
     /**
      * Genera objeto de PlanReparto
@@ -41,6 +50,7 @@ public class PlanDeReparto {
         this.id = count;
         this.pesoCamion = 0;
         this.paquetes = new ArrayList<Paquete>();
+        this.CPs = new  ArrayList<String>();
     }
 
     // ================SETS===============//
@@ -54,15 +64,17 @@ public class PlanDeReparto {
     }
 
     /**
-     * Añade un paquete al plan
+     * Anade un paquete al plan
      * 
      * @param paquete
      */
     public void addPaquete(Paquete paquete) {
         this.pesoCamion += paquete.getPesoTotal();
-        if (this.pesoCamion > this.getCamion().getPesoMax())
-            return;
         this.paquetes.add(paquete);
+    }
+
+    public void setMaxCPS(int cp){
+        this.maxCPs = cp;
     }
 
     // ================GETS===============//
@@ -94,6 +106,24 @@ public class PlanDeReparto {
     }
 
     /**
+     * Devuelve el maximo de codigos postales
+     * 
+     * @return int
+     */
+    public int getMaxCPS(){
+        return this.maxCPs;
+    }
+
+    /**
+     * DLista de codigos postales
+     * 
+     * @return ArrayList<String>
+     */
+    public ArrayList<String> getCPS(){
+        return this.CPs;
+    }
+    
+    /**
      * Devuelve el array de paquetes del plan
      * 
      * @return ArrayList<Paquete>
@@ -102,41 +132,56 @@ public class PlanDeReparto {
         return this.paquetes;
     }
 
+    public Boolean aceptaCP(String cp){
+        if(this.CPs.contains(cp)){
+            return true;
+        }
+        else if(this.CPs.size() < this.maxCPs){
+                return true; 
+        }
+        else{
+            return false;
+        }
+    }
+    
+
     /**
-     * Añade paquetes al plan de reparto
+     * Anade paquetes al plan de reparto
      * 
      * @param paquetes
      */
     public void repartoMasivo(ArrayList<Paquete> paquetes) {
 
         for (Paquete paq : paquetes) {
-            TIPOPAQUETE tipo = this.getPaquetes().get(0).getTipo();
-            TIPOCOMIDA comida = this.getPaquetes().get(0).getTipocomida();
-            TIPOPAQUETE tipopaq = paq.getTipo();
+            if(aceptaCP(paq.getCP()) == true || (this.pesoCamion + paq.getPesoTotal()) >= this.getCamion().getPesoMax()){
+                TIPOPAQUETE tipo = this.getPaquetes().get(0).getTipo();
+                TIPOCOMIDA comida = this.getPaquetes().get(0).getTipocomida();
+                TIPOPAQUETE tipopaq = paq.getTipo();
 
-            if (tipo == TIPOPAQUETE.NORMAL) {
-                if (tipopaq.equals(TIPOPAQUETE.NORMAL)) {
-                    paq.setEntregado(ESTADO.EN_REPARTO);
-                    this.addPaquete(paq);
-                    paquetes.remove(paq);
-                }
-            } else if (tipo == TIPOPAQUETE.FRAGIL) {
-                if (tipopaq.equals(TIPOPAQUETE.FRAGIL)) {
-                    paq.setEntregado(ESTADO.EN_REPARTO);
-                    this.addPaquete(paq);
-                    paquetes.remove(paq);
-                }
-            } else if (tipo == TIPOPAQUETE.COMIDA) {
-                if (tipopaq == TIPOPAQUETE.COMIDA) {
-                    if (paq.getTipocomida() == TIPOCOMIDA.CONGELADA
-                            && comida == TIPOCOMIDA.CONGELADA) {
+                if (tipo == TIPOPAQUETE.NORMAL) {
+                    if (tipopaq.equals(TIPOPAQUETE.NORMAL)) {
                         paq.setEntregado(ESTADO.EN_REPARTO);
                         this.addPaquete(paq);
                         paquetes.remove(paq);
-                    } else {
+                    }
+                } else if (tipo == TIPOPAQUETE.FRAGIL) {
+                    if (tipopaq.equals(TIPOPAQUETE.FRAGIL)) {
                         paq.setEntregado(ESTADO.EN_REPARTO);
                         this.addPaquete(paq);
                         paquetes.remove(paq);
+                    }
+                } else if (tipo == TIPOPAQUETE.COMIDA) {
+                    if (tipopaq == TIPOPAQUETE.COMIDA) {
+                        if (paq.getTipocomida() == TIPOCOMIDA.CONGELADA
+                                && comida == TIPOCOMIDA.CONGELADA) {
+                            paq.setEntregado(ESTADO.EN_REPARTO);
+                            this.addPaquete(paq);
+                            paquetes.remove(paq);
+                        } else {
+                            paq.setEntregado(ESTADO.EN_REPARTO);
+                            this.addPaquete(paq);
+                            paquetes.remove(paq);
+                        }
                     }
                 }
             }

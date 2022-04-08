@@ -62,10 +62,10 @@ public class Normal extends Producto {
         Paquete p;
         if (this.getDimEspecial() == true) {
             p = new Paquete(this.getPrioridad(), TIPOPAQUETE.ESPECIAL, TIPOCOMIDA.NULL,
-                    conf.getmaxPesoPaqNormal(), conf.getReintentos(), this.getFecha());
+                    conf.getmaxPesoPaqNormal(), conf.getReintentos(), this.getFecha(), this.getCodPost());
         } else {
             p = new Paquete(this.getPrioridad(), TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL,
-                    conf.getmaxPesoPaqNormal(), conf.getReintentos(), this.getFecha());
+                    conf.getmaxPesoPaqNormal(), conf.getReintentos(), this.getFecha(), this.getCodPost());
         }
         p.addProduct(this);
         return p;

@@ -60,6 +60,10 @@ public class Paquete implements Comparable<Paquete>, Serializable {
      * Lista de productos contenidos
      */
     private ArrayList<Producto> productos;
+    /**
+     * Codigo postal de entrega
+     */
+    private String CP;
 
     /**
      * Genera un objeto Paquete
@@ -72,7 +76,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
      * @param fecha   fecha
      */
     public Paquete(PRIORIDAD prio, TIPOPAQUETE tipo, TIPOCOMIDA comida, int maxPeso, int nint,
-            ModifiableDate fecha) {
+            ModifiableDate fecha, String CP) {
         count++;
         this.id = count;
         this.prioridad = prio;
@@ -83,6 +87,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
         this.tipo = tipo;
         this.comida = comida;
         this.entregado = ESTADO.EN_ALMACEN;
+        this.CP = CP;
         this.productos = new ArrayList<Producto>();
     }
 
@@ -106,6 +111,10 @@ public class Paquete implements Comparable<Paquete>, Serializable {
      */
     public void setNintentos(int ni) {
         this.nintentos = ni;
+    }
+
+    public void setCP(String CP){
+        this.CP = CP;
     }
 
     // ===============GETS===============//
@@ -200,13 +209,22 @@ public class Paquete implements Comparable<Paquete>, Serializable {
         return this.entregado;
     }
 
+    /**
+     * Devuelve el codigp postal donde se entrega el paquete
+     *
+     * @return Codigo postal de entrega
+     */
+    public String getCP() {
+        return this.CP;
+    }
+
     // ===============ADDS===============//
 
     /**
-     * Añade un producto al paquete
+     * Anade un producto al paquete
      * 
      * @param p producto
-     * @return boolean si lo añadio bien
+     * @return boolean si lo anadio bien
      */
     public boolean addProduct(Producto p) {
         if (this.pesoTotal + p.getPesoTotal() > this.maxPeso) {
@@ -267,12 +285,12 @@ public class Paquete implements Comparable<Paquete>, Serializable {
     }
 
     /**
-     * Genera un plan de reparto en función del paquete
+     * Genera un plan de reparto en funcion del paquete
      * 
      * @param camionesSinCargar camiones disponibles
      * @return PlanDeReparto generado
      */
-    public PlanDeReparto nuevoPlanDeReparto(ArrayList<Camion> camionesSinCargar) {
+    public PlanDeReparto nuevoPlanDeReparto(ArrayList<Camion> camionesSinCargar, int maxCP) {
         switch (this.tipo) {
             case NORMAL:
                 for (Camion c : camionesSinCargar) {
@@ -280,6 +298,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setCamion(c);
                         rep.addPaquete(this);
+                        rep.setMaxCPS(maxCP);
                         return rep;
                     }
                 }
@@ -290,6 +309,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setCamion(c);
                         rep.addPaquete(this);
+                        rep.setMaxCPS(maxCP);
                         return rep;
                     }
                 }
@@ -301,6 +321,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                             PlanDeReparto rep = new PlanDeReparto();
                             rep.setCamion(c);
                             rep.addPaquete(this);
+                            rep.setMaxCPS(maxCP);
                             return rep;
                         }
 
@@ -310,6 +331,7 @@ public class Paquete implements Comparable<Paquete>, Serializable {
                         PlanDeReparto rep = new PlanDeReparto();
                         rep.setCamion(c);
                         rep.addPaquete(this);
+                        rep.setMaxCPS(maxCP);
                         return rep;
                     }
                 }

@@ -25,7 +25,7 @@ public class Lote extends Paquete {
      * @param nint    numero de intentos de reparto
      * @param fecha   fecha de creación del lote
      */
-    public Lote(PRIORIDAD prio, TIPOPAQUETE tipo, TIPOCOMIDA comida, int maxPeso, int nint, ModifiableDate fecha) {
-        super(prio, tipo, comida, maxPeso, nint, fecha);
+    public Lote(PRIORIDAD prio, TIPOPAQUETE tipo, TIPOCOMIDA comida, int maxPeso, int nint, ModifiableDate fecha, String CP) {
+        super(prio, tipo, comida, maxPeso, nint, fecha, CP);
     }
 }

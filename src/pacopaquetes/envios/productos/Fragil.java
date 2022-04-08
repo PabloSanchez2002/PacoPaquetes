@@ -1,6 +1,6 @@
 /**
  * 
- * Esta clase es para los productos frágiles
+ * Esta clase es para los productos fragiles
  *
  * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
  *
@@ -90,10 +90,10 @@ public class Fragil extends Producto {
         Paquete p;
         if (this.getDimEspecial() == true) {
             p = new Paquete(this.getPrioridad(), TIPOPAQUETE.ESPECIAL, TIPOCOMIDA.NULL,
-                    conf.getmaxPesoPaqNormal(), conf.getReintentos(), this.getFecha());
+                    conf.getmaxPesoPaqNormal(), conf.getReintentos(), this.getFecha(), this.getCodPost());
         } else {
             p = new Paquete(this.getPrioridad(), TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL, conf.getmaxPesoPaqNormal(),
-                    conf.getReintentos(), this.getFecha());
+                    conf.getReintentos(), this.getFecha(), this.getCodPost());
         }
         p.addProduct(this);
         return p;

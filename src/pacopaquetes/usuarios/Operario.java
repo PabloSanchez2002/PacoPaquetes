@@ -28,7 +28,7 @@ public class Operario extends UsuarioRegistrado {
      * Contructor de Operario, devulve el objecto Operario
      * 
      * @param usuario    usurio del operario
-     * @param contrasena Contraseña del operario
+     * @param contrasena Contrasena del operario
      */
     public Operario(String usuario, String contrasena) {
         super(usuario, contrasena);
@@ -36,7 +36,7 @@ public class Operario extends UsuarioRegistrado {
 
     // ===============SETS===============//
     /**
-     * Añade la empresa del operario
+     * Anade la empresa del operario
      * 
      * @param PPaquetes empresa
      */
@@ -58,7 +58,7 @@ public class Operario extends UsuarioRegistrado {
      * Da de alta un rapartidor
      * 
      * @param usuario    nombre de usuario
-     * @param contrasena contraseña
+     * @param contrasena contrasena
      * @param telefono   telefono de contacto
      * @return Repartidor
      */
@@ -92,7 +92,7 @@ public class Operario extends UsuarioRegistrado {
     }
 
     /**
-     * Añade camiones a la flota de camiones
+     * Anade camiones a la flota de camiones
      * 
      * @param filename nombre del archivo
      * @throws IOException en caso de no encontrar el archivo
@@ -174,7 +174,7 @@ public class Operario extends UsuarioRegistrado {
      * Crea un nuevo cliente en la empresa
      * 
      * @param usuario             nombre de usuario
-     * @param contrasena          cotraseña
+     * @param contrasena          cotrasena
      * @param CIF                 CIF
      * @param nombreEmpresa       nombre de la empresa
      * @param direcconFacturacion direccion
@@ -204,7 +204,7 @@ public class Operario extends UsuarioRegistrado {
     }
 
     /**
-     * Añade un producto normal a un pedido
+     * Anade un producto normal a un pedido
      * 
      * @param ped      pedido
      * @param num      numero de productos
@@ -225,7 +225,7 @@ public class Operario extends UsuarioRegistrado {
     }
 
     /**
-     * Añade un producto alimentario a un pedido
+     * Anade un producto alimentario a un pedido
      * 
      * @param ped      pedido
      * @param num      numero de productos
@@ -248,7 +248,7 @@ public class Operario extends UsuarioRegistrado {
     }
 
     /**
-     * Añade un producto fragil a un pedido
+     * Anade un producto fragil a un pedido
      * 
      * @param ped       pedido
      * @param num       numero de productos
@@ -440,7 +440,7 @@ public class Operario extends UsuarioRegistrado {
             paquetes = this.PaquetesSinRepartir(paquetes);
             ArrayList<Camion> camiones = camionesSinCargar(this.Empresa.getCamiones());
             Paquete primero = this.primerPaq(paquetes);
-            PlanDeReparto rep = primero.nuevoPlanDeReparto(camiones);
+            PlanDeReparto rep = primero.nuevoPlanDeReparto(camiones,this.getEmpresa().getConfig().getMaxCodPostales()); 
             if (rep != null) {
                 paquetes.remove(primero);
                 this.getEmpresa().addPlanDeReparto(rep);
