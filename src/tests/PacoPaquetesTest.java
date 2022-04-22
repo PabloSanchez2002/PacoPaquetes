@@ -38,7 +38,7 @@ public class PacoPaquetesTest {
         assertEquals(null, pp.findCamionByMatr("9999DSE"));
 
         Paquete paq = new Paquete(PRIORIDAD.URGENTE, TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, 70,
-                pp.getConfig().getReintentos(), dat);
+                pp.getConfig().getReintentos(), dat, "28030");
         pp.addPaquete(paq);
 
         assertEquals(paq, pp.findPaqueteById(paq.getId()));

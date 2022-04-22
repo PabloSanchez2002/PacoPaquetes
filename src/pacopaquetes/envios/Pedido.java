@@ -2,7 +2,7 @@
  * 
  * Esta clase es de los pedidos
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes.envios;
@@ -92,6 +92,14 @@ public class Pedido implements Serializable {
      */
     public String getCodPost() {
         return this.codPostal;
+    }
+    /**
+     * Devuelve un array con los productos del pedido
+     *
+     * @return Array<Producto>
+     */
+    public ArrayList<Producto> getProductos(){
+        return this.productos;
     }
 
     /**

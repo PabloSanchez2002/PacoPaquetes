@@ -20,7 +20,7 @@ public class PaqueteTest {
         PacoPaquetes pp = new PacoPaquetes(op);
         ModifiableDate dat = new ModifiableDate();
 
-        Paquete paq = new Paquete(PRIORIDAD.URGENTE, TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, 20, 10, dat);
+        Paquete paq = new Paquete(PRIORIDAD.URGENTE, TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, 20, 10, dat, "12345");
 
         assertEquals(PRIORIDAD.URGENTE, paq.getPrioridad());
         assertEquals(TIPOPAQUETE.NORMAL, paq.getTipo());

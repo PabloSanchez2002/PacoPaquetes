@@ -2,7 +2,7 @@
  * 
  * Esta clase es de los productos alimenticios
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes.envios.productos;
@@ -139,4 +139,30 @@ public class Alimentario extends Producto {
         }
         return false;
     }
+
+	@Override
+	public String getDescription() {
+		return this.getNombre();
+	}
+
+	@Override
+	public double getPrice() {
+        return this.getPrecio();
+	}
+
+	@Override
+	public String getPriceDetails() {
+        if(this.getTipo() == TIPOCOMIDA.NORMAL){
+		    return super.getPriceDetails()+"(Alimentario)";
+        }
+        else if(this.getTipo() == TIPOCOMIDA.CONGELADA){
+            return super.getPriceDetails()+"(Alimentario+Congelado)";
+        }
+        else if(this.getTipo() == TIPOCOMIDA.REFRIGERADA){
+            return super.getPriceDetails()+"(Alimentario+Refrigerado)";
+        }
+        else{
+            return super.getPriceDetails();
+        }
+	}
 }

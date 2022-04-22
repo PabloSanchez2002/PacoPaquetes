@@ -1,8 +1,7 @@
-package pacopaquetes;
-
+package tests;
 import es.uam.eps.padsof.telecard.*;
 
-public class Pagos {
+public class MainCardPayment {
 	public static void main(String[] args) throws 	InvalidCardNumberException, 
 													FailedInternetConnectionException, 
 													OrderRejectedException {
@@ -12,4 +11,3 @@ public class Pagos {
 		TeleChargeAndPaySystem.charge("1234567890123456", "Annual pass", 350, true);
 	}
 }
-

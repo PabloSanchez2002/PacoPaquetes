@@ -2,7 +2,7 @@
  * 
  * Esta clase es de lotes
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes.envios;
@@ -24,6 +24,7 @@ public class Lote extends Paquete {
      * @param maxPeso peso maximo por lote
      * @param nint    numero de intentos de reparto
      * @param fecha   fecha de creación del lote
+     * @param CP      Codigo postal
      */
     public Lote(PRIORIDAD prio, TIPOPAQUETE tipo, TIPOCOMIDA comida, int maxPeso, int nint, ModifiableDate fecha, String CP) {
         super(prio, tipo, comida, maxPeso, nint, fecha, CP);

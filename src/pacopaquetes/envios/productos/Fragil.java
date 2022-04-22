@@ -2,7 +2,7 @@
  * 
  * Esta clase es para los productos fragiles
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes.envios.productos;
@@ -112,5 +112,25 @@ public class Fragil extends Producto {
             return true;
         }
         return false;
+    }
+
+	@Override
+	public String getDescription() {
+		return this.getNombre();
+	}
+
+	@Override
+	public double getPrice() {
+        return this.getPrecio();
+	}
+
+	@Override
+	public String getPriceDetails() {
+        if(this.asegurado == true){
+		    return super.getPriceDetails()+"2*5 eur (Fragil+Asegurado)";
+        }
+        else{
+            return super.getPriceDetails()+"2 eur (Fragil)";
+        }
     }
 }

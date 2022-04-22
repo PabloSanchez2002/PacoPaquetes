@@ -2,7 +2,7 @@
  * 
  * Esta clase es del operario
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes.usuarios;
@@ -11,8 +11,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.*;
 import enums.*;
+import es.uam.eps.padsof.invoices.InvoiceSystem;
+import es.uam.eps.padsof.invoices.NonExistentFileException;
+import es.uam.eps.padsof.invoices.UnsupportedImageTypeException;
+import es.uam.eps.padsof.telecard.FailedInternetConnectionException;
+import es.uam.eps.padsof.telecard.InvalidCardNumberException;
+import es.uam.eps.padsof.telecard.OrderRejectedException;
+import es.uam.eps.padsof.telecard.TeleChargeAndPaySystem;
 import pacopaquetes.*;
 import pacopaquetes.envios.*;
 import pacopaquetes.envios.productos.*;
@@ -221,7 +229,7 @@ public class Operario extends UsuarioRegistrado {
                 nInt, ped.getFecha());
         p.setDimEspecial(this.MaxVolum(p));
         ped.anadirProducto(p);
-        Empresa.addProducto(p);
+        
     }
 
     /**
@@ -244,7 +252,6 @@ public class Operario extends UsuarioRegistrado {
                 ped.getPrioridad(), nInt, liquido, tipo, ped.getFecha());
         p.setDimEspecial(this.MaxVolum(p));
         ped.anadirProducto(p);
-        Empresa.addProducto(p);
     }
 
     /**
@@ -266,7 +273,6 @@ public class Operario extends UsuarioRegistrado {
                 nInt, asegurado, ped.getFecha());
         p.setDimEspecial(this.MaxVolum(p));
         ped.anadirProducto(p);
-        Empresa.addProducto(p);
     }
 
     /**
@@ -303,7 +309,7 @@ public class Operario extends UsuarioRegistrado {
             TIPOCOMIDA tc) {
         if (this.getEmpresa().getCPs().contains(codPos) == true) {
             Lote lot = new Lote(pr, tp, tc, this.getEmpresa().getConfig().getmaxPesoPaqNormal(),
-                    this.getEmpresa().getConfig().getReintentos(), date);
+                    this.getEmpresa().getConfig().getReintentos(), date, codPos);
             this.Empresa.addPaquete(lot);
             cliente.addLote(lot);
             return lot;
@@ -489,4 +495,47 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
+    public Boolean pagarPedido(Pedido ped, String tarjeta) throws InvalidCardNumberException, FailedInternetConnectionException, OrderRejectedException{
+        if(TeleChargeAndPaySystem.isValidCardNumber(tarjeta) == true){
+            try{
+                TeleChargeAndPaySystem.charge(tarjeta, "Pedido :" + ped.getId() , ped.getPrecio(this.getEmpresa().getConfig().getDescuento()),true);
+                for(Producto p : ped.getProductos()){
+                    Empresa.addProducto(p);
+                }
+                return true;
+            }
+            catch(InvalidCardNumberException e){
+                return false;
+            }
+            catch(FailedInternetConnectionException e){
+                System.out.println("La conexion a internet falló, prueba mas tarde\n");
+                return false;
+            }
+            catch(OrderRejectedException e){
+                System.out.println("Se ha rechazado el pedido\n");
+                return false;
+            }
+        }
+        else{
+            System.out.println("La tarjeta no es valida\n");
+            return false;
+        }
+    }
+
+    public void generarFactura(Pedido ped, Cliente cl){
+
+        Invoice in = new Invoice(ped,cl,this.Empresa.getConfig().getDescuento());
+        try{
+            InvoiceSystem.createInvoice(in,"./tmp/");
+        }
+        catch(NonExistentFileException e){
+            System.out.println(e);
+        }
+        catch(UnsupportedTemporalTypeException e){
+            System.out.println(e);
+        }
+        catch(UnsupportedImageTypeException e){
+            System.out.println(e);
+        }
+    }
 }

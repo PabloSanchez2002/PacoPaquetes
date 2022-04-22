@@ -11,10 +11,9 @@ import es.uam.eps.padsof.telecard.InvalidCardNumberException;
 import es.uam.eps.padsof.telecard.OrderRejectedException;
 import pacopaquetes.*;
 import pacopaquetes.envios.*;
-import pacopaquetes.envios.productos.Fragil;
 import pacopaquetes.usuarios.*;
 
-public class pruebaMain {
+public class mainSimple {
 
         public static void main(String[] args) throws IOException, InvalidCardNumberException, FailedInternetConnectionException, OrderRejectedException {
                 Operario op = new Operario("oper1", "oper123");
@@ -65,14 +64,12 @@ public class pruebaMain {
                 // Producto dim especiales
                 op.anadirProductoPedido(ped, 3, 2, 100, 800, 23, "Mesa billar", pp.getConfig().getReintentos());
                 op.pagarPedido(ped, pepe.getTargetaBancaria());
+                op.generarFactura(ped, pepe);
                 // Anadimos un lote al cliente
-                Lote lot = op.CrearLote(pepe, date, "12345", PRIORIDAD.URGENTE, TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
-                lot.addProduct(new Fragil(4, 6, 4, 5, 6, "Figura porcelana", "12345", PRIORIDAD.NORMAL, 2, false, date));
+                //Lote lot = op.CrearLote(pepe, date, "12345", PRIORIDAD.URGENTE, TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
+                //lot.addProduct(new Fragil(4, 6, 4, 5, 6, "Figura porcelana", "12345", PRIORIDAD.NORMAL, 2, false, date));
                 // PRIORIDAD.URGENTE, 4, true,date));
-                WriterReader wr = new WriterReader();
-                wr.guardarPP("pp.txt", pp);
-
-                PacoPaquetes pp2 = wr.cargarPP("pp.txt");
+               
 
                 op.empaquetar();
                 ArrayList<Paquete> paq = pp.getPaquetes();
@@ -81,4 +78,4 @@ public class pruebaMain {
                 ArrayList<PlanDeReparto> plan = new ArrayList<PlanDeReparto>();
 
         }
-}
+    }

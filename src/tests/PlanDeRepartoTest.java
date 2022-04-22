@@ -22,8 +22,8 @@ public class PlanDeRepartoTest {
         Camion cam = op.altaCamion("matricula", 2010, TIPOCAMION.ESTANDAR);
         PlanDeReparto pr = new PlanDeReparto();
 
-        Paquete p1 = new Paquete(PRIORIDAD.URGENTE, TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, 20, 10, dat);
-        Paquete p2 = new Paquete(PRIORIDAD.NORMAL, TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, 35, 10, dat);
+        Paquete p1 = new Paquete(PRIORIDAD.URGENTE, TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, 20, 10, dat, "12345");
+        Paquete p2 = new Paquete(PRIORIDAD.NORMAL, TIPOPAQUETE.NORMAL, TIPOCOMIDA.NULL, 35, 10, dat, "12345");
 
         Producto pp1 = new Normal(5, 10, 2, 2, 2, "algo", "12345", PRIORIDAD.NORMAL, p1.getNIntentos(), dat);
         Producto pp2 = new Normal(10, 20, 2, 2, 2, "algo2", "12345", PRIORIDAD.NORMAL, p2.getNIntentos(), dat);

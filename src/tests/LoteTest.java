@@ -15,7 +15,7 @@ public class LoteTest {
 
         ModifiableDate dat = new ModifiableDate();
 
-        Lote lot = new Lote(PRIORIDAD.NORMAL, TIPOPAQUETE.COMIDA, TIPOCOMIDA.CONGELADA, 50, 10, dat);
+        Lote lot = new Lote(PRIORIDAD.NORMAL, TIPOPAQUETE.COMIDA, TIPOCOMIDA.CONGELADA, 50, 10, dat, "28030");
 
         /*
          * Esta clase hereda de paquete todo asi que las pruebas corespondientes

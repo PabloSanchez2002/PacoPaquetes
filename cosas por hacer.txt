@@ -1,6 +1,4 @@
 0 - Comprobar caso de lotes no se añaden a camiones
-Check - Comprobar CPs de los cmiones (maximo 10)
-1 - Aplicar telepago Telecharge
 2 - Imprimir facturas invoiceSystem
 3 - Registro tema facturas
 
@@ -8,3 +6,12 @@ DOCUMENTAR Y TEST
 
 
 javadoc -d docs -sourcepath src -subpackages enums pacopaquetes pacopaquetes.envios pacopaquetes.envios.productos pacopaquetes.usuarios
+
+
+
+
+
+
+-Ventana principal -> JFrame
+                    - Cardlayout - > Cambiar pantalla (mostrarXpanel)
+-Paneles personalizados(login,operador,cliente...) -> JPanel

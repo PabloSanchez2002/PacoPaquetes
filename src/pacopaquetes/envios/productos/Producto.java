@@ -2,7 +2,7 @@
  * 
  * Esta clase 
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes.envios.productos;
@@ -11,11 +11,12 @@ import java.io.Serializable;
 
 import enums.ESTADO;
 import enums.PRIORIDAD;
+import es.uam.eps.padsof.invoices.IProductInfo;
 import pacopaquetes.Configuracion;
 import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.Paquete;
 
-public abstract class Producto implements Comparable<Producto>, Serializable {
+public abstract class Producto implements Comparable<Producto>, Serializable,IProductInfo {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -303,6 +304,29 @@ public abstract class Producto implements Comparable<Producto>, Serializable {
      * @return true si lo ha metido, false si no
      */
     public abstract Boolean empaquetar(Paquete paq);
+
+    public String getPriceDetails(){
+        double p = 0;
+        if (this.getPesoTotal() / this.getNumUnidades() < 1)
+            p = 0.4;
+        else if (this.getPesoTotal() / this.getNumUnidades() < 5)
+            p = 0.6;
+        else if (this.getPesoTotal() / this.getNumUnidades() < 30)
+            p = 1;
+
+        if(p==0.4){
+            return ""+this.getNumUnidades()+"unidades,40 cts/unidad";
+        }
+        if(p==0.6){
+            return ""+this.getNumUnidades()+"unidades,60 cts/unidad";
+        }
+        if(p==1){
+            return ""+this.getNumUnidades()+"unidades,1 euro/unidad";
+        }
+        else{
+            return null;
+        }
+    }
 
     /**
      * Funcion para comparar dos productos para poder ordenarlos por prioridad o

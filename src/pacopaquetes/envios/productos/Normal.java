@@ -2,7 +2,7 @@
  * 
  * Esta clase es para losproductos normales
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes.envios.productos;
@@ -85,5 +85,20 @@ public class Normal extends Producto {
         }
         return false;
     }
+
+	@Override
+	public String getDescription() {
+		return this.getNombre();
+	}
+
+	@Override
+	public double getPrice() {
+        return this.getPrecio();
+	}
+
+	@Override
+	public String getPriceDetails() {
+		return super.getPriceDetails()+"(Normal)";
+	}
 
 }

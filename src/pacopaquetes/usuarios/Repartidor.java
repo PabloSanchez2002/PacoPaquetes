@@ -2,7 +2,7 @@
  * 
  * Esta clase es del repartidor
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes.usuarios;

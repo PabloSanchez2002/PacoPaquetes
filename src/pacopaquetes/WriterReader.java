@@ -2,7 +2,7 @@
  * 
  * Esta clase es del WriterReader
  *
- * @author Pablo Sanchez, Mikel Riskez y Alberto Vicente
+ * @author Pablo Sanchez, Mikel Risquez y Alberto Vicente
  *
  */
 package pacopaquetes;
