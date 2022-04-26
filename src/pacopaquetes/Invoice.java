@@ -1,34 +1,34 @@
 package pacopaquetes;
 
-import java.util.List;
+import java.util.*;
 
 import enums.PRIORIDAD;
 import es.uam.eps.padsof.invoices.IInvoiceInfo;
+import es.uam.eps.padsof.invoices.IProductInfo;
 import pacopaquetes.envios.Pedido;
-import pacopaquetes.envios.productos.Producto;
 import pacopaquetes.usuarios.Cliente;
 
-public class Invoice implements IInvoiceInfo{
+public class Invoice implements IInvoiceInfo {
     private String getClientCif;
-	private String getCompanyName;
-	private String getCompanyLogo; 
-	private double getDiscount;
-	private PRIORIDAD getUrgent;
-	private ModifiableDate getOrderDate;
-	private int getOrderIdentifier;
-	private double getPrice;
-	private List<Producto> getProducts;
-    
-    public Invoice(Pedido ped, Cliente cli, double discount){
-        this.getClientCif= cli.getCIF();
-        this.getCompanyName= "Paco Paquetes";
+    private String getCompanyName;
+    private String getCompanyLogo;
+    private double getDiscount;
+    private PRIORIDAD getUrgent;
+    private ModifiableDate getOrderDate;
+    private int getOrderIdentifier;
+    private double getPrice;
+    private List<IProductInfo> getProducts;
+
+    public Invoice(Pedido ped, Cliente cli, double discount) {
+        this.getClientCif = cli.getCIF();
+        this.getCompanyName = "Paco Paquetes";
         this.getCompanyLogo = "./resources/logo.png";
         this.getDiscount = discount;
         this.getUrgent = ped.getPrioridad();
         this.getOrderDate = ped.getFecha();
         this.getOrderIdentifier = ped.getId();
         this.getPrice = ped.getPrecio(discount);
-        this.getProducts = ped.getProductos();
+        this.getProducts = ped.getProductosIProductInfo();
     }
 
     @Override
@@ -43,17 +43,17 @@ public class Invoice implements IInvoiceInfo{
 
     @Override
     public double getDiscount() {
-        return this.getDiscount;
+        return 100 * this.getDiscount;
     }
 
     @Override
     public String getOrderDate() {
-        return this.getOrderDate();
+        return ModifiableDate.getModifiableDate().toString();
     }
 
     @Override
     public String getOrderIdentifier() {
-        return getOrderIdentifier();
+        return "" + getOrderIdentifier;
     }
 
     @Override
@@ -63,6 +63,10 @@ public class Invoice implements IInvoiceInfo{
 
     @Override
     public double getUrgent() {
-        return this.getUrgent();
+        if (this.getUrgent == PRIORIDAD.URGENTE)
+            return 5.0;
+        else {
+            return 0;
+        }
     }
 }

@@ -10,9 +10,13 @@ package pacopaquetes.envios;
 import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.productos.Producto;
 import enums.*;
+import es.uam.eps.padsof.invoices.IInvoiceInfo;
+import es.uam.eps.padsof.invoices.IProductInfo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -39,7 +43,7 @@ public class Pedido implements Serializable {
     /**
      * Array de productos del pedido
      */
-    private ArrayList<Producto> productos;
+    private List<Producto> productos;
 
     /**
      * Genera objeto pedido
@@ -93,13 +97,27 @@ public class Pedido implements Serializable {
     public String getCodPost() {
         return this.codPostal;
     }
+
     /**
      * Devuelve un array con los productos del pedido
      *
      * @return Array<Producto>
      */
-    public ArrayList<Producto> getProductos(){
+    public List<Producto> getProductos() {
         return this.productos;
+    }
+
+    /**
+     * Devuelve un array con los productos del pedido tipo
+     *
+     * @return Array<Producto>
+     */
+    public List<IProductInfo> getProductosIProductInfo() {
+        List<IProductInfo> list = new ArrayList<IProductInfo>();
+        for (Producto p : this.productos)
+            list.add((IProductInfo) p);
+        return list;
+
     }
 
     /**

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.*;
 import enums.*;
+import es.uam.eps.padsof.invoices.IProductInfo;
 import es.uam.eps.padsof.invoices.InvoiceSystem;
 import es.uam.eps.padsof.invoices.NonExistentFileException;
 import es.uam.eps.padsof.invoices.UnsupportedImageTypeException;
@@ -229,7 +230,7 @@ public class Operario extends UsuarioRegistrado {
                 nInt, ped.getFecha());
         p.setDimEspecial(this.MaxVolum(p));
         ped.anadirProducto(p);
-        
+
     }
 
     /**
@@ -446,7 +447,7 @@ public class Operario extends UsuarioRegistrado {
             paquetes = this.PaquetesSinRepartir(paquetes);
             ArrayList<Camion> camiones = camionesSinCargar(this.Empresa.getCamiones());
             Paquete primero = this.primerPaq(paquetes);
-            PlanDeReparto rep = primero.nuevoPlanDeReparto(camiones,this.getEmpresa().getConfig().getMaxCodPostales()); 
+            PlanDeReparto rep = primero.nuevoPlanDeReparto(camiones, this.getEmpresa().getConfig().getMaxCodPostales());
             if (rep != null) {
                 paquetes.remove(primero);
                 this.getEmpresa().addPlanDeReparto(rep);
@@ -495,46 +496,41 @@ public class Operario extends UsuarioRegistrado {
         }
     }
 
-    public Boolean pagarPedido(Pedido ped, String tarjeta) throws InvalidCardNumberException, FailedInternetConnectionException, OrderRejectedException{
-        if(TeleChargeAndPaySystem.isValidCardNumber(tarjeta) == true){
-            try{
-                TeleChargeAndPaySystem.charge(tarjeta, "Pedido :" + ped.getId() , ped.getPrecio(this.getEmpresa().getConfig().getDescuento()),true);
-                for(Producto p : ped.getProductos()){
-                    Empresa.addProducto(p);
+    public Boolean pagarPedido(Pedido ped, String tarjeta)
+            throws InvalidCardNumberException, FailedInternetConnectionException, OrderRejectedException {
+        if (TeleChargeAndPaySystem.isValidCardNumber(tarjeta) == true) {
+            try {
+                TeleChargeAndPaySystem.charge(tarjeta, "Pedido :" + ped.getId(),
+                        ped.getPrecio(this.getEmpresa().getConfig().getDescuento()), true);
+                for (IProductInfo p : ped.getProductos()) {
+                    Empresa.addProducto((Producto) p);
                 }
                 return true;
-            }
-            catch(InvalidCardNumberException e){
+            } catch (InvalidCardNumberException e) {
                 return false;
-            }
-            catch(FailedInternetConnectionException e){
+            } catch (FailedInternetConnectionException e) {
                 System.out.println("La conexion a internet falló, prueba mas tarde\n");
                 return false;
-            }
-            catch(OrderRejectedException e){
+            } catch (OrderRejectedException e) {
                 System.out.println("Se ha rechazado el pedido\n");
                 return false;
             }
-        }
-        else{
+        } else {
             System.out.println("La tarjeta no es valida\n");
             return false;
         }
     }
 
-    public void generarFactura(Pedido ped, Cliente cl){
+    public void generarFactura(Pedido ped, Cliente cl) {
 
-        Invoice in = new Invoice(ped,cl,this.Empresa.getConfig().getDescuento());
-        try{
-            InvoiceSystem.createInvoice(in,"./tmp/");
-        }
-        catch(NonExistentFileException e){
+        Invoice in = new Invoice(ped, cl, this.Empresa.getConfig().getDescuento());
+        try {
+            InvoiceSystem.createInvoice(in, "./tmp/");
+        } catch (NonExistentFileException e) {
             System.out.println(e);
-        }
-        catch(UnsupportedTemporalTypeException e){
+        } catch (UnsupportedTemporalTypeException e) {
             System.out.println(e);
-        }
-        catch(UnsupportedImageTypeException e){
+        } catch (UnsupportedImageTypeException e) {
             System.out.println(e);
         }
     }

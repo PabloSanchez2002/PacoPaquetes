@@ -15,7 +15,8 @@ import pacopaquetes.usuarios.*;
 
 public class mainSimple {
 
-        public static void main(String[] args) throws IOException, InvalidCardNumberException, FailedInternetConnectionException, OrderRejectedException {
+        public static void main(String[] args) throws IOException, InvalidCardNumberException,
+                        FailedInternetConnectionException, OrderRejectedException {
                 Operario op = new Operario("oper1", "oper123");
                 PacoPaquetes pp = new PacoPaquetes(op);
                 Repartidor rp = op.altaRepartidor("Juan", "juan123", "123123123");
@@ -66,10 +67,11 @@ public class mainSimple {
                 op.pagarPedido(ped, pepe.getTargetaBancaria());
                 op.generarFactura(ped, pepe);
                 // Anadimos un lote al cliente
-                //Lote lot = op.CrearLote(pepe, date, "12345", PRIORIDAD.URGENTE, TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
-                //lot.addProduct(new Fragil(4, 6, 4, 5, 6, "Figura porcelana", "12345", PRIORIDAD.NORMAL, 2, false, date));
+                // Lote lot = op.CrearLote(pepe, date, "12345", PRIORIDAD.URGENTE,
+                // TIPOPAQUETE.FRAGIL, TIPOCOMIDA.NULL);
+                // lot.addProduct(new Fragil(4, 6, 4, 5, 6, "Figura porcelana", "12345",
+                // PRIORIDAD.NORMAL, 2, false, date));
                 // PRIORIDAD.URGENTE, 4, true,date));
-               
 
                 op.empaquetar();
                 ArrayList<Paquete> paq = pp.getPaquetes();
@@ -78,4 +80,4 @@ public class mainSimple {
                 ArrayList<PlanDeReparto> plan = new ArrayList<PlanDeReparto>();
 
         }
-    }
+}
