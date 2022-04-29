@@ -113,11 +113,7 @@ public class Pedido implements Serializable {
      * @return Array<Producto>
      */
     public List<IProductInfo> getProductosIProductInfo() {
-        List<IProductInfo> list = new ArrayList<IProductInfo>();
-        for (Producto p : this.productos)
-            list.add((IProductInfo) p);
-        return list;
-
+        return new ArrayList<IProductInfo>(this.productos);
     }
 
     /**

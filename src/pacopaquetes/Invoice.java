@@ -69,4 +69,14 @@ public class Invoice implements IInvoiceInfo {
             return 0;
         }
     }
+
+    @Override
+    public List<IProductInfo> getProducts() {
+        return this.getProducts;
+    }
+
+    @Override
+    public String getCompanyLogo() {
+        return this.getCompanyLogo;
+    }
 }

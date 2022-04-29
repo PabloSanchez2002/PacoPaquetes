@@ -16,7 +16,7 @@ import pacopaquetes.Configuracion;
 import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.Paquete;
 
-public abstract class Producto implements Comparable<Producto>, Serializable,IProductInfo {
+public abstract class Producto implements Comparable<Producto>, Serializable, IProductInfo {
     private static final long serialVersionUID = 1L;
 
     /**
