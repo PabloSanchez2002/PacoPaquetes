@@ -127,10 +127,10 @@ public class Fragil extends Producto {
 	@Override
 	public String getPriceDetails() {
         if(this.asegurado == true){
-		    return super.getPriceDetails()+"2*5 eur (Fragil+Asegurado)";
+		    return super.getPriceDetails()+" 2*5 eur (Fragil+Asegurado)";
         }
         else{
-            return super.getPriceDetails()+"2 eur (Fragil)";
+            return super.getPriceDetails()+" 2 eur (Fragil)";
         }
     }
 }

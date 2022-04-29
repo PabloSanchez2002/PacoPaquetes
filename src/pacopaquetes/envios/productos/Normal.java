@@ -98,7 +98,7 @@ public class Normal extends Producto {
 
 	@Override
 	public String getPriceDetails() {
-		return super.getPriceDetails()+"(Normal)";
+		return super.getPriceDetails()+" (Normal)";
 	}
 
 }

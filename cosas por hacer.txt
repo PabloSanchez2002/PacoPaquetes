@@ -1,7 +1,3 @@
-0 - Comprobar caso de lotes no se añaden a camiones
-2 - Imprimir facturas invoiceSystem
-3 - Registro tema facturas
-
 DOCUMENTAR Y TEST
 
 

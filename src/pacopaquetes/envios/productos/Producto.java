@@ -315,13 +315,13 @@ public abstract class Producto implements Comparable<Producto>, Serializable, IP
             p = 1;
 
         if(p==0.4){
-            return ""+this.getNumUnidades()+"unidades,40 cts/unidad";
+            return ""+this.getNumUnidades()+" unidades, 40 cts/unidad";
         }
         if(p==0.6){
-            return ""+this.getNumUnidades()+"unidades,60 cts/unidad";
+            return ""+this.getNumUnidades()+" unidades, 60 cts/unidad";
         }
         if(p==1){
-            return ""+this.getNumUnidades()+"unidades,1 euro/unidad";
+            return ""+this.getNumUnidades()+" unidades, 1 euro/unidad";
         }
         else{
             return null;
