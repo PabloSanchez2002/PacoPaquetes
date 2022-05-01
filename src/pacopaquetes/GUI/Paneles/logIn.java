@@ -7,13 +7,14 @@ import javax.swing.*;
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.GUI.Controladores.*;
 
-public class logIn extends JPanel {
+public class logIn extends JFrame {
 
     public logIn(PacoPaquetes pp) {
-        JFrame ventana = new JFrame("LogIn");
+        JPanel cardLay = new JPanel();
+        cardLay.setLayout(new CardLayout());
+        JPanel ventana = new JPanel();
         // obtener contenedor, asignar layout
-        Container contenedor = ventana.getContentPane();
-        contenedor.setLayout(new FlowLayout());
+        ventana.setLayout(new FlowLayout());
         // crear componentes
         JLabel etiqueta = new JLabel("Log in:");
         JLabel usuario = new JLabel("   Usuario:");
@@ -25,56 +26,51 @@ public class logIn extends JPanel {
         // asociar acciones a componentes
         boton.addActionListener(new contrLogIn(this, pp, campo.getText(), campo2.getText()));
 
-        registro.addActionListener(new contrRegistro(this, pp, ventana));
+        registro.addActionListener(new contrRegistro(this, cardLay));
         // añadir componentes al contenedor
-        contenedor.add(etiqueta);
-        contenedor.add(usuario);
-        contenedor.add(campo);
-        contenedor.add(contrasena);
-        contenedor.add(campo2);
-        contenedor.add(boton);
-        contenedor.add(registro);
+        ventana.add(etiqueta);
+        ventana.add(usuario);
+        ventana.add(campo);
+        ventana.add(contrasena);
+        ventana.add(campo2);
+        ventana.add(boton);
+        ventana.add(registro);
+
+        JPanel registrar = new JPanel();
+        registrar.setLayout(new FlowLayout());
+        JLabel nombre = new JLabel("Nuevo cliente");
+        JLabel empresa = new JLabel("   Nombre de empresa:");
+        final JTextField empresa1 = new JTextField(10);
+        JLabel contrasenareg = new JLabel("  Contraseña:");
+        final JTextField contrasena1 = new JPasswordField(10);
+        JLabel cif = new JLabel("   CIF:");
+        final JTextField cif1 = new JTextField(10);
+        JLabel direccion = new JLabel("   Direccion de facturación:");
+        final JTextField direccion1 = new JTextField(10);
+        JLabel targB = new JLabel("  Tarjeta bancaria:");
+        final JTextField targB1 = new JTextField(10);
+        JButton registroreg = new JButton("Registrarse");
+
+        registrar.add(nombre);
+        registrar.add(empresa);
+        registrar.add(empresa1);
+        registrar.add(contrasenareg);
+        registrar.add(contrasena1);
+        registrar.add(cif);
+        registrar.add(cif1);
+        registrar.add(direccion);
+        registrar.add(direccion1);
+        registrar.add(targB);
+        registrar.add(targB1);
+        registrar.add(registroreg);
+
+        cardLay.add(ventana, "" + 0);
+        cardLay.add(registrar, "" + 1);
         // mostrar ventana
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(200, 240);
-        ventana.setVisible(true);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().add(cardLay,BorderLayout.CENTER);
+        setSize(180,240);
     }
 
-    public class registrarse {
-
-        public registrarse() {
-            JFrame registrar = new JFrame("Registro");
-            Container contenedorReg = registrar.getContentPane();
-            contenedorReg.setLayout(new FlowLayout());
-            JLabel nombre = new JLabel("Nuevo cliente");
-            JLabel empresa = new JLabel("   Nombre de empresa:");
-            final JTextField empresa1 = new JTextField(10);
-            JLabel contrasena = new JLabel("  Contraseña:");
-            final JTextField contrasena1 = new JPasswordField(10);
-            JLabel cif = new JLabel("   CIF:");
-            final JTextField cif1 = new JTextField(10);
-            JLabel direccion = new JLabel("   Direccion de facturación:");
-            final JTextField direccion1 = new JTextField(10);
-            JLabel targB = new JLabel("  Tarjeta bancaria:");
-            final JTextField targB1 = new JTextField(10);
-            JButton registro = new JButton("Registrarse");
-
-            contenedorReg.add(nombre);
-            contenedorReg.add(empresa);
-            contenedorReg.add(empresa1);
-            contenedorReg.add(contrasena);
-            contenedorReg.add(contrasena1);
-            contenedorReg.add(cif);
-            contenedorReg.add(cif1);
-            contenedorReg.add(direccion);
-            contenedorReg.add(direccion1);
-            contenedorReg.add(targB);
-            contenedorReg.add(targB1);
-            contenedorReg.add(registro);
-
-            registrar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            registrar.setSize(200, 240);
-            registrar.setVisible(true);
-        }
-    }
 }

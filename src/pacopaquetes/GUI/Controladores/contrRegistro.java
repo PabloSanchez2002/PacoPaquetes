@@ -12,18 +12,16 @@ import pacopaquetes.GUI.Paneles.logIn.*;
 
 public class contrRegistro implements ActionListener {
     private logIn log;
-    private PacoPaquetes pp;
-    private JFrame ventana;
+    private JPanel cardLay;
 
-    public contrRegistro(logIn log, PacoPaquetes pp, JFrame ventana) {
+    public contrRegistro(logIn log,JPanel cardLay) {
         this.log = log;
-        this.pp = pp;
-        this.ventana = ventana;
+        this.cardLay = cardLay;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ventana.setVisible(false);
-        registrarse r = this.log.new registrarse();
+        CardLayout cardLayout = (CardLayout) this.cardLay.getLayout();
+        cardLayout.next(this.cardLay);
     }
 }
