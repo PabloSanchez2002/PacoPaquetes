@@ -93,6 +93,22 @@ public class PacoPaquetes implements Serializable {
         return this.oper;
     }
 
+    public int findUsuario(String nombre, String contrasena) {
+        if (this.oper.getUsuario() == nombre && this.oper.getContrasena() == contrasena) {
+            return 0;
+        } else {
+            Cliente c = this.findClienteByName(nombre);
+            Repartidor r = this.findRepByName(nombre);
+            if (c != null && c.getUsuario() == nombre && c.getContrasena() == contrasena) {
+                return 1;
+            }
+            if (r != null && r.getUsuario() == nombre && r.getContrasena() == contrasena) {
+                return 2;
+            }
+            return -1;
+        }
+    }
+
     /**
      * Devuelve la lista de repartidores de la empresa
      *

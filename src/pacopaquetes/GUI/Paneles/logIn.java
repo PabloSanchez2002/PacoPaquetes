@@ -5,13 +5,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import pacopaquetes.PacoPaquetes;
+import pacopaquetes.GUI.Controladores.*;
 
 public class logIn extends JPanel {
-    private PacoPaquetes pp;
 
     public logIn(PacoPaquetes pp) {
-        this.pp = pp;
-        JFrame ventana = new JFrame("Mi GUI");
+        JFrame ventana = new JFrame("LogIn");
         // obtener contenedor, asignar layout
         Container contenedor = ventana.getContentPane();
         contenedor.setLayout(new FlowLayout());
@@ -24,19 +23,9 @@ public class logIn extends JPanel {
         JButton boton = new JButton("Inicia sesión");
         JButton registro = new JButton("Registrarse cliente");
         // asociar acciones a componentes
-        boton.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(null, campo.getText());
-                    }
-                });
+        boton.addActionListener(new contrLogIn(this, pp, campo.getText(), campo2.getText()));
 
-        registro.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ventana.setVisible(false);
-                registrarse r = new registrarse();
-            }
-        });
+        registro.addActionListener(new contrRegistro(this, pp, ventana));
         // añadir componentes al contenedor
         contenedor.add(etiqueta);
         contenedor.add(usuario);
