@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class errorWindow {
-    public errorWindow(String error) {
+    public errorWindow(String error, JFrame anterior) {
         JFrame ventana = new JFrame("LogIn");
         // obtener contenedor, asignar layout
         Container contenedor = ventana.getContentPane();
