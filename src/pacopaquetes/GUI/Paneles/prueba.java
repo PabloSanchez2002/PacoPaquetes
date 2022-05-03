@@ -3,7 +3,6 @@ package pacopaquetes.GUI.Paneles;
 import java.awt.*;
 import java.awt.event.*;
 
-import javax.swing.*;
 
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.usuarios.Operario;

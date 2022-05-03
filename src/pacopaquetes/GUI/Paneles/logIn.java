@@ -36,17 +36,24 @@ public class logIn extends JFrame {
         ventana.add(boton);
         ventana.add(registro);
 
+
+
+        ////////////////REGISTRO////////////////////////
         JPanel registrar = new JPanel();
         registrar.setLayout(new FlowLayout());
         JLabel nombre = new JLabel("Nuevo cliente");
         JLabel empresa = new JLabel("   Nombre de empresa:");
         final JTextField empresa1 = new JTextField(10);
+        JLabel usuarioreg = new JLabel("Usuario: ");     
+        final JTextField usuario1 = new JTextField(10);
         JLabel contrasenareg = new JLabel("  Contraseña:");
         final JTextField contrasena1 = new JPasswordField(10);
         JLabel cif = new JLabel("   CIF:");
         final JTextField cif1 = new JTextField(10);
         JLabel direccion = new JLabel("   Direccion de facturación:");
         final JTextField direccion1 = new JTextField(10);
+        JLabel correo = new JLabel("   Correo electronico:");
+        final JTextField correo1 = new JTextField(10);
         JLabel targB = new JLabel("  Tarjeta bancaria:");
         final JTextField targB1 = new JTextField(10);
         JButton registroreg = new JButton("Registrarse");
@@ -54,19 +61,23 @@ public class logIn extends JFrame {
         registrar.add(nombre);
         registrar.add(empresa);
         registrar.add(empresa1);
+        registrar.add(usuarioreg);
+        registrar.add(usuario1);
         registrar.add(contrasenareg);
         registrar.add(contrasena1);
         registrar.add(cif);
         registrar.add(cif1);
         registrar.add(direccion);
         registrar.add(direccion1);
+        registrar.add(correo);
+        registrar.add(correo1);
         registrar.add(targB);
         registrar.add(targB1);
         registrar.add(registroreg);
 
         cardLay.add(ventana, "" + 0);
         cardLay.add(registrar, "" + 1);
-        // mostrar ventana
+        registroreg.addActionListener(new contrNewUser(pp, usuario1.getText(), empresa1.getText(), contrasena1.getText(), cif1.getText(), direccion1.getText(),correo1.getText(), targB1.getText(), cardLay));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(cardLay,BorderLayout.CENTER);

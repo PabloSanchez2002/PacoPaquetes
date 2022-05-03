@@ -195,7 +195,7 @@ public class Operario extends UsuarioRegistrado {
             String direcconFacturacion, String correoElectronico, String targetaBancaria) {
         Cliente cli = new Cliente(usuario, contrasena, CIF, nombreEmpresa, direcconFacturacion, correoElectronico,
                 targetaBancaria);
-        this.Empresa.addCliente(cli); // ==================================//
+        this.Empresa.addCliente(cli); 
         return cli;
     }
 

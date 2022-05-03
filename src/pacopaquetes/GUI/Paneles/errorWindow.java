@@ -11,13 +11,13 @@ public class errorWindow {
         contenedor.setLayout(new FlowLayout());
         // crear componentes
         JLabel etiqueta = new JLabel("ERROR:");
-        JLabel err = new JLabel(error);
+        JLabel err = new JLabel("   " + error +"    ");
 
         contenedor.add(etiqueta);
         contenedor.add(err);
 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(200, 120);
+        ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ventana.setSize(300, 120);
         ventana.setVisible(true);
     }
 }
