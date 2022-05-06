@@ -1,4 +1,4 @@
-package pacopaquetes.GUI.Paneles;
+package pacopaquetes.GUI.LogIn.Paneles;
 
 import javax.swing.*;
 import java.awt.*;

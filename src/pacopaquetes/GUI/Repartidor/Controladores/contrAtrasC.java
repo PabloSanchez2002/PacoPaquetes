@@ -1,4 +1,4 @@
-package pacopaquetes.GUI.Controladores;
+package pacopaquetes.GUI.Repartidor.Controladores;
 
 import java.awt.*;
 
@@ -6,17 +6,16 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-
-public class contrRegistro implements ActionListener {
+public class contrAtrasC implements ActionListener {
     private JPanel cardLay;
 
-    public contrRegistro(JPanel cardLay) {
+    public contrAtrasC(JPanel cardLay) {
         this.cardLay = cardLay;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         CardLayout cardLayout = (CardLayout) this.cardLay.getLayout();
-        cardLayout.next(this.cardLay);
+        cardLayout.previous(this.cardLay);
     }
 }

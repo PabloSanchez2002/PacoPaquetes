@@ -1,17 +1,18 @@
-package pacopaquetes.GUI.Paneles;
+package pacopaquetes.GUI.LogIn.Paneles;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 import pacopaquetes.PacoPaquetes;
-import pacopaquetes.GUI.Controladores.*;
+import pacopaquetes.GUI.LogIn.Controladores.*;
 
 public class logIn extends JFrame {
 
     public logIn(PacoPaquetes pp) {
         JPanel cardLay = new JPanel();
         cardLay.setLayout(new CardLayout());
+
         JPanel ventana = new JPanel();
         // obtener contenedor, asignar layout
         ventana.setLayout(new FlowLayout());
@@ -36,15 +37,13 @@ public class logIn extends JFrame {
         ventana.add(boton);
         ventana.add(registro);
 
-
-
-        ////////////////REGISTRO////////////////////////
+        //////////////// REGISTRO////////////////////////
         JPanel registrar = new JPanel();
         registrar.setLayout(new FlowLayout());
         JLabel nombre = new JLabel("Nuevo cliente");
         JLabel empresa = new JLabel("   Nombre de empresa:");
         final JTextField empresa1 = new JTextField(10);
-        JLabel usuarioreg = new JLabel("Usuario: ");     
+        JLabel usuarioreg = new JLabel("Usuario: ");
         final JTextField usuario1 = new JTextField(10);
         JLabel contrasenareg = new JLabel("  Contraseña:");
         final JTextField contrasena1 = new JPasswordField(10);
@@ -75,13 +74,16 @@ public class logIn extends JFrame {
         registrar.add(targB1);
         registrar.add(registroreg);
 
+        registroreg
+                .addActionListener(
+                        new contrNewUser(pp, cardLay, usuario1, contrasena1, cif1, direccion1, correo1, targB1));
+
         cardLay.add(ventana, "" + 0);
         cardLay.add(registrar, "" + 1);
-        registroreg.addActionListener(new contrNewUser(pp, usuario1.getText(), empresa1.getText(), contrasena1.getText(), cif1.getText(), direccion1.getText(),correo1.getText(), targB1.getText(), cardLay));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().add(cardLay,BorderLayout.CENTER);
-        setSize(400,300);
+        getContentPane().add(cardLay, BorderLayout.CENTER);
+        setSize(400, 300);
     }
 
 }

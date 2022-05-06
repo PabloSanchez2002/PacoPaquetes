@@ -1,4 +1,4 @@
-package pacopaquetes.GUI.Paneles;
+package pacopaquetes.GUI.A_GENERALES;
 
 import java.awt.*;
 import javax.swing.*;
@@ -10,8 +10,8 @@ public class errorWindow {
         Container contenedor = ventana.getContentPane();
         contenedor.setLayout(new FlowLayout());
         // crear componentes
-        JLabel etiqueta = new JLabel("ERROR:");
-        JLabel err = new JLabel("   " + error +"    ");
+        JLabel etiqueta = new JLabel("¡¡¡ERROR!!!");
+        JLabel err = new JLabel("   " + error + "    ");
 
         contenedor.add(etiqueta);
         contenedor.add(err);
