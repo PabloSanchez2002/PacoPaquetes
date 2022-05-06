@@ -36,7 +36,7 @@ public class pantCliente extends JFrame{
     
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             getContentPane().add(cardLay,BorderLayout.CENTER);
-            setSize(180,240);
+            setSize(400,300);
         }
     
     }

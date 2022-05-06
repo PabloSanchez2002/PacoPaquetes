@@ -24,9 +24,9 @@ public class logIn extends JFrame {
         JButton boton = new JButton("Inicia sesión");
         JButton registro = new JButton("Registrarse cliente");
         // asociar acciones a componentes
-        boton.addActionListener(new contrLogIn(this, pp, campo.getText(), campo2.getText()));
+        boton.addActionListener(new contrLogIn(pp, campo.getText(), campo2.getText()));
 
-        registro.addActionListener(new contrRegistro(this, cardLay));
+        registro.addActionListener(new contrRegistro(cardLay));
         // añadir componentes al contenedor
         ventana.add(etiqueta);
         ventana.add(usuario);
@@ -81,7 +81,7 @@ public class logIn extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(cardLay,BorderLayout.CENTER);
-        setSize(180,240);
+        setSize(400,300);
     }
 
 }

@@ -1,12 +1,9 @@
 package pacopaquetes.GUI.Controladores;
 
-import java.awt.*;
-
 import java.awt.event.*;
 
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.GUI.Paneles.errorWindow;
-import pacopaquetes.GUI.Paneles.logIn;
 import pacopaquetes.GUI.Paneles.Cliente.pantCliente;
 
 public class contrLogIn implements ActionListener {
