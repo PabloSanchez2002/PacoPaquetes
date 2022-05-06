@@ -1,9 +1,5 @@
 package pacopaquetes.GUI.Paneles;
 
-import java.awt.*;
-import java.awt.event.*;
-
-
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.usuarios.Operario;
 

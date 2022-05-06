@@ -27,7 +27,7 @@ public class contrLogIn implements ActionListener {
         if (x == 0) {
             // new pantOper(pp, pp.getOperario());
         } else if (x == 1) {
-            // new pantCliente(pp, pp.findClienteByName(usuario));
+            new pantCliente(pp, pp.findClienteByName(usuario));
         } else if (x == 2) {
             // new pantRepartidor(pp, pp.findRepByName(usuario));
         } else {
