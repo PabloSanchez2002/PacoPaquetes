@@ -7,15 +7,14 @@ import java.awt.event.*;
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.GUI.Paneles.errorWindow;
 import pacopaquetes.GUI.Paneles.logIn;
+import pacopaquetes.GUI.Paneles.Cliente.pantCliente;
 
 public class contrLogIn implements ActionListener {
-    private logIn log;
     private PacoPaquetes pp;
     private String usuario;
     private String contrasena;
 
-    public contrLogIn(logIn log, PacoPaquetes pp, String usuario, String contrasena) {
-        this.log = log;
+    public contrLogIn( PacoPaquetes pp, String usuario, String contrasena) {
         this.pp = pp;
         this.usuario = usuario;
         this.contrasena = contrasena;
