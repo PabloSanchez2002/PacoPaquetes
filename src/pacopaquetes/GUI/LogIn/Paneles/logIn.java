@@ -76,7 +76,7 @@ public class logIn extends JFrame {
 
         registroreg
                 .addActionListener(
-                        new contrNewUser(pp, cardLay, usuario1, contrasena1, cif1, direccion1, correo1, targB1));
+                        new contrNewUser(pp, cardLay, usuario1, contrasena1, cif1, empresa1, direccion1, correo1, targB1));
 
         cardLay.add(ventana, "" + 0);
         cardLay.add(registrar, "" + 1);
