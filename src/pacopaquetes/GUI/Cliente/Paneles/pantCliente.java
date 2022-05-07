@@ -1,7 +1,8 @@
 package pacopaquetes.GUI.Cliente.Paneles;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import pacopaquetes.PacoPaquetes;
@@ -12,25 +13,33 @@ import pacopaquetes.GUI.Cliente.Controlador.menuPedidos;
 import pacopaquetes.usuarios.Cliente;
 
 public class pantCliente extends JFrame {
+    private JTextField empresa1;
+    private JTextField usuario1;
+    private JTextField contrasena1;
+    private JTextField direccion1;
+    private JTextField correo1;
+    private JTextField targB1;
 
     public pantCliente(PacoPaquetes pp, Cliente cli) {
         JPanel cardLay = new JPanel();
         cardLay.setLayout(new CardLayout());
+        this.setResizable(false);
 
         JPanel ventana = new JPanel();
         ventana.setLayout(new FlowLayout());
+
         // crear componentes
         JLabel wellcome = new JLabel("Bienvenido" + cli.getUsuario() + "\n  " + cli.getNombreEmpresa());
-
         JButton pedidos = new JButton("Ver estado pedidos");
         JButton datos = new JButton("Modificar datos");
         JButton cerrarSesion = new JButton("Cerrar sesión");
         // asociar acciones a componentes
         pedidos.addActionListener(new menuPedidos(pp, cli));
         datos.addActionListener(new datosCliente(cardLay));
-        cerrarSesion.addActionListener(new logOut(pp));
+        cerrarSesion.addActionListener(new logOut(pp, this));
 
         // añadir componentes al contenedor
+        wellcome.setFont(new Font("Tahoma", Font.BOLD, 30));
         ventana.add(wellcome);
         ventana.add(pedidos);
         ventana.add(datos);
@@ -41,21 +50,20 @@ public class pantCliente extends JFrame {
         editDatos.setLayout(new FlowLayout());
         JLabel nombre = new JLabel("EDITAR DATOS");
         JLabel empresa = new JLabel("   Nombre de empresa: " + cli.getNombreEmpresa());
-        final JTextField empresa1 = new JTextField(10);
+        this.empresa1 = new JTextField(10);
         JLabel usuarioreg = new JLabel("Usuario: " + cli.getUsuario());
-        final JTextField usuario1 = new JTextField(10);
+        this.usuario1 = new JTextField(10);
         JLabel contrasenareg = new JLabel("  Contraseña: " + cli.getContrasena());
-        final JTextField contrasena1 = new JPasswordField(10);
+        this.contrasena1 = new JPasswordField(10);
         JLabel direccion = new JLabel("   Direccion de facturación: " + cli.getDirecconFacturacion());
-        final JTextField direccion1 = new JTextField(10);
+        this.direccion1 = new JTextField(10);
         JLabel correo = new JLabel("   Correo electronico: " + cli.getCorreoElectronico());
-        final JTextField correo1 = new JTextField(10);
+        this.correo1 = new JTextField(10);
         JLabel targB = new JLabel("  Tarjeta bancaria: " + cli.getTargetaBancaria());
-        final JTextField targB1 = new JTextField(10);
+        this.targB1 = new JTextField(10);
         JButton guardar = new JButton("Guardar");
 
-        guardar.addActionListener(new actualizDatos(usuario1.getText(), empresa1.getText(), contrasena1.getText(),
-                direccion1.getText(), correo1.getText(), targB1.getText(), cli));
+        guardar.addActionListener(new actualizDatos(cli, cardLay, this));
 
         editDatos.add(nombre);
         editDatos.add(empresa);
@@ -77,7 +85,17 @@ public class pantCliente extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(cardLay, BorderLayout.CENTER);
-        setSize(400, 300);
+        setSize(600, 400);
+    }
+    public ArrayList<String> getNewRegistros(){
+        ArrayList<String> s = new ArrayList<>();
+        s.add(empresa1.getText());
+        s.add(usuario1.getText());
+        s.add(contrasena1.getText());
+        s.add(direccion1.getText());
+        s.add(correo1.getText());
+        s.add(targB1.getText());
+        return s;
     }
 
 }

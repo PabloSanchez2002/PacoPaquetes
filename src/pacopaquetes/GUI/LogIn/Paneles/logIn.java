@@ -1,17 +1,30 @@
 package pacopaquetes.GUI.LogIn.Paneles;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.GUI.LogIn.Controladores.*;
 
 public class logIn extends JFrame {
+    //Primera pantalla
+    private JTextField campo;
+    private JTextField campo2;
+    //Segunda pantalla
+    private JTextField empresa1;
+    private JTextField usuario1;
+    private JTextField contrasena1;
+    private JTextField cif1;
+    private JTextField direccion1;
+    private JTextField correo1;
+    private JTextField targB1;
 
     public logIn(PacoPaquetes pp) {
         JPanel cardLay = new JPanel();
         cardLay.setLayout(new CardLayout());
+        this.setResizable(false);
 
         JPanel ventana = new JPanel();
         // obtener contenedor, asignar layout
@@ -19,16 +32,17 @@ public class logIn extends JFrame {
         // crear componentes
         JLabel etiqueta = new JLabel("Log in:");
         JLabel usuario = new JLabel("   Usuario:");
-        final JTextField campo = new JTextField(10);
+        this.campo = new JTextField(10);
         JLabel contrasena = new JLabel("  Contraseña:");
-        final JTextField campo2 = new JPasswordField(10);
+        this.campo2 = new JPasswordField(10);
         JButton boton = new JButton("Inicia sesión");
         JButton registro = new JButton("Registrarse cliente");
         // asociar acciones a componentes
-        boton.addActionListener(new contrLogIn(pp, campo.getText(), campo2.getText()));
+        boton.addActionListener(new contrLogIn(pp, this));
 
         registro.addActionListener(new contrRegistro(cardLay));
         // añadir componentes al contenedor
+        etiqueta.setFont(new Font("Tahoma", Font.BOLD, 70));
         ventana.add(etiqueta);
         ventana.add(usuario);
         ventana.add(campo);
@@ -42,21 +56,22 @@ public class logIn extends JFrame {
         registrar.setLayout(new FlowLayout());
         JLabel nombre = new JLabel("Nuevo cliente");
         JLabel empresa = new JLabel("   Nombre de empresa:");
-        final JTextField empresa1 = new JTextField(10);
+        this.empresa1 = new JTextField(10);
         JLabel usuarioreg = new JLabel("Usuario: ");
-        final JTextField usuario1 = new JTextField(10);
+        this.usuario1 = new JTextField(10);
         JLabel contrasenareg = new JLabel("  Contraseña:");
-        final JTextField contrasena1 = new JPasswordField(10);
+        this.contrasena1 = new JPasswordField(10);
         JLabel cif = new JLabel("   CIF:");
-        final JTextField cif1 = new JTextField(10);
+        this.cif1 = new JTextField(10);
         JLabel direccion = new JLabel("   Direccion de facturación:");
-        final JTextField direccion1 = new JTextField(10);
+        this.direccion1 = new JTextField(10);
         JLabel correo = new JLabel("   Correo electronico:");
-        final JTextField correo1 = new JTextField(10);
+        this.correo1 = new JTextField(10);
         JLabel targB = new JLabel("  Tarjeta bancaria:");
-        final JTextField targB1 = new JTextField(10);
+        this.targB1 = new JTextField(10);
         JButton registroreg = new JButton("Registrarse");
 
+        nombre.setFont(new Font("Tahoma", Font.BOLD, 30));
         registrar.add(nombre);
         registrar.add(empresa);
         registrar.add(empresa1);
@@ -76,14 +91,34 @@ public class logIn extends JFrame {
 
         registroreg
                 .addActionListener(
-                        new contrNewUser(pp, cardLay, usuario1, contrasena1, cif1, empresa1, direccion1, correo1, targB1));
+                        new contrNewUser(pp, cardLay, this));
+
+
 
         cardLay.add(ventana, "" + 0);
         cardLay.add(registrar, "" + 1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(cardLay, BorderLayout.CENTER);
-        setSize(400, 300);
+        setSize(280, 400);
     }
 
+    public ArrayList<String> getLogIns(){
+        ArrayList<String> s = new ArrayList<>();
+        s.add(campo.getText());
+        s.add(campo2.getText());
+        return s;
+    }
+
+    public ArrayList<String>  getRegistros(){
+        ArrayList<String> s = new ArrayList<>();
+        s.add(empresa1.getText());
+        s.add(usuario1.getText());
+        s.add(contrasena1.getText());
+        s.add(cif1.getText());
+        s.add(direccion1.getText());
+        s.add(correo1.getText());
+        s.add(targB1.getText());
+        return s;
+    }
 }

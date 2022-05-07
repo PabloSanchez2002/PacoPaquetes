@@ -17,7 +17,7 @@ public class errorWindow {
         contenedor.add(err);
 
         ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        ventana.setSize(300, 120);
+        ventana.setSize(300, 200);
         ventana.setVisible(true);
     }
 }

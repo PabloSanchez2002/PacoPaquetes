@@ -3,52 +3,47 @@ package pacopaquetes.GUI.Cliente.Controlador;
 import java.awt.*;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import pacopaquetes.GUI.Cliente.Paneles.pantCliente;
 import pacopaquetes.usuarios.Cliente;
 
 public class actualizDatos implements ActionListener {
-    private String usuario;
-    private String empresa;
-    private String contrasena;
-    private String direccion;
-    private String correo;
-    private String targ;
+    private JPanel cardLay;
+    private pantCliente panel;
     private Cliente cli;
 
-    public actualizDatos(String usuario, String empresa, String contrasena, String direccion, String correo,
-            String targ, Cliente cli) {
-        this.usuario = usuario;
-        this.empresa = empresa;
-        this.contrasena = contrasena;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.targ = targ;
-        this.cli = cli;
+    public actualizDatos(Cliente cli, JPanel cardLay, pantCliente panel) {
+            this.panel = panel;
+            this.cardLay = cardLay;
+            this.cli = cli;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (usuario != "") {
-            cli.setUsuario(usuario);
+        ArrayList<String> s = this.panel.getNewRegistros();
+        if (s.get(0).equals("") ==false) {
+            cli.setUsuario(s.get(0));
         }
-        if (empresa != "") {
-            cli.setNombreEmpresa(empresa);
+        if (s.get(1).equals("") ==false) {
+            cli.setNombreEmpresa(s.get(1));
         }
-        if (contrasena != "") {
-            cli.setContrasena(contrasena);
+        if (s.get(2).equals("") ==false) {
+            cli.setContrasena(s.get(2));
         }
-        if (direccion != "") {
-            cli.setDirecconFacturacion(direccion);
+        if (s.get(3).equals("") ==false) {
+            cli.setDirecconFacturacion(s.get(3));
         }
-        if (correo != "") {
-            cli.setCorreoElectronico(correo);
+        if (s.get(4).equals("") ==false) {
+            cli.setCorreoElectronico(s.get(4));
         }
-        if (targ != "") {
-            cli.setTargetaBancaria(targ);
+        if (s.get(5).equals("") ==false) {
+            cli.setTargetaBancaria(s.get(5));
         }
-
+        CardLayout cardLayout = (CardLayout) this.cardLay.getLayout();
+        cardLayout.previous(this.cardLay);
     }
 
 }

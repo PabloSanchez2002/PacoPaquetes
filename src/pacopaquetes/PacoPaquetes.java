@@ -99,10 +99,10 @@ public class PacoPaquetes implements Serializable {
         } else {
             Cliente c = this.findClienteByName(nombre);
             Repartidor r = this.findRepByName(nombre);
-            if (c != null && c.getUsuario() == nombre && c.getContrasena() == contrasena) {
+            if (c != null && c.getUsuario().equals(nombre) && c.getContrasena().equals(contrasena) ) {
                 return 1;
             }
-            if (r != null && r.getUsuario() == nombre && r.getContrasena() == contrasena) {
+            if (r != null && r.getUsuario().equals(nombre) && r.getContrasena().equals(contrasena)) {
                 return 2;
             }
             return -1;
@@ -378,7 +378,7 @@ public class PacoPaquetes implements Serializable {
      */
     public Cliente findClienteByName(String name) {
         for (Cliente cli : this.clientes)
-            if (cli.getUsuario() == name)
+            if (cli.getUsuario().equals(name))
                 return cli;
         return null;
     }

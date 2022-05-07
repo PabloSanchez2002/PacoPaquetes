@@ -4,30 +4,31 @@ import java.awt.*;
 
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.*;
 
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.GUI.A_GENERALES.errorWindow;
+import pacopaquetes.GUI.LogIn.Paneles.logIn;
 
 public class contrNewUser implements ActionListener {
-    private ArrayList<JTextField> labels;
     private JPanel cardLay;
+    private logIn panel;
     private PacoPaquetes pp;
 
-    @SafeVarargs
-    public contrNewUser(PacoPaquetes pp, JPanel cardLay, JTextField... labels) {
-        this.labels = new ArrayList<>(Arrays.asList(labels));
-        this.cardLay = cardLay;
-    }
 
+    public contrNewUser(PacoPaquetes pp, JPanel cardLay, logIn panel) {
+        this.panel = panel;
+        this.cardLay = cardLay;
+        this.pp = pp;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        int x = pp.findUsuario(labels.get(0).getText(), labels.get(1).getText());
+        ArrayList<String> s = this.panel.getRegistros();
+        int x = pp.findUsuario(s.get(0), s.get(1));
         if (x == -1) {
-            pp.getOperario().nuevoCliente(labels.get(0).getText(), labels.get(1).getText(), labels.get(2).getText(), labels.get(3).getText(), labels.get(4).getText(), labels.get(5).getText(), labels.get(6).getText());
+            pp.getOperario().nuevoCliente(s.get(0), s.get(1), s.get(2), s.get(3), s.get(4), s.get(5), s.get(6));
         } else {
             new errorWindow("Perfil con el mismo nombre y contraseña");
         }
