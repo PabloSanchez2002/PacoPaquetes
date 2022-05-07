@@ -6,16 +6,19 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class contrAtrasC implements ActionListener {
+public class contrDatos implements ActionListener {
     private JPanel cardLay;
 
-    public contrAtrasC(JPanel cardLay) {
+    public contrDatos(JPanel cardLay) {
         this.cardLay = cardLay;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         CardLayout cardLayout = (CardLayout) this.cardLay.getLayout();
-        cardLayout.first(this.cardLay);
+        cardLayout.next(this.cardLay);
+        cardLayout.next(this.cardLay);
+        cardLayout.next(this.cardLay);
+        cardLayout.next(this.cardLay);
     }
 }

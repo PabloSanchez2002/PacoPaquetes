@@ -1,17 +1,14 @@
 package pacopaquetes.GUI.Operario.Controladores;
 
-import pacopaquetes.usuarios.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class altaRep implements ActionListener {
     private JPanel cardLay;
-    private Operario op;
 
-    public altaRep(Operario op, JPanel cardLay) {
+    public altaRep(JPanel cardLay) {
         this.cardLay = cardLay;
-        this.op = op;
     }
 
     @Override

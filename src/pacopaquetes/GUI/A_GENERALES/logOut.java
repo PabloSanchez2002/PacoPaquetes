@@ -1,21 +1,18 @@
 package pacopaquetes.GUI.A_GENERALES;
 
-import java.awt.*;
-
 import java.awt.event.*;
 
 import javax.swing.*;
 import pacopaquetes.PacoPaquetes;
-import pacopaquetes.GUI.Cliente.Paneles.pantCliente;
 import pacopaquetes.GUI.LogIn.Paneles.logIn;
 
 public class logOut implements ActionListener {
     private PacoPaquetes pp;
-    private pantCliente panel;
+    private JFrame panel;
 
-    public logOut(PacoPaquetes pp, pantCliente pantCliente) {
+    public logOut(PacoPaquetes pp, JFrame panel) {
         this.pp = pp;
-        this.panel = pantCliente;
+        this.panel = panel;
         
     }
 

@@ -1,17 +1,14 @@
 package pacopaquetes.GUI.Operario.Controladores;
 
-import pacopaquetes.usuarios.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class verEst implements ActionListener {
     private JPanel cardLay;
-    private Operario op;
 
-    public verEst(Operario op, JPanel cardLay) {
+    public verEst(JPanel cardLay) {
         this.cardLay = cardLay;
-        this.op = op;
     }
 
     @Override

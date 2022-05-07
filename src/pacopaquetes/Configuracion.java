@@ -64,7 +64,7 @@ public class Configuracion implements Serializable {
      * 
      * @param i descuento
      */
-    public void setDescuento(int i) {
+    public void setDescuento(double i) {
         this.descuento = i;
     }
 
