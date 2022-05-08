@@ -1,7 +1,6 @@
 package pacopaquetes.GUI.Cliente.Paneles;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -13,6 +12,8 @@ import pacopaquetes.PacoPaquetes;
 import pacopaquetes.GUI.A_GENERALES.contrVolver;
 import pacopaquetes.GUI.A_GENERALES.logOut;
 import pacopaquetes.GUI.Cliente.Controlador.actualizDatos;
+import pacopaquetes.GUI.Cliente.Controlador.contrGenerarFactura;
+import pacopaquetes.GUI.Cliente.Controlador.contrVerDetalles;
 import pacopaquetes.GUI.Cliente.Controlador.datosCliente;
 import pacopaquetes.GUI.Cliente.Controlador.menuPedidos;
 import pacopaquetes.envios.Pedido;
@@ -38,7 +39,8 @@ public class pantCliente extends JFrame {
         ventana.setLayout(new FlowLayout());
 
         // crear componentes
-        JLabel wellcome = new JLabel("Bienvenido: " + cli.getUsuario() + "\n  " + cli.getNombreEmpresa());
+        JLabel wellcome = new JLabel("Bienvenido: " + cli.getUsuario());
+        JLabel wellcome2 = new JLabel("     Empresa: " + cli.getNombreEmpresa() + "\n");
         JButton pedidos = new JButton("Ver estado pedidos");
         JButton datos = new JButton("Modificar datos");
         JButton cerrarSesion = new JButton("Cerrar sesión");
@@ -49,7 +51,9 @@ public class pantCliente extends JFrame {
 
         // añadir componentes al contenedor
         wellcome.setFont(new Font("Tahoma", Font.BOLD, 30));
+        wellcome2.setFont(new Font("Tahoma", Font.BOLD, 30));
         ventana.add(wellcome);
+        ventana.add(wellcome2);
         ventana.add(pedidos);
         ventana.add(datos);
         ventana.add(cerrarSesion);
@@ -72,7 +76,7 @@ public class pantCliente extends JFrame {
         this.targB1 = new JTextField(10);
         JButton guardar = new JButton("Guardar");
 
-        guardar.addActionListener(new actualizDatos(cli, cardLay, this));
+        guardar.addActionListener(new actualizDatos(cli, this));
 
         editDatos.add(nombre);
         editDatos.add(empresa);
@@ -103,13 +107,15 @@ public class pantCliente extends JFrame {
         Object[][] filas = new Object[num][6];
         
         while(i<num){
-            Pedido p = peds.get(0);
+            Pedido p = peds.get(i);
             String id =String.valueOf(p.getId());
             p.getFecha();
             String fila[] = {id , p.getPrioridad().toString(), ModifiableDate.getModifiableDate().toString(), p.getCodPost()};
             filas[i] = fila;
             JButton det = new JButton("Detalles " + i+1);
-            JButton fact = new JButton("Factura " + i+1);
+            JButton fact = new JButton("Factura " + i+1 );
+            det.addActionListener(new contrVerDetalles(p));
+            fact.addActionListener(new contrGenerarFactura(cli, p, pp.getOperario()));
             butts.add(det);
             butts.add(fact);
             
@@ -117,21 +123,24 @@ public class pantCliente extends JFrame {
         }
         TableModel tm = new DefaultTableModel(filas, titulos);
         JTable tabla = new JTable(tm);
-        
+        tabla.setDefaultEditor(Object.class, null);
+        JScrollPane jsp = new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         JButton back = new JButton("Volver");
         back.addActionListener(new contrVolver(cardLay, 2));
-        
+
+        titulo.setFont(new Font("Tahoma", Font.BOLD, 20));
         pedidCli.add(titulo);
-        pedidCli.add(tabla);
+        pedidCli.add(jsp);
+
         for(JButton j :butts){
             pedidCli.add(j);
         }
         pedidCli.add(back);
         
 
-        titulo.setFont(new Font("Tahoma", Font.BOLD, 20));
+       
         
-
 
         cardLay.add(ventana, "" + 0);
         cardLay.add(editDatos, "" + 1);
@@ -139,7 +148,7 @@ public class pantCliente extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(cardLay, BorderLayout.CENTER);
-        setSize(600, 400);
+        setSize(550, 800);
     }
     public ArrayList<String> getNewRegistros(){
         ArrayList<String> s = new ArrayList<>();

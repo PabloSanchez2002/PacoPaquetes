@@ -3,10 +3,7 @@ package pacopaquetes.GUI.Operario.Paneles;
 import pacopaquetes.*;
 import pacopaquetes.usuarios.*;
 import pacopaquetes.GUI.Operario.Controladores.*;
-import pacopaquetes.GUI.Cliente.Controlador.*;
-import pacopaquetes.GUI.A_GENERALES.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
 

@@ -11,13 +11,11 @@ import pacopaquetes.GUI.Cliente.Paneles.pantCliente;
 import pacopaquetes.usuarios.Cliente;
 
 public class actualizDatos implements ActionListener {
-    private JPanel cardLay;
     private pantCliente panel;
     private Cliente cli;
 
-    public actualizDatos(Cliente cli, JPanel cardLay, pantCliente panel) {
+    public actualizDatos(Cliente cli, pantCliente panel) {
             this.panel = panel;
-            this.cardLay = cardLay;
             this.cli = cli;
     }
 
@@ -25,10 +23,10 @@ public class actualizDatos implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         ArrayList<String> s = this.panel.getNewRegistros();
         if (s.get(0).equals("") ==false) {
-            cli.setUsuario(s.get(0));
+            cli.setNombreEmpresa(s.get(0));
         }
         if (s.get(1).equals("") ==false) {
-            cli.setNombreEmpresa(s.get(1));
+            cli.setUsuario(s.get(1));
         }
         if (s.get(2).equals("") ==false) {
             cli.setContrasena(s.get(2));
