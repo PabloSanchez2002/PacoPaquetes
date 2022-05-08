@@ -42,8 +42,9 @@ public class actualizDatos implements ActionListener {
         if (s.get(5).equals("") ==false) {
             cli.setTargetaBancaria(s.get(5));
         }
-        CardLayout cardLayout = (CardLayout) this.cardLay.getLayout();
-        cardLayout.previous(this.cardLay);
+
+        new pantCliente(panel.getPP(), cli).setVisible(true);
+        panel.setVisible(false);
     }
 
 }

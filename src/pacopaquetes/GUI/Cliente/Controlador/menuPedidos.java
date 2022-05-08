@@ -6,21 +6,18 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import pacopaquetes.PacoPaquetes;
-import pacopaquetes.usuarios.Cliente;
-
 public class menuPedidos implements ActionListener {
-    private PacoPaquetes pp;
-    private Cliente cli;
+    private JPanel cardLay;
 
-    public menuPedidos(PacoPaquetes pp, Cliente cli) {
-        this.pp = pp;
-        this.cli = cli;
+    public menuPedidos(JPanel cardLay) {
+        this.cardLay = cardLay;
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        // crear vista pedidos y tal
+        CardLayout cl = (CardLayout) this.cardLay.getLayout();
+        cl.next(this.cardLay);
+        cl.next(this.cardLay);
 
     }
 
