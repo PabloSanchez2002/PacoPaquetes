@@ -120,6 +120,15 @@ public class PacoPaquetes implements Serializable {
     }
 
     /**
+     * Devuelve la lista de clientes de la empresa
+     *
+     * @return ArrayList<Cliente> lista de clientes
+     */
+    public ArrayList<Cliente> getClientes(){
+        return this.clientes;
+    }
+
+    /**
      * Devuelve la configuracion de la empresa
      *
      * @return Configuracion conf de la empresa

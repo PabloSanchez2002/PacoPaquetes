@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ *  Clase para volver un numero de veces atras en el cardLayout
+ */
 public class contrVolver implements ActionListener {
     private JPanel cardLay;
     int num;

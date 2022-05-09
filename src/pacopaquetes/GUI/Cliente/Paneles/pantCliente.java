@@ -28,6 +28,9 @@ public class pantCliente extends JFrame {
     private JTextField correo1;
     private JTextField targB1;
 
+/**
+ *  Clase para generar todas la psnatllas de cliente
+ */
     public pantCliente(PacoPaquetes pp, Cliente cli) {
         this.pp = pp;
 

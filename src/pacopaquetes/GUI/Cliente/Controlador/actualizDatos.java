@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import pacopaquetes.GUI.Cliente.Paneles.pantCliente;
 import pacopaquetes.GUI.A_GENERALES.*;
 import pacopaquetes.usuarios.Cliente;
-
+/**
+ *  Clase para actualizar los datos del cliente
+ */
 public class actualizDatos implements ActionListener {
     private pantCliente panel;
     private Cliente cli;

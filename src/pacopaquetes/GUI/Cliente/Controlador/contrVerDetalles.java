@@ -6,6 +6,9 @@ import pacopaquetes.GUI.Cliente.Paneles.detalles;
 
 import pacopaquetes.envios.Pedido;
 
+/**
+ *  Clase para llamar a mostrar detalles de un pedido
+ */
 public class contrVerDetalles implements ActionListener {
     private Pedido p;
 

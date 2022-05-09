@@ -6,13 +6,15 @@ import javax.swing.table.*;
 import java.util.*;
 
 import pacopaquetes.envios.*;
-import pacopaquetes.envios.productos.*;
-import pacopaquetes.PacoPaquetes;
+import pacopaquetes.*;
 import pacopaquetes.GUI.Repartidor.Controladores.*;
 import pacopaquetes.GUI.A_GENERALES.*;
 import pacopaquetes.usuarios.*;
 import enums.*;
 
+/**
+ * Clase de la pantalla principal del repartidor
+ */
 public class pantRepartidor extends JFrame {
     private JTextField telf1;
     private PacoPaquetes pp;
@@ -32,15 +34,15 @@ public class pantRepartidor extends JFrame {
         JButton camion = new JButton("Dar de baja camion");
         JButton datosRep = new JButton("Modificar datos");
         JButton logOut = new JButton("Cerrar Sesion");
-        JButton atras1 = new JButton("Atras");
+        JButton atras = new JButton("Atras");
 
-        camion.addActionListener(new contrCamion(cardLay));
-        consultar.addActionListener(new contrConsultar(cardLay));
-        reparto.addActionListener(new contrReparto(cardLay));
+        camion.addActionListener(new contrCamion(cardLay,rep));
+        consultar.addActionListener(new contrConsultar(cardLay,rep));
+        reparto.addActionListener(new contrReparto(cardLay,rep));
         datosRep.addActionListener(new contrDatos(cardLay));
         logOut.addActionListener(new logOut(pp,this));
         
-        atras1.addActionListener(new contrAtrasC(cardLay));
+        atras.addActionListener(new contrAtrasC(cardLay));
 
         ventana.add(welcome);
         ventana.add(consultar);
@@ -52,10 +54,11 @@ public class pantRepartidor extends JFrame {
         cardLay.add(ventana, "" + 0);
 
         ///////////CAMION AVERIADO///////////////
+        if(rep.consultarPlanReparto() != null){
         JPanel camionpant = new JPanel();
         camionpant.setLayout(new FlowLayout());
         JLabel question = new JLabel(
-                "Quiere marcar el Camion: Matricula" + rep.consultarPlanReparto().getCamion().getMatricula()
+                "Quiere marcar el Camion: Matricula " + rep.consultarPlanReparto().getCamion().getMatricula()
                         + " como averiado?");
         JButton averiado = new JButton("Si");
 
@@ -63,12 +66,16 @@ public class pantRepartidor extends JFrame {
 
         camionpant.add(question);
         camionpant.add(averiado);
-        camionpant.add(atras1);
+        camionpant.add(atras);
 
         cardLay.add(camionpant, "" + 1);
+        }
         //////////////CONSULTAR REPARTO////////////////
+
+
         JPanel consultarpant = new JPanel();
-        camionpant.setLayout(new FlowLayout());
+        consultarpant.setLayout(new FlowLayout());
+        if(rep.consultarPlanReparto() != null){
         JLabel planetiq = new JLabel("Plan de reparto asignado: ");
         PlanDeReparto plan = rep.consultarPlanReparto();
         String[] columnas = {"Id Paquete","Destino(CP)","Prioridad","Tipo"};
@@ -115,16 +122,23 @@ public class pantRepartidor extends JFrame {
         JTable tabla = new JTable(model);
         tabla.setDefaultEditor(Object.class, null);
         JScrollPane panel = new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        panel.setPreferredSize(new Dimension(700, 500));
-
+        panel.setPreferredSize(new Dimension(500,300));
+        JButton atras1 = new JButton("Atras");
+        atras1.addActionListener(new contrAtrasC(cardLay));
         consultarpant.add(planetiq);
         consultarpant.add(panel);
         consultarpant.add(atras1);
 
         cardLay.add(consultarpant, "" + 2);
+        }
         ///////////////////REPARTO///////////////////////////
+        
+        if(rep.consultarPlanReparto() == null){
+        }
+        else{
+        PlanDeReparto plan = rep.consultarPlanReparto();
         JPanel repartirpant = new JPanel();
-        repartirpant.setLayout(new GridLayout(plan.getPaquetes().size(),1));
+        repartirpant.setLayout(new GridLayout(plan.getPaquetes().size()+3,1));
         JLabel marcar = new JLabel("Marque los paquetes entregados: ");
         Map<JCheckBox,Paquete> botonRep = new LinkedHashMap<>();
         repartirpant.add(marcar);
@@ -139,24 +153,32 @@ public class pantRepartidor extends JFrame {
 
         JButton confirReparto = new JButton("Confirmar reparto");
 
-        
+        confirReparto.addActionListener(new contrConfirRep(this,rep,botonRep));
+
+        JButton atras2 = new JButton("Atras");
+        atras2.addActionListener(new contrAtrasC(cardLay));
+
         repartirpant.add(confirReparto);
-        repartirpant.add(atras1);
+        repartirpant.add(atras2);
 
         cardLay.add(repartirpant, "" + 3);
+        }
         ///////////MODIFICAR NUMERO DE TELEFONO//////////////
         JPanel datos = new JPanel();
         datos.setLayout(new FlowLayout());
-        JLabel telf = new JLabel("Inserte su nuevo numero de telefono: ");
+        JLabel telf = new JLabel("Inserte su nuevo numero de telefono(Telf. actual:"+rep.getTelefono()+") : ");
         this.telf1 = new JTextField(10);
         JButton telefono = new JButton("Cambiar");
 
         telefono.addActionListener(new contrTelf(this,rep));
 
+        JButton atras3 = new JButton("Atras");
+        atras3.addActionListener(new contrAtrasC(cardLay));
+
         datos.add(telf);
         datos.add(this.telf1);
         datos.add(telefono);
-        datos.add(atras1);
+        datos.add(atras3);
 
         cardLay.add(datos, "" + 4);
 

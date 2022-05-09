@@ -10,12 +10,10 @@ package pacopaquetes.envios;
 import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.productos.Producto;
 import enums.*;
-import es.uam.eps.padsof.invoices.IInvoiceInfo;
 import es.uam.eps.padsof.invoices.IProductInfo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Pedido implements Serializable {

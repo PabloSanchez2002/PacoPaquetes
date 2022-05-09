@@ -3,6 +3,9 @@ package pacopaquetes.GUI.A_GENERALES;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ *  Clase para mostrar un apantalla de informacion con un mensaje pasado por argumento
+ */
 public class infoWindow {
     public infoWindow(String inf) {
         JFrame ventana = new JFrame("Info");

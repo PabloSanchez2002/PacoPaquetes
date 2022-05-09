@@ -3,6 +3,9 @@ package pacopaquetes.GUI.A_GENERALES;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ *  Clase para mostrar un error por pantalla con un mensaje pasado por argumento
+ */
 public class errorWindow {
     public errorWindow(String error) {
         JFrame ventana = new JFrame("Error");

@@ -7,6 +7,9 @@ import pacopaquetes.GUI.A_GENERALES.*;
 import pacopaquetes.GUI.A_GENERALES.errorWindow;
 import pacopaquetes.GUI.Repartidor.Paneles.*;
 import pacopaquetes.usuarios.*;
+/**
+ * Clase para modificar el numero de telefono del repartidor
+ */
 public class contrTelf implements ActionListener {
     private pantRepartidor rep;
     private Repartidor repar;

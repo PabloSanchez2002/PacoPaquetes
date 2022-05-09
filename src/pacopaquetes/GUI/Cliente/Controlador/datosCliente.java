@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-
+/**
+ *  Clase para ir a modificar los datos del cliente
+ */
 public class datosCliente implements ActionListener {
     private JPanel cardLay;
 

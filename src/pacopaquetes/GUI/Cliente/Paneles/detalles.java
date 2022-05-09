@@ -11,7 +11,9 @@ import javax.swing.table.TableModel;
 import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.Pedido;
 import pacopaquetes.envios.productos.Producto;
-
+/**
+ *  Clase para mostrar los detalles de un pedido de un cliente
+ */
 public class detalles extends JFrame{
 
     public detalles(Pedido p) {

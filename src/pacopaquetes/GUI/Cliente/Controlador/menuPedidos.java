@@ -6,6 +6,9 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+/**
+ *  Clase para llamar a la pantalla de mostrar los pedidos del cliente
+ */
 public class menuPedidos implements ActionListener {
     private JPanel cardLay;
 

@@ -6,7 +6,9 @@ import java.awt.event.*;
 
 import pacopaquetes.GUI.Repartidor.Paneles.pantRepartidor;
 import pacopaquetes.usuarios.*;
-
+/**
+ * Clase para marcar un camion como averiado
+ */
 public class contrAveriado implements ActionListener {
     private pantRepartidor repar;
     private Repartidor rep;

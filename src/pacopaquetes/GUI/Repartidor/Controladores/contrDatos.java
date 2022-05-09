@@ -6,6 +6,9 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+/**
+ * Clase para acceder a la modificacion de los datos del repartidor(telefono)
+ */
 public class contrDatos implements ActionListener {
     private JPanel cardLay;
 

@@ -11,6 +11,9 @@ import pacopaquetes.envios.productos.Producto;
 import pacopaquetes.usuarios.Cliente;
 import pacopaquetes.usuarios.Operario;
 
+/**
+ *  Clase para inicializar una ejecucion normal de la aplición
+ */
 public class prueba {
    public static void main(String[] args) {
       Operario op = new Operario("oper1", "oper123");
@@ -69,6 +72,9 @@ public class prueba {
       pr.setCamion(cam);
       pr.addPaquete(p1);
       pr.addPaquete(p2);
+
+      pp.addPaquete(p1);
+      pp.addPaquete(p2);
 
       op.asignarRepartidor(pr, pp.findRepByName("jaime"));
       new logIn(pp).setVisible(true);

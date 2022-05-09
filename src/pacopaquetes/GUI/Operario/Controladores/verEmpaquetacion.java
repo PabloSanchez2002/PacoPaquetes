@@ -1,19 +1,29 @@
 package pacopaquetes.GUI.Operario.Controladores;
 
-import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
 
+
+import pacopaquetes.GUI.A_GENERALES.infoWindow;
+import pacopaquetes.GUI.Operario.Paneles.pantOper;
+import pacopaquetes.usuarios.*;
+
+/**
+ * Clase para realizar el empaquetado de la empresa
+ */
 public class verEmpaquetacion implements ActionListener {
-    private JPanel cardLay;
+    private Operario op;
+    private pantOper pant;
 
-    public verEmpaquetacion(JPanel cardLay) {
-        this.cardLay = cardLay;
+    public verEmpaquetacion(pantOper pant,Operario op) {
+        this.op = op;
+        this.pant = pant;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        CardLayout cl = (CardLayout) this.cardLay.getLayout();
-        cl.next(this.cardLay);
+        op.empaquetar();
+        new pantOper(op.getEmpresa(), op).setVisible(true);
+        pant.setVisible(false);
+        new infoWindow("Empaquetado correctamente");
     }
 }

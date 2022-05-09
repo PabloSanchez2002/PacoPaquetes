@@ -6,9 +6,13 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import pacopaquetes.GUI.A_GENERALES.infoWindow;
 import pacopaquetes.GUI.Operario.Paneles.*;
 import pacopaquetes.usuarios.*;
 
+/**
+ * Clase para modificar la configuracion de la empresa
+ */
 public class modificarConf implements ActionListener{
     private JPanel cardLay;
     private pantOper panel;
@@ -48,5 +52,6 @@ public class modificarConf implements ActionListener{
         cardLayout.previous(this.cardLay);
         cardLayout.previous(this.cardLay);
         cardLayout.previous(this.cardLay);
+        new infoWindow("Se actualizó la configuración de la empresa");
     }
 }
