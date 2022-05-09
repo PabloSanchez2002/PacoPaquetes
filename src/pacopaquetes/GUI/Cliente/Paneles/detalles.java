@@ -7,6 +7,8 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
+import pacopaquetes.ModifiableDate;
 import pacopaquetes.envios.Pedido;
 import pacopaquetes.envios.productos.Producto;
 
@@ -32,6 +34,10 @@ public class detalles extends JFrame{
         while(i<num){
             Producto pr = prod.get(i);
             String id = String.valueOf(pr.getId());
+            pr.getFecha();
+            pr.getFecha();
+	
+			String fecha = String.valueOf(ModifiableDate.getModifiableDate().getDayOfMonth())+"/"+ String.valueOf(ModifiableDate.getModifiableDate().getMonthValue())+"/"+String.valueOf(ModifiableDate.getModifiableDate().getYear());
             String intentos = String.valueOf(pr.getNIntentos());
             String empaq;
             if(pr.getEmpaquetado()){
@@ -50,7 +56,8 @@ public class detalles extends JFrame{
             String precio = String.valueOf(pr.getPrecio());
             String tamano = String.valueOf(pr.getAlto()) +"/"+ String.valueOf(pr.getAncho()) +"/"+  String.valueOf(pr.getProfundo());
 
-            String fila[] = {pr.getNombre(),pr.getDescription(), id , pr.getPrioridad().toString(), pr.getFecha().toString(),intentos, empaq, pr.getEstado().toString(), dim, numero, peso, precio, tamano};
+
+            String fila[] = {pr.getNombre(),pr.getDescription(), id , pr.getPrioridad().toString(), fecha, intentos, empaq, pr.getEstado().toString(), dim, numero, peso, precio, tamano};
             filas[i] = fila;
             i++;
         }

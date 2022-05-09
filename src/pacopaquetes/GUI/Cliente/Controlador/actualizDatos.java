@@ -1,13 +1,10 @@
 package pacopaquetes.GUI.Cliente.Controlador;
 
-import java.awt.*;
-
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import javax.swing.*;
-
 import pacopaquetes.GUI.Cliente.Paneles.pantCliente;
+import pacopaquetes.GUI.A_GENERALES.*;
 import pacopaquetes.usuarios.Cliente;
 
 public class actualizDatos implements ActionListener {
@@ -42,6 +39,7 @@ public class actualizDatos implements ActionListener {
         }
 
         new pantCliente(panel.getPP(), cli).setVisible(true);
+        new infoWindow("Los datos personales se cambiaron con exito");
         panel.setVisible(false);
     }
 

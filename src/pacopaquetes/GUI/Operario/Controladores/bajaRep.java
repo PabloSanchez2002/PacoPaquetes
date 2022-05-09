@@ -15,5 +15,7 @@ public class bajaRep implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         CardLayout cl = (CardLayout) this.cardLay.getLayout();
         cl.next(this.cardLay);
+        cl.next(this.cardLay);
+        cl.next(this.cardLay);
     }
 }

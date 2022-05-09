@@ -22,7 +22,7 @@ public class newCam implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ArrayList<String> s = this.panel.getNewRep();
+        ArrayList<String> s = this.panel.getNewCam();
         if (s.get(1).equals("") ==true) {
             //control de errores
         }

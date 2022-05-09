@@ -94,11 +94,12 @@ public class PacoPaquetes implements Serializable {
     }
 
     public int findUsuario(String nombre, String contrasena) {
-        if (this.oper.getUsuario() == nombre && this.oper.getContrasena() == contrasena) {
+        if (this.oper.getUsuario().equals(nombre) && this.oper.getContrasena().equals(contrasena)) {
             return 0;
         } else {
             Cliente c = this.findClienteByName(nombre);
             Repartidor r = this.findRepByName(nombre);
+
             if (c != null && c.getUsuario().equals(nombre) && c.getContrasena().equals(contrasena) ) {
                 return 1;
             }
@@ -313,7 +314,7 @@ public class PacoPaquetes implements Serializable {
     // =========================FINDS==========================\\
     public Repartidor findRepByName(String name) {
         for (Repartidor rep : this.repartidores)
-            if (rep.getUsuario() == name)
+            if (rep.getUsuario().equals(name))
                 return rep;
         return null;
     }
@@ -326,7 +327,7 @@ public class PacoPaquetes implements Serializable {
      */
     public Camion findCamionByMatr(String matricula) {
         for (Camion cam : this.camiones)
-            if (cam.getMatricula() == matricula)
+            if (cam.getMatricula().equals(matricula))
                 return cam;
         return null;
     }

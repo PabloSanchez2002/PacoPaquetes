@@ -2,6 +2,7 @@ package pacopaquetes.GUI.Operario.Paneles;
 
 import pacopaquetes.*;
 import pacopaquetes.usuarios.*;
+import pacopaquetes.GUI.A_GENERALES.*;
 import pacopaquetes.GUI.Operario.Controladores.*;
 import java.awt.*;
 import javax.swing.*;
@@ -21,6 +22,18 @@ public class pantOper extends JFrame {
     private JTextField maxCodPos1;
     private JTextField maxPesoPNormal1;
     private JTextField maxPesoPFragil1;
+    private JTextField nombreCli1;
+    private JTextField cpPed1;
+    private JTextField nameP1;
+    private JTextField numP1;
+    private JTextField pesoP1;
+    private JTextField altoP1;
+    private JTextField anchoP1;
+    private JTextField profP1;
+    private JCheckBox urgn;
+    private JRadioButton prodN;
+    private JRadioButton prodF;
+    private JRadioButton prodA;
     private JComboBox<String> tipoCam1;
 
     public pantOper(PacoPaquetes pp, Operario op) {
@@ -30,13 +43,12 @@ public class pantOper extends JFrame {
         JPanel ventana = new JPanel();
         ventana.setLayout(new FlowLayout());
         // crear componentes
-        JLabel wellcome = new JLabel("Bienvenido" + op.getUsuario() + "\n  ");
+        JLabel wellcome = new JLabel("Bienvenido " + op.getUsuario() + "\n  ");
 
         JButton alta_r = new JButton("Alta Repartidor");
         JButton baja_r = new JButton("Baja Repartidor");
         JButton alta_c = new JButton("Alta Camion");
         JButton baja_c = new JButton("Baja Camion");
-        JButton stats = new JButton("Estadísticas");
         JButton fact = new JButton("Facturación");
         JButton pedido = new JButton("Crear pedido");
         JButton conf = new JButton("Configuración");
@@ -48,19 +60,17 @@ public class pantOper extends JFrame {
         baja_r.addActionListener(new bajaRep(cardLay));
         alta_c.addActionListener(new altaCam(cardLay));
         baja_c.addActionListener(new bajaCam(cardLay));
-        stats.addActionListener(new verEst(cardLay));
         fact.addActionListener(new verFact(cardLay));
         pedido.addActionListener(new crearPedido(cardLay));
         conf.addActionListener(new configuracion(cardLay));
         paquete.addActionListener(new verEmpaquetacion(cardLay));
-        //cerrarSesion.addActionListener(new logOut(pp, this));
+        cerrarSesion.addActionListener(new logOut(pp, this));
 
         ventana.add(wellcome);
         ventana.add(alta_r);
         ventana.add(baja_r);
         ventana.add(alta_c);
         ventana.add(baja_c);
-        ventana.add(stats);
         ventana.add(fact);
         ventana.add(pedido);
         ventana.add(conf);
@@ -75,7 +85,7 @@ public class pantOper extends JFrame {
         JLabel usuariorep = new JLabel("Usuario: ");
         this.usuariorep1 = new JTextField(10);
         JLabel contrasenarep = new JLabel("  Contraseña: ");
-        this.contrasenarep1 = new JPasswordField(10);
+        this.contrasenarep1 = new JTextField(10);
         JLabel telefonorep = new JLabel("   Telefono: ");
         this.telefonorep1 = new JTextField(10);
         JButton guardarRep = new JButton("Guardar");
@@ -99,7 +109,7 @@ public class pantOper extends JFrame {
         JLabel matriculacam = new JLabel("Matrícula: ");
         this.matriculacam1 = new JTextField(10);
         JLabel pesoMax = new JLabel("  PesoMax: ");
-        this.pesoMax1 = new JPasswordField(10);
+        this.pesoMax1 = new JTextField(10);
         JLabel tipoCam = new JLabel("   Tipo: ");
         String[] tiposCam={"estandar","especial","refrigerado"};
         this.tipoCam1 = new JComboBox<String>(tiposCam);
@@ -126,7 +136,7 @@ public class pantOper extends JFrame {
         this.usuariorepp1 = new JTextField(10);
         JButton deleRep = new JButton("Eliminar");
 
-        guardarCam.addActionListener(new delRep(op, cardLay, this));
+        deleRep.addActionListener(new delRep(op, cardLay, this));
 
         delRepp.add(nombrerr);
         delRepp.add(usuariorepp);
@@ -142,7 +152,7 @@ public class pantOper extends JFrame {
         this.matriculacamm1 = new JTextField(10);
         JButton deleCam = new JButton("Eliminar");
 
-        guardarCam.addActionListener(new delCam(op, cardLay, this));
+        deleCam.addActionListener(new delCam(op, cardLay, this));
 
         delCamm.add(nombrecc);
         delCamm.add(matriculacamm);
@@ -153,7 +163,7 @@ public class pantOper extends JFrame {
         
         JPanel config = new JPanel();
         config.setLayout(new FlowLayout());
-        JLabel nombrecon = new JLabel("CONFIGURACION");
+        JLabel nombrecon = new JLabel("                CONFIGURACION                           ");
         JLabel n_reint = new JLabel("Número de reintentos: ");
         this.n_reint1 = new JTextField(10);
         JLabel maxVolume = new JLabel("Volumen Máximo de camiones: ");
@@ -168,7 +178,7 @@ public class pantOper extends JFrame {
         this.maxPesoPFragil1 = new JTextField(10);
         JButton configB = new JButton("Guardar");
 
-        guardarCam.addActionListener(new delCam(op, cardLay, this));
+        configB.addActionListener(new modificarConf(op, cardLay, this));
 
         config.add(nombrecon);
         config.add(n_reint);
@@ -185,12 +195,81 @@ public class pantOper extends JFrame {
         config.add(maxPesoPFragil1);
         config.add(configB);
 
+        //////////////// vista de crear pedido
+        
+        JPanel crearPed = new JPanel();
+        crearPed.setLayout(new FlowLayout());
+        JLabel nombrePed = new JLabel("Crear Pedido");
+        JLabel nombreCli = new JLabel("Nombre del cliente: ");
+        this.nombreCli1 = new JTextField(10);
+        JLabel cpPed = new JLabel("Codigo postal: ");
+        this.cpPed1 = new JTextField(10);
+        this.urgn = new JCheckBox("Urgente: ");
+        JButton guardarPed = new JButton("Crear");
+
+        guardarPed.addActionListener(new newPed(op, cardLay, this));
+
+        crearPed.add(nombrePed);
+        crearPed.add(nombreCli);
+        crearPed.add(nombreCli1);
+        crearPed.add(cpPed);
+        crearPed.add(cpPed1);
+        crearPed.add(urgn);
+        crearPed.add(guardarPed);
+
+        //////////////// vista de añadir producto
+        
+        JPanel addProd = new JPanel();
+        addProd.setLayout(new FlowLayout());
+        JLabel nombreProc = new JLabel("Añadir Producto");
+        this.prodN = new JRadioButton("Normal");
+        this.prodF = new JRadioButton("Fragil");
+        this.prodA = new JRadioButton("Alimentario");
+        JButton addProdd = new JButton("Datos Producto");
+
+        addProdd.addActionListener(new addPro(op, cardLay, this));
+
+        addProd.add(nombreProc);
+        addProd.add(prodN);
+        addProd.add(prodF);
+        addProd.add(prodA);
+        addProd.add(addProdd);
+
+        //////////////// vista de añadir producto normal
+        
+        JPanel addProdN = new JPanel();
+        addProdN.setLayout(new FlowLayout());
+        JLabel nombreProcN = new JLabel("Producto normal");
+        JLabel nameP = new JLabel("Nombre del producto");
+        this.nameP1 = new JTextField(10);
+        JLabel numP = new JLabel("Numero de productos");
+        this.numP1 = new JTextField(10);
+        JLabel pesoP = new JLabel("Peso del producto");
+        this.pesoP1 = new JTextField(10);
+        JLabel altoP = new JLabel("Alto del productos");
+        this.altoP1 = new JTextField(10);
+        JLabel anchoP = new JLabel("Ancho del productos");
+        this.anchoP1 = new JTextField(10);
+        JLabel profP = new JLabel("Profundidad del productos");
+        this.profP1 = new JTextField(10);
+        JButton addProddN = new JButton("Añadir Producto");
+
+        addProddN.addActionListener(new addPro(op, cardLay, this));
+
+        addProdN.add(nombreProc);
+        addProdN.add(prodN);
+        addProdN.add(prodF);
+        addProdN.add(prodA);
+        addProdN.add(addProdd);
+
         cardLay.add(ventana, "" + 0);
         cardLay.add(newRepp, "" + 1);
         cardLay.add(newCamm, "" + 2);
         cardLay.add(delRepp, "" + 3);
         cardLay.add(delCamm, "" + 4);
         cardLay.add(config, "" + 5);
+        cardLay.add(crearPed, "" + 6);
+        cardLay.add(addProd, "" + 7);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(cardLay, BorderLayout.CENTER);
@@ -208,6 +287,7 @@ public class pantOper extends JFrame {
         s.add(matriculacam1.getText());
         s.add(pesoMax1.getText());
         s.add((String)(tipoCam1.getSelectedItem()));
+        
         return s;
     }
     public String getDelRep(){
@@ -225,5 +305,18 @@ public class pantOper extends JFrame {
         s.add(maxPesoPNormal1.getText());
         s.add(maxPesoPFragil1.getText());
         return s;
+    }
+    public ArrayList<String> getDatosPed(){
+        ArrayList<String> s = new ArrayList<>();
+        s.add(nombreCli1.getText());
+        s.add(cpPed1.getText());
+        if(this.urgn.isSelected()) s.add("s");
+        else s.add("n");
+        return s;
+    }
+    public String getTipoProd(){
+        if(this.prodN.isSelected()) return "normal";
+        else if(this.prodF.isSelected()) return "fragil";
+        return "alimentario";
     }
 }

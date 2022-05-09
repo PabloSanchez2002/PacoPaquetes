@@ -67,7 +67,7 @@ public class pantCliente extends JFrame {
         JLabel usuarioreg = new JLabel("Usuario: " + cli.getUsuario());
         this.usuario1 = new JTextField(10);
         JLabel contrasenareg = new JLabel("  Contraseña: " + cli.getContrasena());
-        this.contrasena1 = new JPasswordField(10);
+        this.contrasena1 = new JTextField(10);
         JLabel direccion = new JLabel("   Direccion de facturación: " + cli.getDirecconFacturacion());
         this.direccion1 = new JTextField(10);
         JLabel correo = new JLabel("   Correo electronico: " + cli.getCorreoElectronico());
@@ -112,14 +112,15 @@ public class pantCliente extends JFrame {
             p.getFecha();
             String fila[] = {id , p.getPrioridad().toString(), ModifiableDate.getModifiableDate().toString(), p.getCodPost()};
             filas[i] = fila;
-            JButton det = new JButton("Detalles " + i+1);
-            JButton fact = new JButton("Factura " + i+1 );
+            i++;
+            JButton det = new JButton("Detalles " + i);
+            JButton fact = new JButton("Factura " + i);
             det.addActionListener(new contrVerDetalles(p));
             fact.addActionListener(new contrGenerarFactura(cli, p, pp.getOperario()));
             butts.add(det);
             butts.add(fact);
             
-            i++;
+           
         }
         TableModel tm = new DefaultTableModel(filas, titulos);
         JTable tabla = new JTable(tm);
@@ -138,10 +139,6 @@ public class pantCliente extends JFrame {
         }
         pedidCli.add(back);
         
-
-       
-        
-
         cardLay.add(ventana, "" + 0);
         cardLay.add(editDatos, "" + 1);
         cardLay.add(pedidCli, "" + 2);

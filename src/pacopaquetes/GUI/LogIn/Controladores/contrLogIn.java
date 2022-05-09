@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.GUI.A_GENERALES.errorWindow;
 import pacopaquetes.GUI.Cliente.Paneles.pantCliente;
+import pacopaquetes.GUI.Operario.Paneles.pantOper;
+import pacopaquetes.GUI.Repartidor.Paneles.pantRepartidor;
 import pacopaquetes.GUI.LogIn.Paneles.logIn;
 
 public class contrLogIn implements ActionListener {
@@ -23,13 +25,13 @@ public class contrLogIn implements ActionListener {
         int x = pp.findUsuario(s.get(0), s.get(1));
         if (x == 0) {
             login.setVisible(false);
-            // new pantOper(pp, pp.getOperario()).setVisible(true);
+            new pantOper(pp, pp.getOperario()).setVisible(true);
         } else if (x == 1) {
             login.setVisible(false);
             new pantCliente(pp, pp.findClienteByName(s.get(0))).setVisible(true);
         } else if (x == 2) {
             login.setVisible(false);
-            // new pantRepartidor(pp, pp.findRepByName(usuario)).setVisible(true);
+            new pantRepartidor(pp, pp.findRepByName(s.get(0))).setVisible(true);
         } else {
             new errorWindow("Contraseña o usuario no validos");
         }
