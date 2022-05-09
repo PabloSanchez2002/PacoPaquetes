@@ -133,10 +133,14 @@ public class pantRepartidor extends JFrame {
             if(p.getEntregado() != ESTADO.ENTREGADO){
                 JCheckBox box = new JCheckBox("Paquete Id:"+p.getId()+" CP:"+p.getCP());
                 botonRep.put(box,p);
+                repartirpant.add(box);
             }
         }
 
+        JButton confirReparto = new JButton("Confirmar reparto");
         
+        
+        repartirpant.add(confirReparto);
         repartirpant.add(atras1);
 
         cardLay.add(repartirpant, "" + 3);

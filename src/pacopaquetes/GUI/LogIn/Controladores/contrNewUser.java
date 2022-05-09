@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import pacopaquetes.PacoPaquetes;
 import pacopaquetes.GUI.A_GENERALES.errorWindow;
+import pacopaquetes.GUI.A_GENERALES.infoWindow;
 import pacopaquetes.GUI.LogIn.Paneles.logIn;
 
 public class contrNewUser implements ActionListener {
@@ -35,5 +36,6 @@ public class contrNewUser implements ActionListener {
 
         CardLayout cardLayout = (CardLayout) this.cardLay.getLayout();
         cardLayout.previous(this.cardLay);
+        new infoWindow("El cliente se creó correctamente");
     }
 }

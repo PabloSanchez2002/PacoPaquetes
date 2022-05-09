@@ -39,8 +39,8 @@ public class actualizDatos implements ActionListener {
         }
 
         new pantCliente(panel.getPP(), cli).setVisible(true);
-        new infoWindow("Los datos personales se cambiaron con exito");
         panel.setVisible(false);
+        new infoWindow("Los datos personales se cambiaron con exito");
     }
 
 }

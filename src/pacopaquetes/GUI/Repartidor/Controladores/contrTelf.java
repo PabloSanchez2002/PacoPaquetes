@@ -26,9 +26,9 @@ public class contrTelf implements ActionListener {
             else{
                 repar.setTelefono(s);
                 pantRepartidor pant = new pantRepartidor(rep.getPP(),repar);
-                new infoWindow("Numero de telefono correcto");
                 pant.setVisible(true);
                 rep.setVisible(false);
+                new infoWindow("Numero de telefono correcto");
             }
         }
         else{

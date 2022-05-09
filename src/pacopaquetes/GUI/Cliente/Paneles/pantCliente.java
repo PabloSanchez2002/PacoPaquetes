@@ -115,6 +115,8 @@ public class pantCliente extends JFrame {
             i++;
             JButton det = new JButton("Detalles " + i);
             JButton fact = new JButton("Factura " + i);
+            det.setPreferredSize(new Dimension(250, 40));
+            fact.setPreferredSize(new Dimension(250, 40));
             det.addActionListener(new contrVerDetalles(p));
             fact.addActionListener(new contrGenerarFactura(cli, p, pp.getOperario()));
             butts.add(det);

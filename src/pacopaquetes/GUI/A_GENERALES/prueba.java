@@ -10,7 +10,6 @@ import pacopaquetes.envios.productos.Normal;
 import pacopaquetes.envios.productos.Producto;
 import pacopaquetes.usuarios.Cliente;
 import pacopaquetes.usuarios.Operario;
-import pacopaquetes.usuarios.Repartidor;
 
 public class prueba {
    public static void main(String[] args) {

@@ -19,9 +19,9 @@ public class contrAveriado implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         rep.setCamionAveriado();
-        new infoWindow("Camion dado de baja correctamente");
         pantRepartidor pant = new pantRepartidor(repar.getPP(),rep);
         pant.setVisible(true);
         repar.setVisible(false);
+        new infoWindow("Camion dado de baja correctamente");
     }
 }

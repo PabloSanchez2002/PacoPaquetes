@@ -254,13 +254,22 @@ public class pantOper extends JFrame {
         this.profP1 = new JTextField(10);
         JButton addProddN = new JButton("Añadir Producto");
 
-        addProddN.addActionListener(new addPro(op, cardLay, this));
+        addProddN.addActionListener(new addProN(op, cardLay, this));
 
-        addProdN.add(nombreProc);
-        addProdN.add(prodN);
-        addProdN.add(prodF);
-        addProdN.add(prodA);
-        addProdN.add(addProdd);
+        addProdN.add(nombreProcN);
+        addProdN.add(nameP);
+        addProdN.add(nameP1);
+        addProdN.add(numP);
+        addProdN.add(numP1);
+        addProdN.add(pesoP);
+        addProdN.add(pesoP1);
+        addProdN.add(altoP);
+        addProdN.add(altoP1);
+        addProdN.add(anchoP);
+        addProdN.add(anchoP1);
+        addProdN.add(profP);
+        addProdN.add(profP1);
+        addProdN.add(addProddN);
 
         cardLay.add(ventana, "" + 0);
         cardLay.add(newRepp, "" + 1);
