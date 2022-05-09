@@ -279,6 +279,7 @@ public class pantOper extends JFrame {
         cardLay.add(config, "" + 5);
         cardLay.add(crearPed, "" + 6);
         cardLay.add(addProd, "" + 7);
+        cardLay.add(addProdN, "" + 8);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(cardLay, BorderLayout.CENTER);
@@ -327,5 +328,13 @@ public class pantOper extends JFrame {
         if(this.prodN.isSelected()) return "normal";
         else if(this.prodF.isSelected()) return "fragil";
         return "alimentario";
+    }
+    public ArrayList<String> getDatosPed(){
+        ArrayList<String> s = new ArrayList<>();
+        s.add(nombreCli1.getText());
+        s.add(cpPed1.getText());
+        if(this.urgn.isSelected()) s.add("s");
+        else s.add("n");
+        return s;
     }
 }

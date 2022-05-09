@@ -138,7 +138,7 @@ public class pantRepartidor extends JFrame {
         }
 
         JButton confirReparto = new JButton("Confirmar reparto");
-        
+
         
         repartirpant.add(confirReparto);
         repartirpant.add(atras1);

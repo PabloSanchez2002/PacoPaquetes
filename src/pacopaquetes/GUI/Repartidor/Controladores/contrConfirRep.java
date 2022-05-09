@@ -29,7 +29,13 @@ public class contrConfirRep implements ActionListener {
             JCheckBox b = entry.getKey();
             Paquete paq = entry.getValue();
 
-
+            for(Paquete paquet : pp.getPaquetes()){
+                if(paquet.equals(paq)){
+                    if(b.isSelected() == true){
+                        
+                    }
+                }
+            }
 
 
 
